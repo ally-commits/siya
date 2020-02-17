@@ -34,48 +34,24 @@
                     <div class="collapse navbar-collapse" id="sidenav-collapse-main"> 
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/dashboard"  role="button" aria-expanded="false" aria-controls="navbar-dashboards">
+                                <a class="nav-link" href="/dashboard"  role="button" aria-expanded="false" aria-controls="navbar-dashboards">
                                     <i class="ni ni-shop text-primary"></i>
                                     <span class="nav-link-text">Home</span>
                                 </a> 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/profile"   role="button" aria-expanded="false" aria-controls="navbar-examples">
+                                <a class="nav-link" href="/staff/profile/1"   role="button" aria-expanded="false" aria-controls="navbar-examples">
                                     <i class="ni ni-single-02 text-orange"></i>
                                     <span class="nav-link-text">Profile</span>
                                 </a>  
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link" href="#navbar-tables" role="button" aria-expanded="false" aria-controls="navbar-tables">
-                                <i class="ni ni-align-left-2 text-default"></i>
-                                <span class="nav-link-text">Tables</span>
-                                </a>
-                                <div class="collapse" id="navbar-tables">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                    <a href="../../pages/tables/tables.html" class="nav-link">Tables</a>
-                                    </li>
-                                    <li class="nav-item">
-                                    <a href="../../pages/tables/sortable.html" class="nav-link">Sortable</a>
-                                    </li>
-                                    <li class="nav-item">
-                                    <a href="../../pages/tables/datatables.html" class="nav-link">Datatables</a>
-                                    </li>
-                                </ul>
-                                </div>
+                                <a class="nav-link" href="/staff/qualification"   role="button" aria-expanded="false" aria-controls="navbar-examples">
+                                    <i class="ni ni-delivery-fast text-success"></i>
+                                    <span class="nav-link-text">Add Qualification</span>
+                                </a>  
                             </li> 
-                        </ul> 
-                        <hr class="my-3"> 
-                        <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
-                        <!-- Navigation -->
-                        <ul class="navbar-nav mb-md-3">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" target="_blank">
-                                    <i class="ni ni-spaceship"></i>
-                                    <span class="nav-link-text">Getting started</span>
-                                </a>
-                            </li> 
-                        </ul>
+                        </ul>  
                     </div>
                 </div>
             </div>
@@ -230,12 +206,17 @@
             @yield('content')
         </div>
     </div> 
-    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js-cookie/js.cookie.js') }}"></script>
-    <script src="{{ asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script> 
-    <script src="{{ asset('assets/js/argon.js?v=1.1.0') }}"></script> 
-    <script src="{{ asset('assets/js/demo.min.js') }}"></script>
+    
+  <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/js-cookie/js.cookie.js') }}"></script>
+  <script src="{{ asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+  <!-- Optional JS --> 
+  <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ asset('assets/js/argon.js?v=1.1.0') }}"></script>
+  <script src="{{ asset('assets/js/demo.min.js') }}"></script>
+
+    @yield('js')
 </body>
 </html>

@@ -9,7 +9,15 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard', 'HomeController@index')->name('staffDashboard'); 
-// Auth::routes();
+
+Route::prefix('staff')->group(function() {
+    Route::get('/profile/{id}','StaffController@profile')->name('staffProfile');
+    Route::post('/add-profile','StaffController@addProfile')->name('staffAddProfile');
+    Route::post('/edit-profile','StaffController@editProfile')->name('staffEditProfile');
+    Route::get('/qualification','StaffController@qualification')->name('staffQualification');
+    Route::post('/add-qualification','StaffController@addQualification')->name('staffAddQualification');
+    Route::get('/remove-qualification/{id}','StaffController@removeQualification')->name('staffRemoveQualification');
+});
 
 // DEPT ROUTES
 Route::prefix('dept')->group(function() {
