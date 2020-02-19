@@ -21,6 +21,8 @@ class CreateStaffProfilesTable extends Migration
             $table->string('image');
             $table->bigInteger('phoneNumber');
             $table->string('gender');
+            $table->integer('expirence');
+            $table->integer('age');
             $table->string('department');
             $table->integer("departmentId");
             $table->string("bloodGroup");

@@ -11,7 +11,7 @@
         <form method="POST" action="{{ route('admin.addStaff') }}">
         @csrf
             <div class="form-row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group mb-1 @error('name') has-danger @enderror" >
                         <label class="form-control-label" for="">Staff name</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Staff name" value="{{ old('name') }}" required="">
@@ -22,7 +22,7 @@
                         </div>
                     @enderror
                 </div> 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="form-group mb-1 @error('email') has-danger @enderror">
                         <label class="form-control-label" for="">Username</label>
                         <div class="input-group">
@@ -37,10 +37,124 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
+                </div> 
+                <div class="col-md-4">
+                    <div class="form-group mb-1 @error('dob') has-danger @enderror" >
+                        <label class="form-control-label" for="">Date of Birth</label>
+                        <input type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" placeholder="Date of Birth" value="{{ old('dob') }}" required="">
+                    </div>
+                    @error('dob')
+                        <div class="invalid-text">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div> 
+            </div>
+            
+            <div class="form-row">
+                <div class="col-md-4">                          
+                    <div class="form-group">
+                        <label for="">Select your Gender</label>
+                        <select class="form-control @error('gender') invalid-form @enderror" value="{{ old('gender') }}" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </select>   
+                        @error('gender')
+                            <span class="invalid-text" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror 
+                    </div>
+                </div>  
+                <div class="col-md-4">                          
+                    <div class="form-group">
+                        <label for="">Select your Department</label>
+                        <select class="form-control @error('department') invalid-form @enderror" name="department" 
+                        value="{{ old('department')}}">
+                            <option>BCA</option>
+                            <option>BSC</option>
+                            <option>B COm</option>
+                        </select>   
+                        @error('department')
+                            <span class="invalid-text" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror 
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="form-group mb-1 @error('expirence') has-danger @enderror">
+                        <label class="form-control-label">Years Of Expirence</label>
+                        <input type="number" value="{{ old('expirence') }}" class="form-control @error('expirence') is-invalid @enderror" name="expirence" placeholder="expirence" required="">
+                    </div>
+                    @error('expirence')
+                        <div class="invalid-text">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
+            </div> 
+            <div class="form-row">
+                <div class="col-md-8">
+                    <div class="form-group mb-1 @error('address') has-danger @enderror" >
+                        <label class="form-control-label" for="">Address</label>
+                        <textarea name="address" rows="6" class="form-control  @error('address') is-invalid @enderror">{{ old('address')}}</textarea>
+                    </div>
+                    @error('address')
+                        <div class="invalid-text">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div> 
+                <div class="col-md-4">
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group mb-1 @error('age') has-danger @enderror">
+                            <label class="form-control-label" for="">Age</label>
+                            <div class="input-group"> 
+                                <input type="number" class="form-control @error('age') is-invalid @enderror" name="age" placeholder="Age"  value="{{ old('age') }}" required="">
+                            </div>
+                        </div>
+                        @error('age')
+                            <div class="invalid-text">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @enderror
+                    </div> 
+                    <div class="col-md-12">                          
+                        <div class="form-group">
+                            <label for="">Select your Blood Group</label>
+                            <select class="form-control @error('bloodGroup') invalid-form @enderror" name="bloodGroup"
+                            value="{{old('bloodGroup') }}">
+                                <option>A pos+</option>
+                                <option>A neg-</option>
+                                <option>B pos+</option>
+                                <option>B neg-</option>
+                                <option>O pos-</option>
+                                <option>O neg-</option>
+                            </select>   
+                            @error('bloodGroup')
+                                <span class="invalid-text" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4">
+                    <div class="form-group mb-1 @error('phoneNumber') has-danger @enderror" >
+                        <label class="form-control-label" for="">Phone Number</label>
+                        <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" placeholder="Phone Number" value="{{ old('phoneNumber') }}" required="">
+                    </div>
+                    @error('phoneNumber')
+                        <div class="invalid-text">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div> 
+                <div class="col-md-4 mb-3">
                     <div class="form-group mb-1 @error('password') has-danger @enderror">
                         <label class="form-control-label">Password</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required="">
@@ -51,7 +165,7 @@
                         </div>
                     @enderror
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="form-group mb-1 @error('password') has-danger @enderror">
                         <label class="form-control-label">Confirm Password</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Password" required="">
@@ -62,7 +176,7 @@
                         </div>
                     @enderror
                 </div>
-            </div>  
+            </div>   
             <div>
                 <button class="btn btn-primary btn-small" type="submit">Add Staff</button>
             </div>

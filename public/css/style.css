@@ -16,6 +16,12 @@
 .box-shadow-1 {
     box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.4);
 }
+.border-bottom {
+    border: 1px solid rgba(189, 189, 189, 0.200) !important;
+    width: 100%;
+    margin: 5px 0px;
+    
+}
 .invalid-form {
     border-color: red !important;
 }

@@ -39,6 +39,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/update-staff', 'AdminController@updateStaff')->name('admin.updateStaff');
     Route::get('/view-staff', 'AdminController@viewStaff')->name('admin.viewStaff');
     Route::get('/delete-staff/{id}', 'AdminController@delete')->name('admin.deleteStaff');
+    Route::post('/add-qualification', 'AdminController@addQualification')->name('admin.addStaffQualification');
 
 
     Route::get('/add-dept', function () {return view('admin.addDept');});
