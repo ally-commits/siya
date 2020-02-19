@@ -21,12 +21,22 @@ class AdminController extends Controller
         return view('admin.home');
     }
     public function viewStaff() {
+        $data = DB::table('users') 
+            ->get();  
+          
+        return view("admin.viewStaff")->with("staffs",$data);
+    }
+    public function viewStaffDetails($userId, $active) {
         $data = DB::table('users')
             ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
             ->select('users.*','staff_profiles.*') 
-            ->get();  
-        $qlf = StaffQualification::get();  
-        return view("admin.viewStaff")->with("staffs",$data)->with("qualification", $qlf);
+            ->get(); 
+        // dd($data);
+        $qlf = DB::table("staff_qualifications")
+            ->where("userId","=", $userId)
+            ->get();
+
+        return view('admin.viewStaffDetails')->with("staff", $data)->with("qualification", $qlf)->with("active", $active);
     }
     public function addStaff(Request $request) {
         $request->validate([
@@ -76,37 +86,61 @@ class AdminController extends Controller
             'college' => $data['college'], 
             'userId' => $data['userId']
         ]); 
-        return Redirect::route('admin.viewStaff')->with('message', 'Staff Qualification Added Succesfully');
+        return Redirect::route('admin.viewStaffDetails',[$data['userId'],2])->with('message', 'Staff Qualification Added Succesfully');
     }
     public function updateStaff(Request $request) {
-        if($request['password'] == '') {
+        $data = $request->all(); 
+        $request->validate([ 
+            'dob' => ['required', 'date'],
+            'phoneNumber' => ['required', 'integer'],
+            'gender' => ['required', 'string'], 
+            'department' => ['required', 'string'], 
+            'address' => ['required', 'string'], 
+            'bloodGroup' => ['required', 'string'],
+            'age' => ['required', 'integer'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'expirence' => ['required','integer']    
+        ]);
+        
+        if($request->password != '') {
             $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'min:4', 'max:255'], 
+                'password' => ['required','min:8','confirm']
             ]);
-            $data = $request->all();
-            DB::table('users')
-                ->where('id','=',$data['id'])
-                ->update(['name' => $data['name'], 'email' => $data['email']]);
-        } else {
-            $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'min:4', 'max:255'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'], 
-            ]);
-            $data = $request->all();
-
-            DB::table('users')
-                ->where('id','=',$data['id'])
-                ->update(['name' => $data['name'], 'email' => $data['email'], 'password'=> Hash::make($data['password'])]);
+            DB::table("users")
+            ->where("id", '=', $data['id'])
+            ->update(['password' => Hash::make($data['password'])]);
         }
-         
-        return Redirect::route('admin.viewStaff')->with('message', 'Staff Updated Succesfully');
+
+        DB::table('staff_profiles')
+            ->where('userId' ,'=', $data['id'])
+            ->update(
+                    ['phoneNumber' => $data['phoneNumber'],
+                    'dob' => $data['dob'],
+                    'address' => $data['address'],
+                    'gender' => $data['gender'],
+                    'department' => $data['department'],
+                    'bloodGroup' => $data['bloodGroup'],
+                    'expirence' => $data['expirence'],
+                    'age' => $data['age'], 
+                ]); 
+        DB::table("users")
+            ->where("id", '=', $data['id'])
+            ->update(['name' => $data['name'], 'email' => $data['email']]);
+        
+        
+        return Redirect::route('admin.viewStaffDetails',[$data['id'],3])->with('message', 'Staff data Updated Succesfully');
     }
     public function delete($id) {
         $user = User::find($id);
         $user->delete();
         
         return Redirect::route('admin.viewStaff')->with('message', 'Staff Removed Succesfully');   
+    }
+    public function removeQualification($id) {
+        $data = StaffQualification::find($id);
+        $data->delete();
+        
+        return Redirect::route('admin.viewStaffDetails',[$data['userId'],2])->with('message', 'Qualification removed Succesfully');
     }
 } 

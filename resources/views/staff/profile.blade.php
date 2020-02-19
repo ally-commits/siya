@@ -251,55 +251,55 @@
                                     </div>
                                     <div class="tab-pane fade show @if($active == 2) active @endif" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
                                         <div>
-                                        @if(count($qualification) == 0)
-                                            <h3 class="text-center">
-                                                No Qualification Found
-                                            </h3>
-                                            <a  href="/staff/qualification" class="btn btn-primary text-center">Add One</a>
-                                        @else 
-                                            <div class="table">
-                                                <div>
-                                                <table class="table align-items-center">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">
-                                                                Sl No
-                                                            </th>
-                                                            <th scope="col">
-                                                                Course
-                                                            </th>
-                                                            <th scope="col">
-                                                                College
-                                                            </th> 
-                                                            <th scope="col">
-                                                                Year of passing
-                                                            </th>
-                                                            <th scope="col">
-                                                                Place
-                                                            </th>
-                                                            <th scope="col">
-                                                                Action
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($qualification as $key=>$qlf)
+                                            @if(count($qualification) == 0)
+                                                <h3 class="text-center">
+                                                    No Qualification Found
+                                                </h3>
+                                                <a  href="/staff/qualification" class="btn btn-primary text-center">Add One</a>
+                                            @else 
+                                                <div class="table">
+                                                    <div>
+                                                    <table class="table align-items-center">
+                                                        <thead class="thead-light">
                                                             <tr>
-                                                                <td>{{ $key+1 }}</td>
-                                                                <td>{{ $qlf->course }}</td>
-                                                                <td>{{ $qlf->college }}</td>
-                                                                <td>{{ $qlf->year }}</td>
-                                                                <td>{{ $qlf->place }}</td>
-                                                                <td> 
-                                                                    <a href="/staff/remove-qualification/{{ $qlf->id}}" class="btn btn-icon btn-2 btn-primary" type="button">
-                                                                        <span class="btn-inner--icon"><i class="ni ni-fat-remove text-white"></i></span> 
-                                                                    </a>
-                                                                </td>
+                                                                <th scope="col">
+                                                                    Sl No
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Course
+                                                                </th>
+                                                                <th scope="col">
+                                                                    College
+                                                                </th> 
+                                                                <th scope="col">
+                                                                    Year of passing
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Place
+                                                                </th>
+                                                                <th scope="col">
+                                                                    Action
+                                                                </th>
                                                             </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                        @endif
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach($qualification as $key=>$qlf)
+                                                                <tr>
+                                                                    <td>{{ $key+1 }}</td>
+                                                                    <td>{{ $qlf->course }}</td>
+                                                                    <td>{{ $qlf->college }}</td>
+                                                                    <td>{{ $qlf->year }}</td>
+                                                                    <td>{{ $qlf->place }}</td>
+                                                                    <td> 
+                                                                        <a href="/staff/remove-qualification/{{ $qlf->id}}" class="btn btn-icon btn-2 btn-primary" type="button">
+                                                                            <span class="btn-inner--icon"><i class="ni ni-fat-remove text-white"></i></span> 
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

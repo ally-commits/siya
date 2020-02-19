@@ -38,8 +38,10 @@ Route::prefix('admin')->group(function() {
     Route::post('/add-staff', 'AdminController@addStaff')->name('admin.addStaff');
     Route::post('/update-staff', 'AdminController@updateStaff')->name('admin.updateStaff');
     Route::get('/view-staff', 'AdminController@viewStaff')->name('admin.viewStaff');
+    Route::get('/view-staff/{userId}/{active}', 'AdminController@viewStaffDetails')->name('admin.viewStaffDetails');
     Route::get('/delete-staff/{id}', 'AdminController@delete')->name('admin.deleteStaff');
     Route::post('/add-qualification', 'AdminController@addQualification')->name('admin.addStaffQualification');
+    Route::get('/remove-qualification/{id}','AdminController@removeQualification')->name('admin.staffRemoveQualification');
 
 
     Route::get('/add-dept', function () {return view('admin.addDept');});

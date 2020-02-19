@@ -126,3 +126,8 @@
     font-weight: 600;
     color: #0062cc;
 }   
+.btn-back {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
