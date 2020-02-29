@@ -16,76 +16,32 @@ class StaffController extends Controller
     {
         $this->middleware('auth');
     }
-    public function profile($active) {
-        $data = DB::table("staff_profiles")
-            ->where("userId","=",Auth::user()->id)
-            ->get();
-        
-        $qlf = DB::table("staff_qualifications")
-            ->where("userId","=",Auth::user()->id)
-            ->get();
-        if(count($data) == 0)
-            $newUser = true;
-        else 
-            $newUser = false;
-        return view("staff.profile")->with("profile",$data)->with('newUser', $newUser)->with('qualification', $qlf)
-                                    ->with('active', $active);
+    public function profile() {
+        $data = DB::table('users')
+        ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
+        ->where("users.id",'=',Auth::user()->id)
+        ->select('users.*','staff_profiles.*') 
+        ->get();  
+        return view("staff.profile")->with("staff", $data);
     }
-    public function addProfile(Request $request) { 
-        $data = $request->all();
-        $request->validate([
-            'dob' => ['required', 'date'],
-            'phoneNumber' => ['required', 'integer'],
-            'gender' => ['required', 'string'], 
-            'department' => ['required', 'string'], 
-            'address' => ['required', 'string'], 
-            'bloodGroup' => ['required', 'string'], 
-            'image' => ['required','image','mimes:jpeg,png,jpg'],
-        ]); 
-        $image = $request->file('image');
-        $imageName = time().'.'.$data['image']->getClientOriginalExtension();
-        $image->move('images/profiles', $imageName);
-
-        StaffProfile::create([
-            'dob' => $data['dob'],
-            'address' => $data['address'], 
-            'phoneNumber' => $data['phoneNumber'],
-            'gender' => $data['gender'], 
-            'bloodGroup' => $data['bloodGroup'],
-            'department' => $data['department'],
-            'userId' => Auth::user()->id,
-            'departmentId' => 1 ,
-            'image' => 'images/profiles/' . $imageName
-        ]); 
-        return Redirect::route('staffProfile',1)->with('message', 'Profile Updated Succesfully');
-    }
-    public function addQualification(Request $request) { 
-        $data = $request->all();
-        $request->validate([
-            'college' => ['required', 'string'],
-            'year' => ['required', 'date'],
-            'course' => ['required', 'string'],
-            'place' => ['required', 'string'],  
-        ]);  
-
-        StaffQualification::create([
-            'year' => $data['year'], 
-            'course' => $data['course'], 
-            'place' => $data['place'], 
-            'college' => $data['college'], 
-            'userId' => Auth::user()->id
-        ]); 
-        return Redirect::route('staffProfile',2)->with('message', 'Staff Qualification Added Succesfully');
-    }
-    public function qualification() {
-        return view("staff.addQualification");
-    }
-    public function editProfile(Request $request) {
+    public function editProfile() { 
+        $data = DB::table('users')
+        ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
+        ->where("users.id",'=',Auth::user()->id)
+        ->select('users.*','staff_profiles.*') 
+        ->get();  
+        return view("staff.editProfile")->with("staff", $data);
+    } 
+     
+    public function updateProfile(Request $request) {
         $data = $request->all(); 
         $request->validate([ 
             'dob' => ['required', 'date'],
             'phoneNumber' => ['required', 'integer'],
             'gender' => ['required', 'string'], 
+            'name' => ['required','string'],
+            'email' => ['required','string'],
+            'expirence' => ['required','string'],
             'department' => ['required', 'string'], 
             'address' => ['required', 'string'], 
             'bloodGroup' => ['required', 'string'],  
@@ -102,24 +58,36 @@ class StaffController extends Controller
                 ->where('userId' ,'=', Auth::user()->id)
                 ->update(['image' => 'images/profiles/'.$imageName]);
         }
-
+        if($request->password != '') {
+            $request->validate([
+                'password' => ['required','min:8','confirm']
+            ]);
+            DB::table("users")
+            ->where("id", '=', Auth::user()->id)
+            ->update(['password' => Hash::make($data['password'])]);
+        }
         DB::table('staff_profiles')
-            ->where('userId' ,'=', Auth::user()->id)
+            ->where('userId' ,'=', $data['id'])
             ->update(
                     ['phoneNumber' => $data['phoneNumber'],
                     'dob' => $data['dob'],
                     'address' => $data['address'],
                     'gender' => $data['gender'],
                     'department' => $data['department'],
-                    'bloodGroup' => $data['bloodGroup']
+                    'bloodGroup' => $data['bloodGroup'],
+                    'expirence' => $data['expirence'],  
                 ]); 
+        DB::table("users")
+            ->where("id", '=', $data['id'])
+            ->update(['name' => $data['name'], 'email' => $data['email']]); 
         
         return Redirect::route('staffProfile',1)->with('message', 'Profile Updated Succesfully'); 
     }
-    public function removeQualification($id) {
-        $adr = StaffQualification::find($id);
-        $adr->delete();
+    public function viewQualification() {
+        $qlf = DB::table("staff_qualifications")
+                ->where("userId","=",Auth::user()->id)
+                ->get();
         
-        return Redirect::route('staffProfile',2)->with('message', 'Qualification removed Succesfully');
+        return view('staff.viewQualification')->with('qualification', $qlf);
     }
 }

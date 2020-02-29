@@ -107,20 +107,7 @@
                         </div>
                     @enderror
                 </div> 
-                <div class="col-md-4">
-                    <div class="col-md-12 mb-3">
-                        <div class="form-group mb-1 @error('age') has-danger @enderror">
-                            <label class="form-control-label" for="">Age</label>
-                            <div class="input-group"> 
-                                <input type="number" class="form-control @error('age') is-invalid @enderror" name="age" placeholder="Age"  value="{{ old('age') }}" required="">
-                            </div>
-                        </div>
-                        @error('age')
-                            <div class="invalid-text">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @enderror
-                    </div> 
+                <div class="col-md-4"> 
                     <div class="col-md-12">                          
                         <div class="form-group">
                             <label for="">Select your Blood Group</label>
@@ -140,41 +127,17 @@
                             @enderror 
                         </div>
                     </div> 
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-4">
-                    <div class="form-group mb-1 @error('phoneNumber') has-danger @enderror" >
-                        <label class="form-control-label" for="">Phone Number</label>
-                        <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" placeholder="Phone Number" value="{{ old('phoneNumber') }}" required="">
-                    </div>
-                    @error('phoneNumber')
-                        <div class="invalid-text">
-                            <strong>{{ $message }}</strong>
+                    <div class="col-md-12">
+                        <div class="form-group mb-1 @error('phoneNumber') has-danger @enderror" >
+                            <label class="form-control-label" for="">Phone Number</label>
+                            <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" placeholder="Phone Number" value="{{ old('phoneNumber') }}" required="">
                         </div>
-                    @enderror
-                </div> 
-                <div class="col-md-4 mb-3">
-                    <div class="form-group mb-1 @error('password') has-danger @enderror">
-                        <label class="form-control-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required="">
-                    </div>
-                    @error('password')
-                        <div class="invalid-text">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="form-group mb-1 @error('password') has-danger @enderror">
-                        <label class="form-control-label">Confirm Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Password" required="">
-                    </div>
-                    @error('password')
-                        <div class="invalid-text">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @enderror
+                        @error('phoneNumber')
+                            <div class="invalid-text">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @enderror
+                    </div> 
                 </div>
             </div>   
             <div>

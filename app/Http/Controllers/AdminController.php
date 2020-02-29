@@ -26,24 +26,29 @@ class AdminController extends Controller
           
         return view("admin.viewStaff")->with("staffs",$data);
     }
-    public function viewStaffDetails($userId, $active) {
+    public function viewStaffDetails($userId) {
         $data = DB::table('users')
             ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
+            ->where("users.id",'=',$userId)
             ->select('users.*','staff_profiles.*') 
-            ->get(); 
-        // dd($data);
-        $qlf = DB::table("staff_qualifications")
-            ->where("userId","=", $userId)
-            ->get();
-
-        return view('admin.viewStaffDetails')->with("staff", $data)->with("qualification", $qlf)->with("active", $active);
+            ->get();  
+ 
+        return view('admin.viewStaffDetails')->with("staff", $data)->with("userId",$userId);
     }
+    public function getStaffDetails($userId) {
+        $data = DB::table('users')
+            ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
+            ->where("users.id",'=',$userId)
+            ->select('users.*','staff_profiles.*') 
+            ->get();  
+ 
+        return view('admin.editStaffDetails')->with("staff", $data);
+    }
+    
     public function addStaff(Request $request) {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'min:4', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'], 
-            'age' => ['required','integer'],
+            'email' => ['required', 'string', 'min:4', 'max:255', 'unique:users'],  
             'dob' => ['required','date'],
             'phoneNumber' => ['required','integer'],
             'expirence' => ['required','string'], 
@@ -53,7 +58,7 @@ class AdminController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']), 
+            'password' => Hash::make($data['phoneNumber']), 
         ]); 
         StaffProfile::create([
             'dob' => $data['dob'],
@@ -63,8 +68,7 @@ class AdminController extends Controller
             'bloodGroup' => $data['bloodGroup'],
             'department' => $data['department'],
             'expirence' => $data['expirence'],
-            'userId' => $user->id,
-            'age' => $data['age'],
+            'userId' => $user->id, 
             'departmentId' => 1 ,
             'image' => 'images/profiles/default.jpg'
         ]);  
@@ -86,7 +90,13 @@ class AdminController extends Controller
             'college' => $data['college'], 
             'userId' => $data['userId']
         ]); 
-        return Redirect::route('admin.viewStaffDetails',[$data['userId'],2])->with('message', 'Staff Qualification Added Succesfully');
+        return Redirect::route('admin.getStaffQualification',[$data['userId']])->with('message', 'Staff Qualification Added Succesfully');
+    }
+    public function getQualification($userId) {
+        $data = DB::table("staff_qualifications")
+                ->where("userId","=", $userId)
+                ->get();
+        return view("admin.addQualification")->with("qualification", $data)->with("userId", $userId);
     }
     public function updateStaff(Request $request) {
         $data = $request->all(); 
@@ -96,13 +106,12 @@ class AdminController extends Controller
             'gender' => ['required', 'string'], 
             'department' => ['required', 'string'], 
             'address' => ['required', 'string'], 
-            'bloodGroup' => ['required', 'string'],
-            'age' => ['required', 'integer'],
+            'bloodGroup' => ['required', 'string'], 
             'name' => ['required', 'string'],
             'email' => ['required', 'string'],
             'expirence' => ['required','integer']    
         ]);
-        
+         
         if($request->password != '') {
             $request->validate([
                 'password' => ['required','min:8','confirm']
@@ -121,15 +130,14 @@ class AdminController extends Controller
                     'gender' => $data['gender'],
                     'department' => $data['department'],
                     'bloodGroup' => $data['bloodGroup'],
-                    'expirence' => $data['expirence'],
-                    'age' => $data['age'], 
+                    'expirence' => $data['expirence'],  
                 ]); 
         DB::table("users")
             ->where("id", '=', $data['id'])
             ->update(['name' => $data['name'], 'email' => $data['email']]);
         
         
-        return Redirect::route('admin.viewStaffDetails',[$data['id'],3])->with('message', 'Staff data Updated Succesfully');
+        return Redirect::route('admin.viewStaffDetails',[$data['id']])->with('message', 'Staff data Updated Succesfully');
     }
     public function delete($id) {
         $user = User::find($id);
@@ -141,6 +149,6 @@ class AdminController extends Controller
         $data = StaffQualification::find($id);
         $data->delete();
         
-        return Redirect::route('admin.viewStaffDetails',[$data['userId'],2])->with('message', 'Qualification removed Succesfully');
+        return Redirect::route('admin.getStaffQualification',[$data['userId']])->with('message', 'Qualification removed Succesfully');
     }
 } 

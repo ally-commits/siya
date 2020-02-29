@@ -1,13 +1,17 @@
 @extends('layouts.admin')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" />
+<link href="{{ asset('plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> 
 @endsection
 
-@section('js') 
-    <script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+@section('js')  
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/dataTables.buttons.min.js') }}"></script> 
+    <script src="{{ asset('plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+
+
+    <script src="{{ asset('assets/pages/datatables.init.js') }}"></script>    
 @endsection
 @section('content')
     <div class="card"> 
@@ -19,16 +23,16 @@
         <div class="table-responsive p-4">
             <div class="row">
                 <div class="col-sm-12 px-0">
-                    <table class="table table-flush dataTable" id="datatable-basic" role="grid" aria-describedby="datatable-basic_info">
-                    <thead class="thead-light">
-                        <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 77px;">Sl No</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Name</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 140px;">Username</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 160px;">Created At</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 63px;">Action</th>
+                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Dob</th> 
+                            <th>Action</th>
                         </tr>
-                    </thead> 
+                    </thead>
                         <tbody>
                             @foreach($staffs  as $key=>$staff)
                                 <tr>
@@ -36,13 +40,18 @@
                                     <td>{{$staff->name}}</td>
                                     <td>{{$staff->email}}</td>
                                     <td>{{ substr($staff->created_at,0,10) }}</td>
-                                    <td class="table-actions"> 
-                                     
-                                        <a type="button" class="table-action" style="background: none; border: none;outline: none;" href="/admin/view-staff/{{$staff->id}}/1">
-                                            <i class="fas fa-user-edit"></i>
+                                    <td class="d-flex" style="justify-content: space-around;"> 
+                                        <a class="table-action"  data-toggle="tooltip" data-original-title="Add & View Qualification" href="/admin/get-qualification/{{$staff->id}}">
+                                            <i class="ti-plus"></i>
+                                        </a>
+                                        <a class="table-action"  data-toggle="tooltip" data-original-title="View Staff Details" href="/admin/view-staff/{{$staff->id}}">
+                                            <i class="ti-eye"></i>
+                                        </a>
+                                        <a class="table-action table-action-delete"  data-toggle="tooltip" data-original-title="Edit Staff Details" href="/admin/edit-staff/{{$staff->id}}">
+                                            <i class="ti-pencil"></i>
                                         </a>
                                         <a href="delete-staff/{{$staff->id}}" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete Staff">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="mdi mdi-delete-sweep-outline f-15"></i>
                                         </a>
                                     </td>
                                 </tr>
