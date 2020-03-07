@@ -114,7 +114,7 @@ class AdminController extends Controller
          
         if($request->password != '') {
             $request->validate([
-                'password' => ['required','min:8','confirm']
+                'password' => ['required','min:8','confirmed']
             ]);
             DB::table("users")
             ->where("id", '=', $data['id'])

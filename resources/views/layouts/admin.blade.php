@@ -18,7 +18,7 @@
     <body>
         <div class="wrapper">
             @include("includes.admin-nav")
-            <div class="content-page">
+            <div class="content-page" style="padding-top: 70px;">
                 @yield("content")
             </div>
         </div>

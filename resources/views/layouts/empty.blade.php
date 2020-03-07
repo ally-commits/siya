@@ -15,10 +15,8 @@
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
     </head>
-    <body>
-        <div class="wrapper-page">  
-            @yield("content") 
-        </div>
+    <body>  
+            @yield("content")  
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/js/metisMenu.min.js') }}"></script>

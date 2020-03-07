@@ -70,6 +70,16 @@
                         </a>
                     </li>  
                     <li class="menu-title">Staff</li>
+                    <li>
+                        <a href="/admin/staffActivity/1" class="waves-effect">
+                            <i class="ti-ruler-alt-2"></i><span>Manage Staff Activity</span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="/admin/generate-report" class="waves-effect">
+                            <i class="ti-layers-alt"></i><span>Generate Report</span>
+                        </a>
+                    </li> 
                     <li class="">
                         <a href="javascript:void(0);" class="waves-effect" aria-expanded="false"><i class="ti-package"></i><span> Manage Staff <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                         <ul class="submenu mm-collapse" style="height: 0px;">
@@ -84,7 +94,7 @@
                                 </a>
                             </li>  
                         </ul>
-                    </li>  
+                    </li>   
                 </ul>
             </div> 
         <div class="clearfix"></div>

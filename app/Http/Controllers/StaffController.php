@@ -7,6 +7,7 @@ use App\StaffProfile;
 use DB;
 use Redirect;
 use Auth;
+use Hash;
 
 use App\StaffQualification;
 
@@ -15,6 +16,21 @@ class StaffController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+    public function changePassword() {
+        return view("staff.changePassword");
+    }
+    public function updatePassword(Request $request) {
+        $request->validate([
+            'password' => ['required','min:8','confirmed']
+        ]);
+
+        $data = $request->all();
+        DB::table("users")
+        ->where("id", '=', Auth::user()->id)
+        ->update(['password' => Hash::make($data['password'])]);
+
+        return Redirect::route('staffDashboard')->with('message', 'Password Changed Succesfully'); 
     }
     public function profile() {
         $data = DB::table('users')

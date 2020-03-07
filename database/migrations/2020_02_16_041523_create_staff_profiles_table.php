@@ -25,7 +25,7 @@ class CreateStaffProfilesTable extends Migration
             $table->string('department');
             $table->integer("departmentId");
             $table->string("bloodGroup");
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

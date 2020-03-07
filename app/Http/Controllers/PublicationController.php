@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Redirect;
+use App\Publications;
+use Auth;
 
 class PublicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $publications = DB::table("publications")
+                ->where("userId","=",Auth::user()->id)
+                ->latest()
+                ->get();
+
+        return view("staff.publication.viewPublications")->with("publications", $publications);
     }
 
     /**
@@ -23,7 +31,7 @@ class PublicationController extends Controller
      */
     public function create()
     {
-        //
+        return view("staff.publication.addPublication");
     }
 
     /**
@@ -34,7 +42,19 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $request->validate([
+            'name' => ['required', 'string'],
+            'num' => ['required', 'string'],
+            'collab' => ['required', 'string'],   
+        ]);   
+        Publications::create([
+            'name' => $data['name'], 
+            'publication_number' => $data['num'], 
+            'collabration' => $data['collab'],   
+            'userId' => Auth::user()->id
+        ]); 
+        return Redirect::route('publication.index')->with('message', 'Publication Added Succesfully');
     }
 
     /**
@@ -45,7 +65,8 @@ class PublicationController extends Controller
      */
     public function show($id)
     {
-        //
+        $publication = Publications::find($id);
+        return view("staff.publication.editPublication")->with("publication", $publication);
     }
 
     /**
@@ -56,7 +77,7 @@ class PublicationController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -68,7 +89,20 @@ class PublicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+ 
+        $request->validate([
+            'name' => ['required', 'string'],
+            'num' => ['required', 'string'],
+            'collab' => ['required', 'string'],   
+        ]);  
+        DB::table("publications")
+                ->where("id","=",$id)
+                ->update(['name' => $data['name'], 
+                'publication_number' => $data['num'], 
+                'collabration' => $data['collab'], ]);
+
+        return Redirect::route('publication.index')->with('message', 'Publication Updated Succesfully');   
     }
 
     /**
@@ -77,8 +111,10 @@ class PublicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $publication  = Publications::find($id);
+        $publication->delete();
+        return Redirect::route('publication.index')->with('message', 'Publication Deleted Succesfully');
     }
 }

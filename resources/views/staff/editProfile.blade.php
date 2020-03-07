@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("content")
 
-<div class="card-body">
+<div class="card-body container">
     <hr>
     <form method="POST" action="{{ route('staffUpdateProfile') }}" enctype="multipart/form-data">
     @csrf

@@ -14,11 +14,6 @@ class AddAdmin extends Seeder
         DB::table('admins')->insert([ 
             'email' => 'admin',
             'password' => Hash::make('password'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Alwin',
-            'email' => 'alwin',
-            'password' => Hash::make('password'),
-        ]);
+        ]); 
     }
 }

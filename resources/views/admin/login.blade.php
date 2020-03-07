@@ -1,8 +1,9 @@
 @extends('layouts.empty')
 
 @section('content')
-<div class="card overflow-hidden account-card container m-auto">
-    <div class="bg-primary p-4 text-white text-center position-relative">
+<div class="row justify-content-center h-100" style="align-items:center;">
+<div class="col-md-8 col-lg-5 col-xl-4 card overflow-hidden account-card container m-auto shadow p-3">
+    <div class="bg-primary p-4 text-white text-center position-relative" style="border-radius: 1px;">
         <h4 class="font-20 m-b-5">Admin Login !</h4>
         <p class="text-white-50 mb-4">Sign in to continue to IQAC</p>
         <a href="index.html" class="logo logo-admin"><img src="{{ asset('assets/images/logo-sm.png') }}" height="24" alt="logo"></a>
@@ -46,5 +47,5 @@
 
     </div>
 </div> 
-
+</div>
 @endsection
