@@ -20,8 +20,13 @@ class AdminPublicationController extends Controller
                 ->where("userId","=",$staffId)
                 ->latest()
                 ->get();
-
+        if($staffId == 000) {
+            $user['0'] = ['name' => "Admin"]; 
+        } else {
+            $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
+        }
         return view("admin.staffActivity.publication.viewPublications")
+        ->with("user", $user)
         ->with("publications", $publications)->with("staffId", $staffId);
     }
 

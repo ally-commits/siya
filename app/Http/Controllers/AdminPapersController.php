@@ -20,8 +20,13 @@ class AdminPapersController extends Controller
                 ->where("userId","=",$staffId)
                 ->latest()
                 ->get();
-
-        return view("admin.staffActivity.papersPresented.viewPapers")->with("papers", $papers)->with("staffId", $staffId);
+        if($staffId == 000) {
+            $user['0'] = ['name' => "Admin"]; 
+        } else {
+            $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
+        }
+        return view("admin.staffActivity.papersPresented.viewPapers")->with("user", $user)
+        ->with("papers", $papers)->with("staffId", $staffId);
     }
 
     /**

@@ -238,6 +238,89 @@
                                     <hr>
                                 @endif
                             </div> 
+                            <div class="col-md-12"> 
+                                @if($key == 'major_programmes' and count($data) > 0)
+                                    <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
+                                    <table class="table w-100" style="font-size: 14px;">
+                                        <tr>
+                                            <th>Sl No</th> 
+                                            <th>Duration</th> 
+                                            <th>Programme</th>
+                                            <th>Faculty Association</th>
+                                            <th>Number Of Beneficiaries</th>
+                                            <th>Level</th>
+                                            <th>Department</th> 
+                                            <th>Action</th> 
+                                        </tr>
+                                        @foreach($data as $k=>$mtg)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>{{ $mtg->duration }}</td> 
+                                                <td>{{ $mtg->programme }}</td>
+                                                <td>{{ $mtg->facultyAssociation }}</td>
+                                                <td>{{ $mtg->noOfBeneficiaries }}</td>
+                                                <td>{{ $mtg->level }}</td>
+                                                <td>{{ $mtg->department }}</td> 
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                    <hr>
+                                @endif
+                            </div>
+                            <div class="col-md-12"> 
+                                @if($key == 'guest_lecture_m_d_p_s' and count($data) > 0)
+                                    <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
+                                    <table class="table w-100" style="font-size: 14px;">
+                                        <tr>
+                                            <th>Sl No</th> 
+                                            <th>Date</th> 
+                                            <th>Designation</th>
+                                            <th>Resource Person</th>
+                                            <th>Place</th>
+                                            <th>Topic</th>
+                                            <th>Department</th>
+                                            <th>Beneficiaries</th> 
+                                        </tr>
+                                        @foreach($data as $k=>$mtg)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>{{ $mtg->date }}</td> 
+                                                <td>{{ $mtg->designation }}</td>
+                                                <td>{{ $mtg->resourcePerson }}</td>
+                                                <td>{{ $mtg->place }}</td>
+                                                <td>{{ $mtg->topic }}</td>
+                                                <td>{{ $mtg->department }}</td>
+                                                <td>{{ $mtg->beneficiaries }}</td> 
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                    <hr>
+                                @endif
+                            </div> 
+                            <div class="col-md-12"> 
+                                @if($key == 'guest_visiteds' and count($data) > 0)
+                                    <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
+                                    <table class="table w-100" style="font-size: 14px;">
+                                        <tr>
+                                            <th>Sl No</th> 
+                                            <th>Name</th> 
+                                            <th>Date</th> 
+                                            <th>Designation</th>
+                                            <th>Activity Held</th> 
+                                        </tr>
+                                        @foreach($data as $k=>$mtg)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>{{ $mtg->Name }}</td> 
+                                                <td>{{ $mtg->date }}</td>
+                                                <td>{{ $mtg->Designation }}</td>
+                                                <td>{{ $mtg->activityHeld }}</td> 
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                    <hr>
+                                @endif
+                            </div>  
                         @endforeach
                     </div>
                 </div>

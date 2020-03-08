@@ -44,6 +44,15 @@ Route::prefix('staff')->group(function() {
     
     Route::resource('/seminarOrganised','SeminarOrganisedController'); 
     Route::get('/seminarOrganised/delete/{id}','SeminarOrganisedController@delete'); 
+
+    Route::resource('/guestVisited','GuestVisitedController'); 
+    Route::get('/guestVisited/delete/{id}','GuestVisitedController@delete'); 
+
+    Route::resource('/guestLecture','GuestLectureMDPController'); 
+    Route::get('/guestLecture/delete/{id}','GuestLectureMDPController@delete'); 
+    
+    Route::resource('/majorProgram','MajorProgrammesController'); 
+    Route::get('/majorProgram/delete/{id}','MajorProgrammesController@delete'); 
     
     Route::get("/generate-report",'GenerateReportController@index'); 
     Route::post("/generate-report/create",'GenerateReportController@getData');
@@ -85,6 +94,11 @@ Route::prefix('admin')->group(function() {
     Route::get("/generate-report",'AdminGenerateReportController@index');
     Route::get("/generate-report/create/{staffId}",'AdminGenerateReportController@viewData');
     Route::post("/generate-report/create",'AdminGenerateReportController@getData');
+
+    Route::get("/activity",'AdminActivity@index');
+    Route::get("/activity/{table}",'AdminActivity@getData');
+    Route::get("/report/{table}",'AdminActivity@getReport');
+
 });
 //ADMIN STAFF ACTIVITY
 Route::prefix('admin/staffActivity/{staffId}')->group(function() {
@@ -110,4 +124,13 @@ Route::prefix('admin/staffActivity/{staffId}')->group(function() {
 
     Route::resource('/seminarAttended','AdminSeminarAttendedController'); 
     Route::get('/seminarAttended/delete/{id}','AdminSeminarAttendedController@delete');
+
+    Route::resource('/guestVisited','AdminGuestVisitedController'); 
+    Route::get('/guestVisited/delete/{id}','AdminGuestVisitedController@delete');
+
+    Route::resource('/guestLecture','AdminGuestLectureController'); 
+    Route::get('/guestLecture/delete/{id}','AdminGuestLectureController@delete');
+
+    Route::resource('/majorProgram','AdminMajorProgrammeController'); 
+    Route::get('/majorProgram/delete/{id}','AdminMajorProgrammeController@delete');
 });

@@ -20,9 +20,13 @@ class AdminSeminarOrganisedController extends Controller
                 ->where("userId","=",$staffId)
                 ->latest()
                 ->get();
-
+        if($staffId == 000) {
+            $user['0'] = ['name' => "Admin"]; 
+        } else {
+            $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
+        }
         return view("admin.staffActivity.seminarOrganised.viewSeminars")->with("seminar", $seminar)
-        ->with("staffId", $staffId);
+        ->with("staffId", $staffId)->with("user", $user);
     } 
 
     public function create($staffId)

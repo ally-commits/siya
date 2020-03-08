@@ -4,10 +4,10 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-
+            <h6>Add Association Program</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('association.store') }}" method="POST">
+            <form action="/staff/association" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">                          

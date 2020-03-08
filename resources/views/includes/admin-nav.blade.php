@@ -66,9 +66,15 @@
                 <ul class="metismenu" id="side-menu"> 
                     <li>
                         <a href="/admin/dashboard" class="waves-effect">
-                            <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
+                            <i class="ti-home"></i><span> Dashboard </span>
                         </a>
                     </li>  
+                    <li>
+                        <a href="/admin/activity" class="waves-effect">
+                            <i class="ti-flickr-alt"></i><span> Add Activity </span>
+                        </a>
+                    </li>  
+
                     <li class="menu-title">Staff</li>
                     <li>
                         <a href="/admin/staffActivity/1" class="waves-effect">

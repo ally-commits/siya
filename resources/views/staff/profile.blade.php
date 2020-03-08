@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="{{ asset($staff[0]->image) }}" class="img-fluid"/>                                     
+                            <img src="{{ asset($staff[0]->image) }}" class="img-fluid" style="width: 200px;"/>                                     
                         </div>
                     </div>
                     <div class="col-md-6">

@@ -66,7 +66,7 @@ class AchivementsController extends Controller
             'guidedBy' => $data['guide'],
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::route('achivements.index')->with('message', 'Achhivements Added Succesfully');
+        return Redirect::action('AchivementsController@index')->with('message', 'Achhivements Added Succesfully');
     }
 
     /**
@@ -127,7 +127,7 @@ class AchivementsController extends Controller
                     'level' => $data['level'],
                     'guidedBy' => $data['guide'],]);
 
-        return Redirect::route('achivements.index')->with('message', 'Achivements Updated Succesfully');   
+        return Redirect::action('AchivementsController@index')->with('message', 'Achivements Updated Succesfully');   
     }
 
     /**
@@ -140,6 +140,6 @@ class AchivementsController extends Controller
     {
         $achive  = Achivements::find($id);
         $achive->delete();
-        return Redirect::route('achivements.index')->with('message', 'Achivement Deleted Succesfully');
+        return Redirect::action('AchivementsController@index')->with('message', 'Achivement Deleted Succesfully');
     }
 }

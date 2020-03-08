@@ -4,10 +4,10 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-
+            <h6>Add Seminar Organised</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('seminarOrganised.store') }}" method="POST">
+            <form action="/staff/seminarOrganised" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">                          

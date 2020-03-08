@@ -20,8 +20,13 @@ class AdminSeminarAttendedController extends Controller
                 ->where("userId","=",$staffId)
                 ->latest()
                 ->get();
-
-        return view("admin.staffActivity.seminarAttended.viewSeminars")->with("seminar", $seminar)->with("staffId", $staffId);
+        if($staffId == 000) {
+            $user['0'] = ['name' => "Admin"]; 
+        } else {
+            $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
+        }
+        return view("admin.staffActivity.seminarAttended.viewSeminars")->with("user", $user)
+        ->with("seminar", $seminar)->with("staffId", $staffId);
     }
 
     /**

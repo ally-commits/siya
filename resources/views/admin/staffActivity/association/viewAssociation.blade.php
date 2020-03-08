@@ -3,8 +3,16 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>Staff Association Program</h4>
+        <h4>Staff Association Program 
+            @if($staffId == 000)
+                Admin
+            @else
+                {{$user['0']->name}}
+            @endif</h4>
         <div>
+            <a href="/admin/activity/association" class="btn btn-primary" data-toggle="tooltip" data-original-title="View All Association" >
+                <span class="btn-inner--icon"><i class="ti-control-record"></i>View All Association</span> 
+            </a>
             <a href="/admin/staffActivity/{{ $staffId }}/association/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
             </a>

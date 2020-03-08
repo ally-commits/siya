@@ -39,6 +39,18 @@
                             <input type="checkbox" class="custom-control-input" id="customCheck7" name="publications" value="publications">
                             <label class="custom-control-label" for="customCheck7">Publication</label>
                         </div>
+                        <div class="col-md-2 custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" id="customCheck8" name="major_programmes" value="major_programmes">
+                            <label class="custom-control-label" for="customCheck8">Major Programme</label>
+                        </div>
+                        <div class="col-md-2 custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" id="customCheck9" name="guest_lecture_m_d_p_s" value="guest_lecture_m_d_p_s">
+                            <label class="custom-control-label" for="customCheck9">Guest Lecture MDP</label>
+                        </div>
+                        <div class="col-md-2 custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" id="customCheck10" name="guest_visiteds" value="guest_visiteds">
+                            <label class="custom-control-label" for="customCheck10">Guest Visit</label>
+                        </div>
                     </div>
                     <button class="btn btn-danger">Generate Report</button>
                 </form>

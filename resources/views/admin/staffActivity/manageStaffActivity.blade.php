@@ -31,7 +31,7 @@
                             <th>Gender</th> 
                             <th>Expirence</th> 
                             <th>Department</th> 
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                         <tbody> 
@@ -46,8 +46,8 @@
                                     <td>{{$staff->expirence}}</td> 
                                     <td>{{$staff->department}}</td> 
                                     <td>
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Manage Activity
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="ti-settings"></i> 
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/achivements">Achivements</a> 
@@ -55,9 +55,19 @@
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/fdpMeeting">FDP Meeting</a> 
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/papers">Papers Presented</a> 
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/publication">Publication</a> 
+                                        </div> 
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="ti-settings"></i> 
+                                        </button>
+                                        <div class="dropdown-menu">
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/seminarOrganised">Seminar Orgainsed</a> 
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/seminarAttended">Seminar Attended</a> 
-                                        </div> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/guestVisited">Guest Visited</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/guestLecture">Guest Lecture</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/majorProgram">Major Programme</a> 
+                                        </div>
                                     </td> 
                                 </tr>
                             @endforeach

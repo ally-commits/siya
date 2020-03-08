@@ -68,7 +68,7 @@ class AssociationProgramController extends Controller
             'nature' => $data['nature'],
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::route('association.index')->with('message', 'Association Program Added Succesfully');
+        return Redirect::action('AssociationProgramController@index')->with('message', 'Association Program Added Succesfully');
     }
 
     /**
@@ -125,7 +125,7 @@ class AssociationProgramController extends Controller
             'guest' => $data['guest'],
             'nature' => $data['nature']]);
 
-        return Redirect::route('association.index')->with('message', 'Association Program Updated Succesfully');   
+        return Redirect::action('AssociationProgramController@index')->with('message', 'Association Program Updated Succesfully');   
     }
 
     /**
@@ -138,6 +138,6 @@ class AssociationProgramController extends Controller
     {
         $program  = AssociationProgram::find($id);
         $program->delete();
-        return Redirect::route('association.index')->with('message', 'Association Program Deleted Succesfully');
+        return Redirect::action('AssociationProgramController@index')->with('message', 'Association Program Deleted Succesfully');
     }
 }

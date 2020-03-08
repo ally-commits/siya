@@ -54,7 +54,7 @@ class PublicationController extends Controller
             'collabration' => $data['collab'],   
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::route('publication.index')->with('message', 'Publication Added Succesfully');
+        return Redirect::action('PapersController@index')->with('message', 'Publication Added Succesfully');
     }
 
     /**
@@ -102,7 +102,7 @@ class PublicationController extends Controller
                 'publication_number' => $data['num'], 
                 'collabration' => $data['collab'], ]);
 
-        return Redirect::route('publication.index')->with('message', 'Publication Updated Succesfully');   
+        return Redirect::action('PapersController@index')->with('message', 'Publication Updated Succesfully');   
     }
 
     /**
@@ -115,6 +115,6 @@ class PublicationController extends Controller
     {
         $publication  = Publications::find($id);
         $publication->delete();
-        return Redirect::route('publication.index')->with('message', 'Publication Deleted Succesfully');
+        return Redirect::action('PapersController@index')->with('message', 'Publication Deleted Succesfully');
     }
 }

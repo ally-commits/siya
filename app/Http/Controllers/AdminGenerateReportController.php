@@ -28,7 +28,7 @@ class AdminGenerateReportController extends Controller
         return view("admin.createReport")->with("staff", $profile);
     }
     public function getData(Request $request) {
-        $data = $request->all();
+        $data = $request->all(); 
         $profile = DB::table('users')
             ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id')
             ->where("staff_profiles.userId","=",$data['staffId'])  
@@ -36,7 +36,7 @@ class AdminGenerateReportController extends Controller
             ->limit(1)
             ->get(); 
         $staffData = [];
-        $arr = ['achivements','association_programs','fdp_meetings','papers','seminar_organiseds','seminar_attendeds','publications'];
+        $arr = ['achivements','association_programs','fdp_meetings','papers','seminar_organiseds','seminar_attendeds','publications','guest_visiteds','guest_lecture_m_d_p_s','major_programmes'];
         foreach($data as $d) {
             foreach($arr as $a) {
                 if($d == $a) {
@@ -50,7 +50,8 @@ class AdminGenerateReportController extends Controller
         $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programs",
                     'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
-                    'publications' => 'Publication'];
+                    'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
+                    => "Guest Lecture MDP", 'major_programmes' => 'Major Programmes'];
 
         return view("admin.viewReport")->with("staffData", $staffData)
             ->with("profile", $profile)

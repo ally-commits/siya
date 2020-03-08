@@ -60,7 +60,7 @@ class PapersController extends Controller
             'nature' => $data['nature'], 
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::route('papers.index')->with('message', 'Papers Added Succesfully');
+        return Redirect::action('PapersController@index')->with('message', 'Papers Added Succesfully');
     }
 
     /**
@@ -115,7 +115,7 @@ class PapersController extends Controller
             'prizes' => $data['prize'], 
             'nature' => $data['nature']]);
 
-        return Redirect::route('papers.index')->with('message', 'Paper Updated Succesfully');   
+        return Redirect::action('PapersController@index')->with('message', 'Paper Updated Succesfully');   
     }
 
     /**
@@ -128,6 +128,6 @@ class PapersController extends Controller
     {
         $meeting  = Papers::find($id);
         $meeting->delete();
-        return Redirect::route('papers.index')->with('message', 'Paper Deleted Succesfully');
+        return Redirect::action('PapersController@index')->with('message', 'Paper Deleted Succesfully');
     }
 }

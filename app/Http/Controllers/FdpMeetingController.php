@@ -65,7 +65,7 @@ class FdpMeetingController extends Controller
             'department' => $data['dept'],
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::route('fdpMeeting.index')->with('message', 'Fdp Meeting Added Succesfully');
+        return Redirect::action('FdpMeetingController@index')->with('message', 'Fdp Meeting Added Succesfully');
     }
 
     /**
@@ -124,7 +124,7 @@ class FdpMeetingController extends Controller
             'organisers' => $data['organiser'],
             'department' => $data['dept']]);
 
-        return Redirect::route('fdpMeeting.index')->with('message', 'Meeting Updated Succesfully');   
+        return Redirect::action('FdpMeetingController@index')->with('message', 'Meeting Updated Succesfully');   
     }
 
     /**
@@ -137,6 +137,6 @@ class FdpMeetingController extends Controller
     {
         $meeting  = FdpMeeting::find($id);
         $meeting->delete();
-        return Redirect::route('fdpMeeting.index')->with('message', 'FDP Meeting Deleted Succesfully');
+        return Redirect::action('FdpMeetingController@index')->with('message', 'FDP Meeting Deleted Succesfully');
     }
 }

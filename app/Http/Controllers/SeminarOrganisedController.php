@@ -67,7 +67,7 @@ class SeminarOrganisedController extends Controller
             'beneficiaries' => $data['beneficiaries'], 
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::route('seminarOrganised.index')->with('message', 'Seminar Added Succesfully');
+        return Redirect::action('SeminarOrganisedController@index')->with('message', 'Seminar Added Succesfully');
     }
 
     /**
@@ -128,7 +128,7 @@ class SeminarOrganisedController extends Controller
                     'speaker' => $data['speaker'], 
                     'beneficiaries' => $data['beneficiaries'],]);
 
-        return Redirect::route('seminarOrganised.index')->with('message', 'Seminars Updated Succesfully');   
+        return Redirect::action('SeminarOrganisedController@index')->with('message', 'Seminars Updated Succesfully');   
     }
 
     /**
@@ -141,6 +141,6 @@ class SeminarOrganisedController extends Controller
     {
         $achive = SeminarOrganised::find($id);
         $achive->delete();
-        return Redirect::route('seminarOrganised.index')->with('message', 'Seminar Deleted Succesfully');
+        return Redirect::action('SeminarOrganisedController@index')->with('message', 'Seminar Deleted Succesfully');
     }
 }

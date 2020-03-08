@@ -65,7 +65,14 @@
                                     <a class="dropdown-item" href="/staff/view-qualification"><i class="ti-medall"></i> View Qualification</a>
                                     <a class="dropdown-item" href="/staff/change-password"><i class="ti-lock"></i> Change Password</a> 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#"><i class="ti-power-off text-danger"></i> Logout</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        <i class="ft-power"></i> {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                                 </div>
                             </div>
                         </li> 
@@ -158,6 +165,27 @@
                                         <li><a href="/staff/seminarAttended/create">Add Seminar Attended</a></li> 
                                     </ul>
                                 </li>   
+                                <li class="has-submenu">
+                                    <a href="#">Guest Visted</a>
+                                    <ul class="submenu">
+                                        <li><a href="/staff/guestVisited">View Guest Visited</a></li>
+                                        <li><a href="/staff/guestVisited/create">Add Guest Visited</a></li> 
+                                    </ul>
+                                </li>  
+                                <li class="has-submenu">
+                                    <a href="#">Guest Lecture MDP</a>
+                                    <ul class="submenu">
+                                        <li><a href="/staff/guestLecture">View Guest Lecture</a></li>
+                                        <li><a href="/staff/guestLecture/create">Add Guest Lecture</a></li> 
+                                    </ul>
+                                </li> 
+                                <li class="has-submenu">
+                                    <a href="#">Major Programmes</a>
+                                    <ul class="submenu">
+                                        <li><a href="/staff/majorProgram">View Major Programmes</a></li>
+                                        <li><a href="/staff/majorProgram/create">Add Major Programmes</a></li> 
+                                    </ul>
+                                </li> 
                             </ul>   
                         </li>   
                         <li class="has-submenu">
