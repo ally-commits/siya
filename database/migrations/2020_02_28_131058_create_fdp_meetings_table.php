@@ -23,7 +23,7 @@ class CreateFdpMeetingsTable extends Migration
             $table->string('organisers');
             $table->string('typeOfMeeting');
             $table->string('level');
-            $table->integer('userId');
+            $table->string('userId');
             $table->timestamps();
         });
     }

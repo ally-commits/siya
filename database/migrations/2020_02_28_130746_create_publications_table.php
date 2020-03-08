@@ -18,7 +18,7 @@ class CreatePublicationsTable extends Migration
             $table->string('name'); 
             $table->string('publication_number'); 
             $table->string('collabration'); 
-            $table->integer('userId'); 
+            $table->string('userId'); 
             $table->timestamps();
         });
     }

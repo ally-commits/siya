@@ -64,6 +64,19 @@ Route::prefix('dept')->group(function() {
     Route::post('/login', 'Auth\DeptLoginController@login')->name('dept.login.submit');
     Route::post('/logout', 'Auth\DeptLoginController@logout')->name('dept.logout');
     Route::get('/dashboard', 'DeptController@index')->name('dept.home');
+
+    Route::resource('/deptFdpMeeting','DeptFDPMeeting'); 
+    Route::get('/deptFdpMeeting/delete/{id}','DeptFDPMeeting@delete');
+
+    Route::resource('/deptSeminarOrganised','DeptSeminarOrganised'); 
+    Route::get('/deptSeminarOrganised/delete/{id}','DeptSeminarOrganised@delete');
+
+    Route::resource('/deptMajorProgram','DeptMajorProgramme'); 
+    Route::get('/deptMajorProgram/delete/{id}','DeptMajorProgramme@delete');
+
+    
+    Route::get("/generate-report",'DeptGenerateReport@index'); 
+    Route::post("/generate-report/create",'DeptGenerateReport@getData');
 });
 
 //ADMIN ROUTES
@@ -86,6 +99,7 @@ Route::prefix('admin')->group(function() {
 
 
     Route::get('/add-dept', function () {return view('admin.addDept');});
+    Route::get('/edit-dept/{id}', 'AdminDeptController@show');
     Route::post('/add-dept', 'AdminDeptController@addDept')->name('admin.addDept');
     Route::post('/update-dept', 'AdminDeptController@updateDept')->name('admin.updateDept');
     Route::get('/view-dept', 'AdminDeptController@viewDept')->name('admin.viewDept');

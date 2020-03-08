@@ -21,7 +21,7 @@ class CreateSeminarAttendedsTable extends Migration
             $table->string('level');
             $table->string('title');
             $table->date('date');
-            $table->integer('userId');
+            $table->string('userId');
             $table->timestamps();
         });
     }

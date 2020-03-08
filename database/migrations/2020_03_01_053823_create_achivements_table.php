@@ -24,7 +24,7 @@ class CreateAchivementsTable extends Migration
             $table->string("level");
             $table->date("date");
             $table->string("guidedBy");
-            $table->integer("userId");
+            $table->string("userId");
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class CreateAssociationProgramsTable extends Migration
             $table->string('nature');
             $table->string('place');
             $table->string('level');
-            $table->integer('userId');
+            $table->string('userId');
             $table->timestamps();
         });
     }

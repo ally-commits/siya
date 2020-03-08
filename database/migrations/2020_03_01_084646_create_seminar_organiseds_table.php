@@ -24,7 +24,7 @@ class CreateSeminarOrganisedsTable extends Migration
             $table->string('beneficiaries');
             $table->string('placeAndDesignation');
             $table->date('date');
-            $table->integer('userId');
+            $table->string('userId');
             $table->timestamps();
         });
     }

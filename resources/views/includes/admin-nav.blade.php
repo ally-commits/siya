@@ -101,6 +101,22 @@
                             </li>  
                         </ul>
                     </li>   
+                    <li class="menu-title">Department</li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="waves-effect" aria-expanded="false"><i class="ti-package"></i><span> Manage Department <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                        <ul class="submenu mm-collapse" style="height: 0px;">
+                            <li>
+                                <a href="/admin/add-dept" class="waves-effect">
+                                    <span> Add Department</span>
+                                </a>
+                            </li> 
+                            <li>
+                                <a href="/admin/view-dept" class="waves-effect">
+                                    <span> View Department</span>
+                                </a>
+                            </li>  
+                        </ul>
+                    </li>   
                 </ul>
             </div> 
         <div class="clearfix"></div>

@@ -21,7 +21,7 @@ class CreatePapersTable extends Migration
             $table->string("title");
             $table->string("prizes");
             $table->string("nature");
-            $table->integer("userId");
+            $table->string("userId");
             $table->timestamps();
         });
     }

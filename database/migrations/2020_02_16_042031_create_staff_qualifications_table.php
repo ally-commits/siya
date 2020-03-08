@@ -19,7 +19,7 @@ class CreateStaffQualificationsTable extends Migration
             $table->date("year");
             $table->string("college");
             $table->string("place");
-            $table->integer("userId");
+            $table->string("userId");
             $table->timestamps();
         });
     }

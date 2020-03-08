@@ -25,11 +25,17 @@ class AdminDeptController extends Controller
         $data = $request->all();
 
         Dept::create([
+            'deptId' => 'd'.uniqid(),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']), 
         ]); 
         return Redirect::route('admin.viewDept')->with('message', 'Department Added Succesfully');
+    }
+    public function show($id) {
+        $data = Dept::find($id);
+
+        return view("admin.editDept")->with("dept",$data);
     }
     public function updateDept(Request $request) {
         if($request['password'] == '') {

@@ -17,6 +17,14 @@
     </head>
     <body>
         <div class="wrapper">
+            @if(Session::has('message'))  
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong>{{ Session::get('message') }}</strong>
+                </div>
+            @endif
             @include("includes.admin-nav")
             <div class="content-page" style="padding-top: 70px;">
                 @yield("content")

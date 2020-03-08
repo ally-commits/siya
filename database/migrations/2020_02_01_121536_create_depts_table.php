@@ -15,6 +15,7 @@ class CreateDeptsTable extends Migration
     {
         Schema::create('depts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('deptId');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
