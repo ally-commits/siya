@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>All Staff Achivements</h4>
+        <h4>All Staff Achievements</h4>
         <div>
             <a href="/admin/staffActivity/000/achivements/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Achivements" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
@@ -13,7 +13,7 @@
     </div>
     @if(count($achive) == 0)
         <div class="text-center" style="align-items: center;">
-            <h5>No Achivements Found</h5>
+            <h5>No Achievement Found</h5>
         </div> 
     @else 
         <table class="table table-bordered mb-0" style="font-size: 14px;">

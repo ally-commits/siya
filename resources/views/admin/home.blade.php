@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        Admin Dashboard
+        you're logged in!
 
     </div>
 @endsection

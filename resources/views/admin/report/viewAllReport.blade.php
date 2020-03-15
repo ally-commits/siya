@@ -16,7 +16,7 @@
                                             <th>Name</th>
                                             <th>Department</th>
                                             <th>Date</th>
-                                            <th>Achivement</th>
+                                            <th>Achievement</th>
                                             <th>Place</th>
                                             <th>Organisation</th>
                                             <th>Nature</th>

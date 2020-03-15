@@ -46,7 +46,7 @@
                                     <td>{{$staff->expirence}}</td> 
                                     <td>{{$staff->department}}</td> 
                                     <td>
-                                        <a class="btn btn-primary text-white" href="generate-report/create/{{$staff->userId}}">Genrate Report</a>
+                                        <a class="btn btn-primary text-white" href="generate-report/create/{{$staff->userId}}">Generate Report</a>
                                     </td>
                                 </tr>
                             @endforeach

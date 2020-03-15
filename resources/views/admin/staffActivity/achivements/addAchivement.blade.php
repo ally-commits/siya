@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="d-flex" style="justify-content: space-between; align-items: center;">
-            <h4>Add Staff Achivements</h4>
+            <h4>Add Staff Achievements</h4>
             <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
         </div>
         <div class="card-body">

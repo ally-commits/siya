@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Name of the Program</label>
+                            <label for="">Enter the Name of the Association</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Enter the Name of Program" name="name" value="{{ old('name') }}">    
                             @error('name')

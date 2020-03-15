@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-        <h6>Add Pulication</h6>
+        <h6>Add Publication</h6>
         </div>
         <div class="card-body">
             <form action="/staff/publication" method="POST">
@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Name of the Journel</label>
+                            <label for="">Enter the Name of the Journal</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Enter the Name" name="name" value="{{ old('name') }}">    
                             @error('name')
@@ -36,9 +36,9 @@
                     </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Collabration</label>
+                            <label for="">Enter the Collaboration</label>
                             <input type="text" class="form-control @error('collab') is-invalid @enderror"
-                                placeholder="Enter the Collabration" name="collab" value="{{ old('collab') }}">    
+                                placeholder="Enter the Collabration" name="collaboration" value="{{ old('collab') }}">    
                             @error('collab')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}

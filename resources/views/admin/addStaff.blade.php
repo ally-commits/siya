@@ -73,8 +73,11 @@
                         <select class="form-control @error('department') invalid-form @enderror" name="department" 
                         value="{{ old('department')}}">
                             <option>BCA</option>
-                            <option>BSC</option>
-                            <option>B COm</option>
+                            <option>BSc</option>
+                            <option>BCom</option>
+                            <option>BA</option>
+                            <option>BVoc</option>
+                            <option>BBA</option>
                         </select>   
                         @error('department')
                             <span class="invalid-text" role="alert">
@@ -85,8 +88,8 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="form-group mb-1 @error('expirence') has-danger @enderror">
-                        <label class="form-control-label">Years Of Expirence</label>
-                        <input type="number" value="{{ old('expirence') }}" class="form-control @error('expirence') is-invalid @enderror" name="expirence" placeholder="expirence" required="">
+                        <label class="form-control-label">Years Of Experience</label>
+                        <input type="number" value="{{ old('expirence') }}" class="form-control @error('experience') is-invalid @enderror" name="expirence" placeholder="expirence" required="">
                     </div>
                     @error('expirence')
                         <div class="invalid-text">
@@ -113,12 +116,13 @@
                             <label for="">Select your Blood Group</label>
                             <select class="form-control @error('bloodGroup') invalid-form @enderror" name="bloodGroup"
                             value="{{old('bloodGroup') }}">
-                                <option>A pos+</option>
-                                <option>A neg-</option>
-                                <option>B pos+</option>
-                                <option>B neg-</option>
-                                <option>O pos-</option>
-                                <option>O neg-</option>
+                                <option>A +ve</option>
+                                <option>A -ve</option>
+                                <option>B +ve</option>
+                                <option>B -ve</option>
+                                <option>O +ve</option>
+                                <option>O -ve</option>
+                                <option>AB +ve</option>
                             </select>   
                             @error('bloodGroup')
                                 <span class="invalid-text" role="alert">

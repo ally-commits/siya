@@ -48,9 +48,9 @@
                     </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Achive</label>
+                            <label for="">Achievement</label>
                             <input type="text" class="form-control @error('achive') is-invalid @enderror"
-                                placeholder="Enter the Achive" name="achive" value="{{ old('achive') }}">    
+                                placeholder="Achievement" name="achive" value="{{ old('achive') }}">    
                             @error('achive')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}
@@ -114,7 +114,7 @@
                                 <option>Inter National Level</option>
                                 <option>National Level</option>
                                 <option>State Level</option>
-                                <option>University Level</option>
+                                <option>DistrictLevel</option>
                                 <option>College Level</option>
                             </select>   
                             @error('level')
