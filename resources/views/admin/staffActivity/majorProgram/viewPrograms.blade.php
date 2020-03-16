@@ -4,8 +4,10 @@
 <div class="container"> 
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
         <h4>Staff Majar Program
-            @if($staffId == 000)
-                Admin
+            @if(substr($staffId,0 ,1) == "d") 
+                {{$user['0']->name}}
+            @elseif($staffId == 000)
+                Admin 
             @else
                 {{$user['0']->name}}
             @endif
@@ -29,25 +31,29 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th> 
-                    <th>Duration</th> 
+                    <th>From</th> 
+                    <th>To</th> 
                     <th>Programme</th>
                     <th>Faculty Association</th>
                     <th>Number Of Beneficiaries</th>
                     <th>Level</th>
                     <th>Department</th> 
-                    <th>Action</th> 
+                    <th>Description</th> 
+                    <th>Action</th>  
                 </tr>
             </thead>
             <tbody>
                 @foreach($programs as $key=>$mtg)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $mtg->duration }}</td> 
+                        <td>{{ $mtg->from }}</td> 
+                        <td>{{ $mtg->to }}</td> 
                         <td>{{ $mtg->programme }}</td>
                         <td>{{ $mtg->facultyAssociation }}</td>
                         <td>{{ $mtg->noOfBeneficiaries }}</td>
                         <td>{{ $mtg->level }}</td>
                         <td>{{ $mtg->department }}</td> 
+                        <td>{{ $mtg->desc }}</td> 
                         <td class="d-flex jes-sp" >
                             <a href="/admin/staffActivity/{{$staffId}}/majorProgram/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Major Programme" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 

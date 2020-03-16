@@ -4,8 +4,10 @@
 <div class="container">
         <div class="d-flex" style="justify-content: space-between; align-items: center;">
             <h4>Staff Fdp Meeting
-            @if($staffId == 000)
-                Admin
+            @if(substr($staffId,0 ,1) == "d") 
+                {{$user['0']->name}}
+            @elseif($staffId == 000)
+                Admin 
             @else
                 {{$user['0']->name}}
             @endif
@@ -31,13 +33,14 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Type of Meeting</th>
-                    <th>Duration</th>
-                    <th>Date</th>
+                    <th>Type of Meeting</th> 
+                    <th>From</th>
+                    <th>To</th>
                     <th>Organisers</th>
                     <th>Place</th> 
                     <th>Department</th> 
                     <th>Level</th> 
+                    <th>Description</th>
                     <th>Action</th> 
                 </tr>
             </thead>
@@ -47,12 +50,13 @@
                         <td>{{ $key+1 }}</td>
                         <td>{{ $mtg->name }}</td>
                         <td>{{ $mtg->typeOfMeeting }}</td>
-                        <td>{{ $mtg->duration }}</td>
-                        <td>{{ $mtg->date }}</td>
+                        <td>{{ $mtg->from }}</td>
+                        <td>{{ $mtg->to }}</td>
                         <td>{{ $mtg->organisers }}</td>
                         <td>{{ $mtg->place }}</td>
                         <td>{{ $mtg->department }}</td>
                         <td>{{ $mtg->level }}</td> 
+                        <td>{{ $mtg->desc}}</td>
                         <td class="d-flex jes-sp" >
                             <a href="/admin/staffActivity/{{$staffId}}/fdpMeeting/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit FDP Meeting" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 

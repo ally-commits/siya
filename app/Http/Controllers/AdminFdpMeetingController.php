@@ -20,7 +20,9 @@ class AdminFdpMeetingController extends Controller
                 ->where("userId","=",$staffId)
                 ->latest()
                 ->get();
-        if($staffId == 000) {
+        if(substr($staffId,0,1) == "d") {
+            $user = DB::table("depts")->where("deptId",$staffId)->limit(1)->get();
+        } else if($staffId == 000) {
             $user['0'] = ['name' => "Admin"]; 
         } else {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
@@ -54,10 +56,11 @@ class AdminFdpMeetingController extends Controller
         $request->validate([
             'name' => ['required', 'string'],
             'level' => ['required', 'string'],
-            'date' => ['required', 'date'],
-            'place' => ['required', 'string'],  
+            'from' => ['required', 'date'],
+            'to' => ['required', 'date'],
+            'place' => ['required', 'string'], 
+            'desc' => ['required', 'string'],  
             'organiser' => ['required', 'string'],  
-            'duration' => ['required', 'string'],  
             'type' => ['required', 'string'],  
             'dept' => ['required', 'string'],  
         ]);  
@@ -65,8 +68,9 @@ class AdminFdpMeetingController extends Controller
         FdpMeeting::create([
             'name' => $data['name'], 
             'level' => $data['level'], 
-            'duration' => $data['duration'], 
-            'date' => $data['date'],
+            'desc' => $data['desc'], 
+            'from' => $data['from'],
+            'to' => $data['to'],
             'organisers' => $data['organiser'], 
             'place' => $data['place'],
             'typeOfMeeting' => $data['type'],
@@ -109,24 +113,25 @@ class AdminFdpMeetingController extends Controller
     public function update(Request $request,$staffId,  $id)
     {
         $data = $request->all();
- 
         $request->validate([
             'name' => ['required', 'string'],
             'level' => ['required', 'string'],
-            'date' => ['required', 'date'],
-            'place' => ['required', 'string'],  
+            'from' => ['required', 'date'],
+            'to' => ['required', 'date'],
+            'place' => ['required', 'string'], 
+            'desc' => ['required', 'string'],  
             'organiser' => ['required', 'string'],  
-            'duration' => ['required', 'string'],  
             'type' => ['required', 'string'],  
-            'dept' => ['required', 'string'], 
-        ]);  
+            'dept' => ['required', 'string'],  
+        ]);   
         DB::table("fdp_meetings")
                 ->where("id","=",$id)
                 ->update([
             'name' => $data['name'], 
             'level' => $data['level'], 
-            'duration' => $data['duration'], 
-            'date' => $data['date'], 
+            'desc' => $data['desc'], 
+            'from' => $data['from'], 
+            'to' => $data['to'], 
             'typeOfMeeting' => $data['type'], 
             'place' => $data['place'],
             'organisers' => $data['organiser'],

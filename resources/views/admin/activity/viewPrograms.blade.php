@@ -20,25 +20,29 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th> 
-                    <th>Duration</th> 
+                    <th>From</th> 
+                    <th>To</th> 
                     <th>Programme</th>
                     <th>Faculty Association</th>
                     <th>Number Of Beneficiaries</th>
                     <th>Level</th>
                     <th>Department</th> 
-                    <th>Action</th> 
+                    <th>Description</th> 
+                    <th>Action</th>  
                 </tr>
             </thead>
             <tbody>
                 @foreach($programs as $key=>$mtg)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $mtg->duration }}</td> 
+                        <td>{{ $mtg->from }}</td> 
+                        <td>{{ $mtg->to }}</td> 
                         <td>{{ $mtg->programme }}</td>
                         <td>{{ $mtg->facultyAssociation }}</td>
                         <td>{{ $mtg->noOfBeneficiaries }}</td>
                         <td>{{ $mtg->level }}</td>
                         <td>{{ $mtg->department }}</td> 
+                        <td>{{ $mtg->desc }}</td>
                         <td class="d-flex jes-sp" >
                             <a href="/admin/staffActivity/{{$mtg->userId}}/majorProgram/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Major Programme" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 

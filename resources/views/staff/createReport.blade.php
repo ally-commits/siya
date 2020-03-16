@@ -7,7 +7,7 @@
                 <h5>{{ $staff[0]->name }}</h5>
             </div>
             <div class="card-body">
-                <form action="/admin/generate-report/create" method="POST">
+                <form action="/staff/generate-report/create" method="POST">
                     @csrf
                     <input type="hidden" name="staffId" value="{{ $staff[0]->userId }}" />
                     <div class="row">

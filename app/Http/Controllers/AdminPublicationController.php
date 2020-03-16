@@ -50,8 +50,7 @@ class AdminPublicationController extends Controller
     {
         $data = $request->all();
         $request->validate([
-            'name' => ['required', 'string'],
-            'num' => ['required', 'string'],
+            'name' => ['required', 'string'], 
             'collab' => ['required', 'string'],   
         ]);   
         Publications::create([
@@ -98,8 +97,7 @@ class AdminPublicationController extends Controller
         $data = $request->all();
  
         $request->validate([
-            'name' => ['required', 'string'],
-            'num' => ['required', 'string'],
+            'name' => ['required', 'string'], 
             'collab' => ['required', 'string'],   
         ]);  
         DB::table("publications")

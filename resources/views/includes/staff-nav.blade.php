@@ -3,7 +3,7 @@
         <div class="topbar-main">
             <div class="container-fluid"> 
                 <div class="logo">
-                    <span class="text-white">IQAC</span>
+                    <span class="text-white">IQAC - Staff Dashboard</span>
                 </div>  
                 <div class="menu-extras topbar-custom"> 
                     <ul class="navbar-right list-inline float-right mb-0"> 

@@ -7,17 +7,19 @@
         <h5 class="text-white" style="font-size:20px;'">St Aloyisus College (Autonomous) Mangaluru</h5> 
     </div>
 </div>
-
-<div class="d-flex w-100" style="align-items: top; justify-content: center;
-    background-color: #00001e;">
-    <a href="/login" class="btn btn-lg btn-danger m-2 ">Staff Login</a>
-    <a href="/dept/login" class="btn btn-lg btn-danger m-2">Department Login</a>
-    <a href="/admin/login" class="btn btn-lg btn-danger m-2">Admin Login</a>
+<div style="background-color: #00001e; py-5"> 
+    <div class="d-flex w-100" style="align-items: top; justify-content: center;">
+        <a href="/login" class="btn btn-lg btn-danger m-2 ">Staff Login</a>
+        <a href="/dept/login" class="btn btn-lg btn-danger m-2">Department Login</a>
+        <a href="/admin/login" class="btn btn-lg btn-danger m-2">Admin Login</a>
+    </div>
+    <div class="w-100" style="background-color: #00001e;color:white;">
+        <h2 class="text-center py-2">About IQAC at St Aloysius College</h2>
+    </div>
 </div>
-<div class="d-flex w-100" style="background-color: #00001e;color:white;">
-    <h2>About IQAC at St Aloysius College</h2></div>
    
-   <div style="color:black;font-size:16px;"> <p>The Internal Quality Assessment Cell (IQAC) of St Aloysius College was established in 2004, 
+   <div class="container mt-5" style="color:black;font-size:16px;"> 
+        <p>The Internal Quality Assessment Cell (IQAC) of St Aloysius College was established in 2004, 
     immediately after the first NAAC Accreditation of the College. It has been reconstituted after
      the second cycle of NAAC Accreditation in 2010as a post-accreditation quality sustenance measure.</p>
      <p>One of the major challenges of the IQAC  is quality sustenance of the institution. It has  channelized
@@ -38,6 +40,7 @@
 <li>Dissemination of information on the various quality parameters of higher education.</li>
 <li>Organization of inter and intra institutional workshops, seminars on quality related themes andpromotion of quality circles.</li>
 <li>Documentation of the various programmes/activities of the College, leading to quality improvement.</li></ul>
-     </div>
+
+</div>
     
 @endsection

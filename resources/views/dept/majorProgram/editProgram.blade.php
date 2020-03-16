@@ -13,16 +13,28 @@
                 <div class="row">
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Duration</label>
-                            <input type="time" class="form-control @error('duration') is-invalid @enderror"
-                                placeholder="Enter the Duration" name="duration" value="{{ $program->duration }}">    
-                            @error('duration')
+                            <label for="">From</label>
+                            <input type="date" class="form-control @error('from') is-invalid @enderror"
+                                placeholder="From" name="from" value="{{ $program->from }}">    
+                            @error('from')
                                 <span class="invalid-text text-danger" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror 
                         </div>
-                    </div>  
+                    </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">To</label>
+                            <input type="date" class="form-control @error('to') is-invalid @enderror"
+                                placeholder="to" name="to" value="{{ $program->to }}">    
+                            @error('to')
+                                <span class="invalid-text text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Programme</label>
@@ -88,7 +100,19 @@
                                 </span>
                             @enderror 
                         </div>
-                    </div>   
+                    </div>  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Enter the Description</label>
+                            <textarea name="desc" class="form-control @error('desc') is-invalid @enderror" cols="30" rows="2">{{$program->desc}}</textarea>
+
+                            @error('desc')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div>    
 
                 </div>
                 <button type="submit" class="btn btn-primary">Update Value</button>

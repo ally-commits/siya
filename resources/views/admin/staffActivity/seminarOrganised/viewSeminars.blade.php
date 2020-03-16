@@ -4,11 +4,14 @@
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
         <h4>Staff Seminar Organised
-            @if($staffId == 000)
-                Admin
+            @if(substr($staffId,0 ,1) == "d") 
+                {{$user['0']->name}}
+            @elseif($staffId == 000)
+                Admin 
             @else
                 {{$user['0']->name}}
             @endif
+             
         </h4>
         <div>
             <a href="/admin/activity/seminar_organiseds" class="btn btn-primary" data-toggle="tooltip" >

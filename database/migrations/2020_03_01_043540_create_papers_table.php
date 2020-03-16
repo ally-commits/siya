@@ -19,6 +19,9 @@ class CreatePapersTable extends Migration
             $table->string("theme");
             $table->string("venue");
             $table->string("title");
+            $table->string("dept");
+            $table->date("date");
+            $table->string("type");
             $table->string("prizes");
             $table->string("nature");
             $table->string("userId");

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class FdpMeeting extends Model
 {
-    protected $fillable = ['place','name','duration','organisers','level','date','typeOfMeeting','userId','department'];
+    protected $fillable = ['place','name','from','organisers','level','to','desc','typeOfMeeting','userId','department'];
 }

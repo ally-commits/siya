@@ -12,6 +12,22 @@
                 @method("PUT")
                 @csrf
                 <div class="row">
+                <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Select Seminar/Workshop/Conference </label>
+                            <select class="form-control @error('type') is-invalid @enderror" name="type"
+                            value="{{$seminar->type }}">
+                                <option @if($seminar->type == "Seminar") selected @endif>Seminar</option>
+                                <option @if($seminar->type == "Workshop") selected @endif>Workshop</option>
+                                <option @if($seminar->type == "Conference") selected @endif>Conference</option> 
+                            </select>   
+                            @error('type')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Name</label>
@@ -62,6 +78,18 @@
                     </div>  
                     <div class="col-md-6">                          
                         <div class="form-group">
+                            <label for="">Enter the Department</label>
+                            <input type="text" class="form-control @error('dept') is-invalid @enderror"
+                                placeholder="Type of Department" name="dept" value="{{ $seminar->dept }}">    
+                            @error('dept')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
                             <label for="">Enter the Place</label>
                             <input type="text" class="form-control @error('place') is-invalid @enderror"
                                 placeholder="Enter the Place" name="place" value="{{ $seminar->place }}">    
@@ -76,8 +104,7 @@
                         <div class="form-group">
                             <label for="">Enter the Level </label>
                             <select class="form-control @error('level') is-invalid @enderror" name="level"
-                            value="{{ $seminar
-                            ->level }}">
+                            value="{{ $seminar->level }}">
                                 <option @if($seminar->level == "Inter National Level") selected @endif>Inter National Level</option>
                                 <option @if($seminar->level == "National Level") selected @endif>National Level</option>
                                 <option @if($seminar->level == "State Level") selected @endif>State Level</option>

@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 
 @section('content')
-    <div style="padding-top: 80px;"></div>
+    <div style="padding-top: 10px;"></div>
     <div class="container">
         <div class="row" id="profile">
             <div class="col-md-12 d-flex" style="justify-content: space-between;align-items: center;">
@@ -29,16 +29,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                             
                         </div>
                     </div>
                     <div class="col-md-8">  

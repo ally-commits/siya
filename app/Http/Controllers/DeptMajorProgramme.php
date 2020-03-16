@@ -44,7 +44,9 @@ class DeptMajorProgramme extends Controller
     {
         $data = $request->all();
         $request->validate([  
-            'duration' => ['required', 'string'],  
+            'from' => ['required', 'date'],  
+            'to' => ['required', 'date'],  
+            'desc' => ['required', 'string'],  
             'programme' => ['required', 'string'],  
             'facultyAssociation' => ['required', 'string'],  
             'noOfBeneficiaries' => ['required', 'string'],  
@@ -54,7 +56,9 @@ class DeptMajorProgramme extends Controller
 
         MajorProgrammes::create([ 
             'programme' => $data['programme'],  
-            'duration' => $data['duration'],   
+            'from' => $data['from'],   
+            'to' => $data['to'],   
+            'desc' => $data['desc'],   
             'department' => $data['department'],   
             'facultyAssociation' => $data['facultyAssociation'],
             'level' => $data['level'],
@@ -99,7 +103,9 @@ class DeptMajorProgramme extends Controller
         $data = $request->all();
  
         $request->validate([  
-            'duration' => ['required', 'string'],  
+            'from' => ['required', 'date'],  
+            'to' => ['required', 'date'],  
+            'desc' => ['required', 'string'],  
             'programme' => ['required', 'string'],  
             'facultyAssociation' => ['required', 'string'],  
             'noOfBeneficiaries' => ['required', 'string'],  
@@ -111,7 +117,9 @@ class DeptMajorProgramme extends Controller
                 ->where("id","=",$id)
                 ->update([
                     'programme' => $data['programme'],  
-                    'duration' => $data['duration'],   
+                    'from' => $data['from'],   
+                    'to' => $data['to'],   
+                    'desc' => $data['desc'],   
                     'department' => $data['department'],   
                     'facultyAssociation' => $data['facultyAssociation'],
                     'level' => $data['level'],

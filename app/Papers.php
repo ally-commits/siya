@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Papers extends Model
 {
-    protected $fillable = ['name','title','venue','theme','prizes','nature','userId'];
+    protected $fillable = ['name','title','venue','theme','prizes','nature','userId','date','type','dept'];
 }

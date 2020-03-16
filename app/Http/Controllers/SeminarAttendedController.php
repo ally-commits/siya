@@ -48,6 +48,8 @@ class SeminarAttendedController extends Controller
             'place' => ['required', 'string'],    
             'date' => ['required', 'date'],
             'level' => ['required', 'string'],
+            'dept' => ['required', 'string'],
+            'type' => ['required', 'string'],
             'title' => ['required', 'string'],    
             'prize' => ['required', 'string'],    
         ]);   
@@ -55,6 +57,8 @@ class SeminarAttendedController extends Controller
             'name' => $data['name'], 
             'title' => $data['title'], 
             'prize' => $data['prize'], 
+            'dept' => $data['dept'], 
+            'type' => $data['type'], 
             'place' => $data['place'], 
             'date' => $data['date'],
             'level' => $data['level'], 
@@ -101,6 +105,8 @@ class SeminarAttendedController extends Controller
             'place' => ['required', 'string'],    
             'date' => ['required', 'date'],
             'level' => ['required', 'string'],
+            'dept' => ['required', 'string'],
+            'type' => ['required', 'string'],
             'title' => ['required', 'string'],    
             'prize' => ['required', 'string'],    
         ]); 
@@ -109,6 +115,8 @@ class SeminarAttendedController extends Controller
                 ->update([
             'name' => $data['name'], 
             'title' => $data['title'], 
+            'dept' => $data['dept'], 
+            'type' => $data['type'], 
             'prize' => $data['prize'], 
             'place' => $data['place'], 
             'date' => $data['date'],

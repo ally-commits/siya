@@ -42,10 +42,9 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->all();  
         $request->validate([
-            'name' => ['required', 'string'],
-            'num' => ['required', 'string'],
+            'name' => ['required', 'string'], 
             'collab' => ['required', 'string'],   
         ]);   
         Publications::create([
@@ -54,7 +53,7 @@ class PublicationController extends Controller
             'collabration' => $data['collab'],   
             'userId' => Auth::user()->id
         ]); 
-        return Redirect::action('PapersController@index')->with('message', 'Publication Added Succesfully');
+        return Redirect::action('PublicationController@index')->with('message', 'Publication Added Succesfully');
     }
 
     /**
@@ -102,7 +101,7 @@ class PublicationController extends Controller
                 'publication_number' => $data['num'], 
                 'collabration' => $data['collab'], ]);
 
-        return Redirect::action('PapersController@index')->with('message', 'Publication Updated Succesfully');   
+        return Redirect::action('PublicationController@index')->with('message', 'Publication Updated Succesfully');   
     }
 
     /**
@@ -115,6 +114,6 @@ class PublicationController extends Controller
     {
         $publication  = Publications::find($id);
         $publication->delete();
-        return Redirect::action('PapersController@index')->with('message', 'Publication Deleted Succesfully');
+        return Redirect::action('PublicationController@index')->with('message', 'Publication Deleted Succesfully');
     }
 }

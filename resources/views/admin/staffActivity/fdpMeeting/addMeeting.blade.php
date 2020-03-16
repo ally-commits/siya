@@ -11,37 +11,13 @@
             <form action="/admin/staffActivity/{{ $staffId }}/fdpMeeting" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-md-6">                          
+                <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Name of the Meeting</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Enter the Name of Meeting" name="name" value="{{ old('name') }}">    
                             @error('name')
                                 <span class="invalid-text text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror 
-                        </div>
-                    </div> 
-                    <div class="col-md-6">                          
-                        <div class="form-group">
-                            <label for="">Enter the Duration</label>
-                            <input type="time" class="form-control @error('duration') is-invalid @enderror"
-                                placeholder="Enter the Duration" name="duration" value="{{ old('duration') }}">    
-                            @error('duration')
-                                <span class="invalid-text text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror 
-                        </div>
-                    </div> 
-                    <div class="col-md-6">                          
-                        <div class="form-group">
-                            <label for="">Enter the Date</label>
-                            <input type="date" class="form-control @error('date') is-invalid @enderror"
-                                placeholder="Enter the Date" name="date" value="{{ old('date') }}">    
-                            @error('date')
-                                <span class="text-danger" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror 
@@ -59,6 +35,30 @@
                             @enderror 
                         </div>
                     </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">From</label>
+                            <input type="date" class="form-control @error('from') is-invalid @enderror"
+                                placeholder="From" name="from" value="{{ old('from') }}">    
+                            @error('from')
+                                <span class="invalid-text text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">To</label>
+                            <input type="date" class="form-control @error('to') is-invalid @enderror"
+                                placeholder="to" name="to" value="{{ old('to') }}">    
+                            @error('to')
+                                <span class="invalid-text text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div>  
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Type of Meeting</label>
@@ -107,6 +107,18 @@
                                 <option>College Level</option>
                             </select>   
                             @error('level')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Enter the Description</label>
+                            <textarea name="desc" class="form-control @error('desc') is-invalid @enderror" cols="30" rows="2"></textarea>
+
+                            @error('desc')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}
                                 </span>

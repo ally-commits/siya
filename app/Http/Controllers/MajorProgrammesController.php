@@ -44,8 +44,10 @@ class MajorProgrammesController extends Controller
     {
         $data = $request->all();
         $request->validate([  
-            'duration' => ['required', 'string'],  
+            'from' => ['required', 'date'],  
+            'to' => ['required', 'date'],  
             'programme' => ['required', 'string'],  
+            'desc' => ['required', 'string'],  
             'facultyAssociation' => ['required', 'string'],  
             'noOfBeneficiaries' => ['required', 'string'],  
             'department' => ['required', 'string'],  
@@ -53,8 +55,10 @@ class MajorProgrammesController extends Controller
         ]);  
 
         MajorProgrammes::create([ 
-            'programme' => $data['programme'],  
-            'duration' => $data['duration'],   
+            'programme' => $data['programme'],   
+            'from' => $data['from'],   
+            'to' => $data['to'],   
+            'desc' => $data['desc'],   
             'department' => $data['department'],   
             'facultyAssociation' => $data['facultyAssociation'],
             'level' => $data['level'],
@@ -98,9 +102,11 @@ class MajorProgrammesController extends Controller
     {
         $data = $request->all();
  
-        $request->validate([  
-            'duration' => ['required', 'string'],  
+        $request->validate([     
+            'from' => ['required', 'date'],  
+            'to' => ['required', 'date'],  
             'programme' => ['required', 'string'],  
+            'desc' => ['required', 'string'], 
             'facultyAssociation' => ['required', 'string'],  
             'noOfBeneficiaries' => ['required', 'string'],  
             'department' => ['required', 'string'],  
@@ -110,8 +116,10 @@ class MajorProgrammesController extends Controller
         DB::table("major_programmes")
                 ->where("id","=",$id)
                 ->update([
-                    'programme' => $data['programme'],  
-                    'duration' => $data['duration'],   
+                    'from' => $data['from'],   
+                    'to' => $data['to'],   
+                    'desc' => $data['desc'],
+                    'programme' => $data['programme'],   
                     'department' => $data['department'],   
                     'facultyAssociation' => $data['facultyAssociation'],
                     'level' => $data['level'],

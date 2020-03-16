@@ -24,12 +24,25 @@
                             @enderror 
                         </div>
                     </div> 
+
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Duration</label>
-                            <input type="time" class="form-control @error('duration') is-invalid @enderror"
-                                placeholder="Enter the Duration" name="duration" value="{{ $meeting->duration }}">    
-                            @error('duration')
+                            <label for="">Enter the Organisers</label>
+                            <input type="text" class="form-control @error('organiser') is-invalid @enderror"
+                                placeholder="Enter the Organisers" name="organiser" value="{{ $meeting->organisers }}">    
+                            @error('organiser')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">From</label>
+                            <input type="date" class="form-control @error('from') is-invalid @enderror"
+                                placeholder="From" name="from" value="{{ $meeting->from }}">    
+                            @error('from')
                                 <span class="invalid-text text-danger" role="alert">
                                     {{ $message }}
                                 </span>
@@ -38,23 +51,11 @@
                     </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Date</label>
-                            <input type="date" class="form-control @error('date') is-invalid @enderror"
-                                placeholder="Enter the Date" name="date" value="{{ $meeting->date }}">    
-                            @error('date')
-                                <span class="text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror 
-                        </div>
-                    </div> 
-                    <div class="col-md-6">                          
-                        <div class="form-group">
-                            <label for="">Enter the Organisers</label>
-                            <input type="text" class="form-control @error('organiser') is-invalid @enderror"
-                                placeholder="Enter the Organisers" name="organiser" value="{{ $meeting->organisers }}">    
-                            @error('organiser')
-                                <span class="text-danger" role="alert">
+                            <label for="">To</label>
+                            <input type="date" class="form-control @error('to') is-invalid @enderror"
+                                placeholder="to" name="to" value="{{ $meeting->to }}">    
+                            @error('to')
+                                <span class="invalid-text text-danger" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror 
@@ -108,6 +109,18 @@
                                 <option @if($meeting->level == "College Level") selected @endif>College Level</option>
                             </select>   
                             @error('level')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Enter the Description</label>
+                            <textarea name="desc" class="form-control @error('desc') is-invalid @enderror" cols="30" rows="2">{{$meeting->desc}}</textarea>
+
+                            @error('desc')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}
                                 </span>

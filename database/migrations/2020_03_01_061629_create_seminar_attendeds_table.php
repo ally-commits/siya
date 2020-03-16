@@ -19,6 +19,8 @@ class CreateSeminarAttendedsTable extends Migration
             $table->string('place');
             $table->string('name');
             $table->string('level');
+            $table->string("type");
+            $table->string("dept");
             $table->string('title');
             $table->date('date');
             $table->string('userId');

@@ -3,7 +3,7 @@
         <div class="topbar-main">
             <div class="container-fluid"> 
                 <div class="logo">
-                    <span class="text-white">IQAC</span>
+                    <span class="text-white">IQAC - Department Dashbaord</span>
                 </div>  
                 <div class="menu-extras topbar-custom"> 
                     <ul class="navbar-right list-inline float-right mb-0"> 
@@ -93,7 +93,7 @@
                     <ul class="navigation-menu">
 
                         <li class="has-submenu">
-                            <a href="/dashboard"><i class="ion ion-md-speedometer"></i>Dashboard</a>
+                            <a href="/dept/dashboard"><i class="ion ion-md-speedometer"></i>Dashboard</a>
                         </li>  
                         <li class="has-submenu">
                             <a href="#"><i class="ion ion-md-grid"></i>Manage Staff Activity <i class="mdi mdi-chevron-down mdi-drop"></i></a>

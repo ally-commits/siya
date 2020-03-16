@@ -46,6 +46,9 @@ class PapersController extends Controller
         $request->validate([
             'name' => ['required', 'string'],
             'theme' => ['required', 'string'],
+            'date' => ['required', 'date'],
+            'type' => ['required', 'string'],
+            'dept' => ['required', 'string'],
             'venue' => ['required', 'string'],
             'title' => ['required', 'string'],  
             'prize' => ['required', 'string'],  
@@ -55,6 +58,9 @@ class PapersController extends Controller
             'name' => $data['name'], 
             'theme' => $data['theme'], 
             'venue' => $data['venue'], 
+            'date' => $data['date'], 
+            'dept' => $data['dept'], 
+            'type' => $data['type'], 
             'title' => $data['title'],
             'prizes' => $data['prize'], 
             'nature' => $data['nature'], 
@@ -102,6 +108,9 @@ class PapersController extends Controller
             'theme' => ['required', 'string'],
             'venue' => ['required', 'string'],
             'title' => ['required', 'string'],  
+            'date' => ['required', 'date'],
+            'type' => ['required', 'string'],
+            'dept' => ['required', 'string'],
             'prize' => ['required', 'string'],  
             'nature' => ['required', 'string'],    
         ]);  
@@ -112,6 +121,9 @@ class PapersController extends Controller
             'theme' => $data['theme'], 
             'venue' => $data['venue'], 
             'title' => $data['title'], 
+            'date' => $data['date'], 
+            'dept' => $data['dept'], 
+            'type' => $data['type'], 
             'prizes' => $data['prize'], 
             'nature' => $data['nature']]);
 

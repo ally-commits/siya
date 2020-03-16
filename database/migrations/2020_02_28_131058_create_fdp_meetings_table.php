@@ -15,9 +15,10 @@ class CreateFdpMeetingsTable extends Migration
     {
         Schema::create('fdp_meetings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('duration');
-            $table->date('date');
+            $table->string('name'); 
+            $table->date('from');
+            $table->date('to');
+            $table->string("desc");
             $table->string('place');
             $table->string('department');
             $table->string('organisers');

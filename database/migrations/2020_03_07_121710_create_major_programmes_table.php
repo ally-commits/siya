@@ -15,7 +15,9 @@ class CreateMajorProgrammesTable extends Migration
     {
         Schema::create('major_programmes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("duration");
+            $table->date("from");
+            $table->date("to");
+            $table->string("desc");
             $table->string("programme");
             $table->string("facultyAssociation");
             $table->string("noOfBeneficiaries");

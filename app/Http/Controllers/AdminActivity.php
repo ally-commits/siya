@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 
 class AdminActivity extends Controller
 {
@@ -12,7 +13,7 @@ class AdminActivity extends Controller
         $this->middleware('auth:admin');
     }
     public function index() {
-        $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programs",
+        $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programmes",
                     'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
                     'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
@@ -24,7 +25,17 @@ class AdminActivity extends Controller
         return view("admin.addActivity")->with("values", $value_arr)->with("color",$color)->with("icon",$icon);
     }
     public function getData($t) {  
-        $table = DB::table($t)->get();
+        $table = DB::table($t)->get(); 
+        if($t == "papers") {
+            foreach($table as $tab) {
+                if($tab->userId == 000) {
+                    $tab->staffName = "Admin";
+                } else {
+                    $user = User::find($tab->userId);
+                    $tab->staffName = $user['name'];
+                }
+            }
+        } 
         switch($t) {
             case 'achivements': 
                 return view('admin.activity.viewAchivement')->with("achive",$table);
@@ -62,6 +73,16 @@ class AdminActivity extends Controller
     }
     public function getReport($t) {
         $table = DB::table($t)->get();
+        if($t == "papers") {
+            foreach($table as $tab) {
+                if($tab->userId == 000) {
+                    $tab->staffName = "Admin";
+                } else {
+                    $user = User::find($tab->userId);
+                    $tab->staffName = $user['name'];
+                }
+            }
+        } 
         $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programs",
                     'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',

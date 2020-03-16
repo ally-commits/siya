@@ -4,12 +4,28 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-        <h6>Add Seminar Attended</h6>
+        <h6>Add Seminar / Workshop Attended</h6>
         </div>
         <div class="card-body">
             <form action="/staff/seminarAttended" method="POST">
                 @csrf
                 <div class="row">
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Select Seminar/Workshop/Conference </label>
+                            <select class="form-control @error('type') is-invalid @enderror" name="type"
+                            value="{{old('type') }}">
+                                <option>Seminar</option>
+                                <option>Workshop</option>
+                                <option>Conference</option>
+                            </select>   
+                            @error('type')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Name</label>
@@ -34,6 +50,18 @@
                             @enderror 
                         </div>
                     </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Enter the Department</label>
+                            <input type="text" class="form-control @error('dept') is-invalid @enderror"
+                                placeholder="Type of Department" name="dept" value="{{ old('dept') }}">    
+                            @error('dept')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div>
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Date</label>

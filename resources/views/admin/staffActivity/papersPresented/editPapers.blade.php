@@ -12,9 +12,26 @@
                 @method("PUT")
                 @csrf
                 <div class="row">
+                <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Select Conference/Workshop/Symposia/Meeting</label>
+                            <select class="form-control @error('type') is-invalid @enderror" name="type"
+                            value="{{$paper->type }}">
+                                <option @if($paper->type == "Conference") selected @endif>Conference</option>
+                                <option @if($paper->type == "Workshop") selected @endif>Workshop</option>
+                                <option @if($paper->type == "Symposia") selected @endif>Symposia</option>
+                                <option @if($paper->type == "Meeting") selected @endif>Meeting</option> 
+                            </select>   
+                            @error('type')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Name of the Paper</label>
+                            <label for="">Enter the Name of the Conference</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Enter the Name of Paper" name="name" value="{{ $paper->name }}">    
                             @error('name')
@@ -48,6 +65,30 @@
                             @enderror 
                         </div>
                     </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Enter the Department</label>
+                            <input type="text" class="form-control @error('dept') is-invalid @enderror"
+                                placeholder="Type of Department" name="dept" value="{{ $paper->dept }}">    
+                            @error('dept')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Date</label>
+                            <input type="date" class="form-control @error('date') is-invalid @enderror"
+                                placeholder="date" name="date" value="{{ $paper->date }}">    
+                            @error('date')
+                                <span class="invalid-text text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div>  
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Nature</label>

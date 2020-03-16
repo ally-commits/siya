@@ -11,6 +11,22 @@
             <form action="/admin/staffActivity/{{ $staffId }}/seminarAttended" method="POST">
                 @csrf
                 <div class="row">
+                <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Select Seminar/Workshop/Conference </label>
+                            <select class="form-control @error('type') is-invalid @enderror" name="type"
+                            value="{{old('type') }}">
+                                <option>Seminar</option>
+                                <option>Workshop</option>
+                                <option>Conference</option>
+                            </select>   
+                            @error('type')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Name</label>
@@ -35,6 +51,18 @@
                             @enderror 
                         </div>
                     </div> 
+                    <div class="col-md-6">                          
+                        <div class="form-group">
+                            <label for="">Enter the Department</label>
+                            <input type="text" class="form-control @error('dept') is-invalid @enderror"
+                                placeholder="Type of Department" name="dept" value="{{ old('dept') }}">    
+                            @error('dept')
+                                <span class="text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror 
+                        </div>
+                    </div>
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Date</label>
@@ -88,7 +116,7 @@
                                 </span>
                             @enderror 
                         </div>
-                    </div> 
+                    </div>  
                     <div class="col-md-3">
                         
                     </div>

@@ -20,11 +20,15 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Conference Name</th>
+                    <th>Staff Name</th> 
                     <th>Title</th>
+                    <th>Date</th>
+                    <th>Type</th>
                     <th>Nature</th>
                     <th>Venue</th>
                     <th>Prizes</th>
+                    <th>Department</th>
                     <th>Theme</th> 
                     <th>Action</th> 
                 </tr>
@@ -33,12 +37,16 @@
                 @foreach($papers as $key=>$p)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $p->name }}</td>
+                        <td>{{ $p->name }}</td> 
+                        <td>{{ $p->staffName }}</td>
                         <td>{{ $p->title }}</td>
+                        <td>{{ $p->date }}</td>
+                        <td>{{ $p->type }}</td>
                         <td>{{ $p->nature }}</td>
                         <td>{{ $p->venue }}</td>
                         <td>{{ $p->prizes }}</td>
-                        <td>{{ $p->theme }}</td> 
+                        <td>{{ $p->dept }}</td>
+                        <td>{{ $p->theme }}</td>  
                         <td class="d-flex jes-sp" >
                             <a href="/admin/staffActivity/{{$p->userId}}/papers/{{ $p->id}}" data-toggle="tooltip" data-original-title="Edit Paper" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 

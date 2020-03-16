@@ -20,13 +20,15 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Name</th> 
+                    <th>Name</th>
+                    <th>Type</th> 
                     <th>Date</th>
                     <th>Prize</th>
+                    <th>Department</th>
                     <th>Place</th> 
                     <th>Level</th> 
                     <th>Title</th> 
-                    <th>Action</th> 
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,11 +36,13 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $prg->name }}</td>
+                        <td>{{ $prg->type }}</td>
                         <td>{{ $prg->date }}</td>
                         <td>{{ $prg->prize }}</td>
+                        <td>{{ $prg->dept }}</td>
                         <td>{{ $prg->place }}</td>
                         <td>{{ $prg->level }}</td>
-                        <td>{{ $prg->title }}</td> 
+                        <td>{{ $prg->title }}</td>  
                         <td class="d-flex jes-sp" >
                             <a href="/admin/staffActivity/{{ $prg->userId }}/seminarAttended/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Edit Program" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 

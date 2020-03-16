@@ -18,7 +18,25 @@ class AdminController extends Controller
     }
     public function index()
     {
-        return view('admin.home');
+        $value_arr = ['users' => "Staffs", "depts" => 'Departments', 'achivements' => "Achivements",'association_programs' => "Association Programs",
+                    'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
+                    'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
+                    'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
+                    => "Guest Lecture MDP", 'major_programmes' => 'Major Programmes'];
+                    
+        $icons = ['users' => "ti-user", "depts" => 'ti-id-badge', 'achivements' => "ti-flag-alt",'association_programs' => "ti-layout",
+                    'fdp_meetings' => "ti-link",'papers' => 'ti-layers-alt',
+                    'seminar_organiseds' => 'ti-bookmark-alt','seminar_attendeds' => 'ti-reload',
+                    'publications' => 'ti-layers','guest_visiteds' => 'ti-car', 'guest_lecture_m_d_p_s'
+                    => "ti-shift-left-alt", 'major_programmes' => 'ti-vector'];
+        $value_count = [];
+        $colors = ['text-danger','text-dark','text-info','text-warning','text-success','text-primary','text-secondary'];
+
+        foreach($value_arr as $key=>$arr) {
+            $value_count[$key] = DB::table($key)->count();
+        } 
+        return view('admin.home')->with("value_names",$value_arr)->with("value_count", $value_count)
+                                ->with("icons",$icons)->with("colors", $colors);
     }
     public function viewStaff() {
         $data = DB::table('users') 

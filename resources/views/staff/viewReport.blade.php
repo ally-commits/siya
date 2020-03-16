@@ -31,6 +31,9 @@
                     <div class="row">
                         @foreach($staffData as $key=>$data)  
                             <div class="col-md-12"> 
+                                @if($key == 'achivements' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'achivements' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table" style="font-size: 14px;">
@@ -65,6 +68,9 @@
                                 @endif
                             </div> 
                             <div class="col-md-12">
+                                @if($key == 'association_programs' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'association_programs' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
@@ -95,6 +101,9 @@
                                 @endif
                             </div>  
                             <div class="col-md-12"> 
+                                @if($key == 'fdp_meetings' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'fdp_meetings' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
@@ -102,24 +111,26 @@
                                             <th>Sl No</th>
                                             <th>Name</th>
                                             <th>Type of Meeting</th>
-                                            <th>Duration</th>
-                                            <th>Date</th>
+                                            <th>From</th>
+                                            <th>To</th>
                                             <th>Organisers</th>
                                             <th>Place</th> 
                                             <th>Department</th> 
                                             <th>Level</th>  
+                                            <th>Description</th>
                                         </tr>
                                         @foreach($data as $k=>$mtg)
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
                                                 <td>{{ $mtg->name }}</td>
                                                 <td>{{ $mtg->typeOfMeeting }}</td>
-                                                <td>{{ $mtg->duration }}</td>
-                                                <td>{{ $mtg->date }}</td>
+                                                <td>{{ $mtg->from }}</td>
+                                                <td>{{ $mtg->to }}</td>
                                                 <td>{{ $mtg->organisers }}</td>
                                                 <td>{{ $mtg->place }}</td>
                                                 <td>{{ $mtg->department }}</td>
                                                 <td>{{ $mtg->level }}</td>
+                                                <td>{{ $mtg->desc }}</td>
                                             </tr>
                                         @endforeach
                                     </table>
@@ -127,12 +138,19 @@
                                 @endif
                             </div>  
                             <div class="col-md-12"> 
+                                @if($key == 'papers' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'papers' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Name</th>
+                                            <th>Name of Staff</th>
+                                            <th>Name Of the conference</th>
+                                            <th>Date</th>
+                                            <th>Department</th>
+                                            <th>Type</th>
                                             <th>Title</th>
                                             <th>Nature</th>
                                             <th>Venue</th>
@@ -142,7 +160,11 @@
                                         @foreach($data as $k=>$p)
                                             <tr>
                                                 <td>{{ $k+1 }}</td> 
+                                                <td>{{ Auth::user()->name }}</td>
                                                 <td>{{ $p->name }}</td>
+                                                <td>{{ $p->date }}</td>
+                                                <td>{{ $p->dept }}</td>
+                                                <td>{{ $p->type }}</td>
                                                 <td>{{ $p->title }}</td>
                                                 <td>{{ $p->nature }}</td>
                                                 <td>{{ $p->venue }}</td>
@@ -154,7 +176,10 @@
                                     <hr>
                                 @endif
                             </div>  
-                            <div class="col-md-12"> 
+                            <div class="col-md-12">
+                                @if($key == 'publications' and count($data) == 0)
+                                    No data Found..
+                                @endif 
                                 @if($key == 'publications' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
@@ -177,6 +202,9 @@
                                 @endif
                             </div> 
                             <div class="col-md-12"> 
+                                @if($key == 'seminar_organiseds' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'seminar_organiseds' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
@@ -210,13 +238,18 @@
                                     <hr>
                                 @endif
                             </div>  
-                            <div class="col-md-12"> 
+                            <div class="col-md-12">
+                                @if($key == 'seminar_attendeds' and count($data) == 0)
+                                    No data Found..
+                                @endif 
                                 @if($key == 'seminar_attendeds' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
                                         <tr>
                                             <th>Sl No</th>
                                             <th>Name</th> 
+                                            <th>Type</th>
+                                            <th>Department</th>
                                             <th>Date</th>
                                             <th>Prize</th>
                                             <th>Place</th> 
@@ -227,6 +260,8 @@
                                             <tr>
                                                 <td>{{ $k+1 }}</td> 
                                                 <td>{{ $prg->name }}</td>
+                                                <td>{{ $prg->type }}</td>
+                                                <td>{{ $prg->dept }}</td>
                                                 <td>{{ $prg->date }}</td>
                                                 <td>{{ $prg->prize }}</td>
                                                 <td>{{ $prg->place }}</td>
@@ -239,28 +274,34 @@
                                 @endif
                             </div> 
                             <div class="col-md-12"> 
+                                @if($key == 'major_programmes' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'major_programmes' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
                                         <tr>
                                             <th>Sl No</th> 
-                                            <th>Duration</th> 
+                                            <th>From</th> 
+                                            <th>To</th>  
                                             <th>Programme</th>
                                             <th>Faculty Association</th>
                                             <th>Number Of Beneficiaries</th>
                                             <th>Level</th>
                                             <th>Department</th> 
-                                            <th>Action</th> 
+                                            <th>Description</th> 
                                         </tr>
                                         @foreach($data as $k=>$mtg)
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
-                                                <td>{{ $mtg->duration }}</td> 
+                                                <td>{{ $mtg->from }}</td> 
+                                                <td>{{ $mtg->to }}</td> 
                                                 <td>{{ $mtg->programme }}</td>
                                                 <td>{{ $mtg->facultyAssociation }}</td>
                                                 <td>{{ $mtg->noOfBeneficiaries }}</td>
                                                 <td>{{ $mtg->level }}</td>
                                                 <td>{{ $mtg->department }}</td> 
+                                                <td>{{ $mtg->desc }}</td> 
                                             </tr>
                                         @endforeach
                                     </table>
@@ -268,6 +309,9 @@
                                 @endif
                             </div>
                             <div class="col-md-12"> 
+                                @if($key == 'guest_lecture_m_d_p_s' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'guest_lecture_m_d_p_s' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
@@ -297,7 +341,10 @@
                                     <hr>
                                 @endif
                             </div> 
-                            <div class="col-md-12"> 
+                            <div class="col-md-12">     
+                                @if($key == 'guest_visiteds' and count($data) == 0)
+                                    No data Found..
+                                @endif
                                 @if($key == 'guest_visiteds' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">

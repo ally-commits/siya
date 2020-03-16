@@ -46,10 +46,11 @@ class FdpMeetingController extends Controller
         $request->validate([
             'name' => ['required', 'string'],
             'level' => ['required', 'string'],
-            'date' => ['required', 'date'],
-            'place' => ['required', 'string'],  
+            'from' => ['required', 'date'],
+            'to' => ['required', 'date'],
+            'place' => ['required', 'string'], 
+            'desc' => ['required', 'string'],  
             'organiser' => ['required', 'string'],  
-            'duration' => ['required', 'string'],  
             'type' => ['required', 'string'],  
             'dept' => ['required', 'string'],  
         ]);  
@@ -57,8 +58,9 @@ class FdpMeetingController extends Controller
         FdpMeeting::create([
             'name' => $data['name'], 
             'level' => $data['level'], 
-            'duration' => $data['duration'], 
-            'date' => $data['date'],
+            'desc' => $data['desc'], 
+            'from' => $data['from'],
+            'to' => $data['to'],
             'organisers' => $data['organiser'], 
             'place' => $data['place'],
             'typeOfMeeting' => $data['type'],
@@ -101,24 +103,25 @@ class FdpMeetingController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
- 
         $request->validate([
             'name' => ['required', 'string'],
             'level' => ['required', 'string'],
-            'date' => ['required', 'date'],
-            'place' => ['required', 'string'],  
+            'from' => ['required', 'date'],
+            'to' => ['required', 'date'],
+            'place' => ['required', 'string'], 
+            'desc' => ['required', 'string'],  
             'organiser' => ['required', 'string'],  
-            'duration' => ['required', 'string'],  
             'type' => ['required', 'string'],  
-            'dept' => ['required', 'string'], 
-        ]);  
+            'dept' => ['required', 'string'],  
+        ]);   
         DB::table("fdp_meetings")
                 ->where("id","=",$id)
                 ->update([
             'name' => $data['name'], 
             'level' => $data['level'], 
-            'duration' => $data['duration'], 
-            'date' => $data['date'], 
+            'desc' => $data['desc'], 
+            'from' => $data['from'], 
+            'to' => $data['to'], 
             'typeOfMeeting' => $data['type'], 
             'place' => $data['place'],
             'organisers' => $data['organiser'],
