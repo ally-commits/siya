@@ -13,8 +13,8 @@ class AdminActivity extends Controller
         $this->middleware('auth:admin');
     }
     public function index() {
-        $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programmes",
-                    'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
+        $value_arr = ['achivements' => "Achievements",'association_programs' => "Association Programmes",
+                    'fdp_meetings' => "FDP/Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
                     'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
                     => "Guest Lecture MDP", 'major_programmes' => 'Major Programmes'];
@@ -83,8 +83,8 @@ class AdminActivity extends Controller
                 }
             }
         } 
-        $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programs",
-                    'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
+        $value_arr = ['achivements' => "Achievements",'association_programs' => "Association Programmes",
+                    'fdp_meetings' => "FDP/Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
                     'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
                     => "Guest Lecture MDP", 'major_programmes' => 'Major Programmes'];

@@ -137,13 +137,14 @@
                 </div>
             </div>
         </div>
-        <small class="text-warning">Enter password only if you need to change it...</small> 
+      
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <div class="form-group mb-1 @error('password') has-danger @enderror">
                     <label class="form-control-label">Password</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
                 </div>
+                <small class="text-warning">change password if required</small> 
                 @error('password')
                     <div class="invalid-text">
                         <strong>{{ $message }}</strong>

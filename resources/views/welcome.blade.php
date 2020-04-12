@@ -39,7 +39,15 @@
 <li>Arrangement for feedback responses from students, parents and other stakeholders on quality related institutional processes.</li>
 <li>Dissemination of information on the various quality parameters of higher education.</li>
 <li>Organization of inter and intra institutional workshops, seminars on quality related themes andpromotion of quality circles.</li>
-<li>Documentation of the various programmes/activities of the College, leading to quality improvement.</li></ul>
+<li>Documentation of the various programmes/activities of the College, leading to quality improvement.</li>
+<li>Acting as a nodal agency of the college for coordinating quality-related activities, includingadoption and dissemination of good practices.</li>
+<li>Development and maintenance of institutional database through MIS for the purpose ofmaintaining / enhancing 
+the institutional quality.</li>
+<li>Development of the Annual Quality Assurance Report (AQAR) of the College based on thequality parameters/assessment 
+criteria developed by the relevant quality assurance body (likeNAAC, NBA, AB) in the prescribed format</li>
+<li>Bi-annual development of Quality Radars (QRs) and Ranking of Integral Unites of Colleges basedon the AQAR.</li>
+<li>Interaction with SQACs in the pre and post accreditation quality assessment, sustenance andenhancement endeavours.</li>
+</ul>
 
 </div>
     
