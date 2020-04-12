@@ -8,12 +8,12 @@
     </div>
 </div>
 <div style="background-color: #00001e; py-5"> 
-    <div class="d-flex w-100" style="align-items: top; justify-content: center;">
+    <div class="d-flex w-100" style="align-items:top; justify-content: center;">
         <a href="/login" class="btn btn-lg btn-danger m-2 ">Staff Login</a>
         <a href="/dept/login" class="btn btn-lg btn-danger m-2">Department Login</a>
         <a href="/admin/login" class="btn btn-lg btn-danger m-2">Admin Login</a>
     </div>
-    <div class="w-100" style="background-color: #00001e;color:white;">
+    <div class="d-flex w-100" style="background-color: #00001e;color:white;align-items:top; justify-content: center">
         <h2 class="text-center py-2">About IQAC at St Aloysius College</h2>
     </div>
 </div>
