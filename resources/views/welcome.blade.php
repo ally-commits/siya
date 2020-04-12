@@ -25,17 +25,17 @@
      <p>One of the major challenges of the IQAC  is quality sustenance of the institution. It has  channelized
       various efforts and measures towards the holistic development of the institution. In the post accreditation
        scenario it played a  crucial role in the implementation of the recommendations of Exit</p>
-      <h4> Report of the NAAC Peer Team in the college. </h4>
+      <h4 style="color:#000080;"> Report of the NAAC Peer Team in the college. </h4>
     <p>The IQAC  has never acted as another hierarchical body rather it has always tried to bring belongingness and
     participation among the various constituents of St Aloysius College.</p>
-    <h4>Aims and Objectives</h4>
+    <h4 style="color:#000080;">Aims and Objectives</h4>
 <ul>
-<li>To develop a system ensuring improvementin academic and administrative excellence in St Aloysius College.</li>
+<li>To develop a system ensuring improvement in academic and administrative excellence in St Aloysius College.</li>
 <li>To develop measures towards quality enhancement through promoting quality culture and creating benchmark in the College.</li>
 <li>To promote institutional values among the faculty and students of the college.</li>
 <li>Development and application of quality benchmarks/parameters for the various academic and administrative activities of the Colleges.</li>
 <li>Facilitating the creation of a learner-centric environment conducive for quality education andfaculty maturation to adopt the required knowledge
- and technology for participatory teachingand learning process.</li>
+ and technology for participatory teaching and learning process.</li>
 <li>Arrangement for feedback responses from students, parents and other stakeholders on quality related institutional processes.</li>
 <li>Dissemination of information on the various quality parameters of higher education.</li>
 <li>Organization of inter and intra institutional workshops, seminars on quality related themes andpromotion of quality circles.</li>
