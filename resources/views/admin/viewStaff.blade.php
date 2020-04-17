@@ -39,7 +39,7 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$staff->name}}</td>
                                     <td>{{$staff->email}}</td>
-                                    <td>{{ substr($staff->created_at,0,10) }}</td>
+                                    <td>{{$staff->dob }}</td>
                                     <td class="d-flex" style="justify-content: space-around;"> 
                                         <a class="table-action"  data-toggle="tooltip" data-original-title="Add & View Qualification" href="/admin/get-qualification/{{$staff->id}}">
                                             <i class="ti-plus"></i>

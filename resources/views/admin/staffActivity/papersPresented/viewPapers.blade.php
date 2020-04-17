@@ -48,7 +48,11 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $p->name }}</td>
-                        <td>{{$user['0']->name}}</td> 
+                        @if($staffId == 000)
+                            <td>Admin</td>
+                        @else
+                            <td>{{$user['0']->name}}</td> 
+                        @endif
                         <td>{{ $p->title }}</td>
                         <td>{{ $p->date }}</td>
                         <td>{{ $p->type }}</td>

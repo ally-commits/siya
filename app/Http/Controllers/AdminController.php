@@ -39,7 +39,9 @@ class AdminController extends Controller
                                 ->with("icons",$icons)->with("colors", $colors);
     }
     public function viewStaff() {
-        $data = DB::table('users') 
+        $data = DB::table('users')
+            ->join("staff_profiles","staff_profiles.userId","users.id")
+            ->select("users.*","staff_profiles.dob")
             ->get();  
           
         return view("admin.viewStaff")->with("staffs",$data);

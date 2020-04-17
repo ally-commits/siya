@@ -18,11 +18,11 @@
                                             <th>Sl No</th>
                                             <th>Name</th>
                                             <th>Department</th>
-                                            <th>Date</th>
+                                            <th>Nature</th>
                                             <th>Achievement</th>
                                             <th>Place</th>
                                             <th>Organisation</th>
-                                            <th>Nature</th>
+                                            <th>Date</th>
                                             <th>Level</th>
                                             <th>Guided By</th>
                                         </tr>
