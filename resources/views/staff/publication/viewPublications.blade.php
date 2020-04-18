@@ -18,7 +18,13 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th> 
-                            <th>ISSN /ISBN</th> 
+                            <th>ISSN / ISBN</th> 
+                            <th>Date</th>
+                            <th>Indexing</th>
+                            <th>Volume</th>
+                            <th>Issues</th>
+                            <th>Subject</th>
+                            <th>Number of Pages</th>
                             <th>Collabration</th> 
                             <th>Action</th> 
                         </tr>
@@ -28,7 +34,13 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $prg->name }}</td>
-                                <td>{{ $prg->publication_number }}</td>
+                                <td>{{ $prg->type }}</td>
+                                <td>{{ $prg->date }}</td>
+                                <td>{{ $prg->indexing }}</td>
+                                <td>{{ $prg->volume }}</td>
+                                <td>{{ $prg->issues }}</td>
+                                <td>{{ $prg->subject }}</td>
+                                <td>{{ $prg->NumberOfPages }}</td>
                                 <td>{{ $prg->collabration }}</td> 
                                 <td class="d-flex jes-sp" >
                                     <a href="/staff/publication/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Edit Program" >

@@ -186,15 +186,27 @@
                                         <tr>
                                             <th>Sl No</th>
                                             <th>Name</th> 
-                                            <th>ISSN /ISBN</th> 
-                                            <th>Collabration</th> 
+                                            <th>ISSN / ISBN</th> 
+                                            <th>Date</th>
+                                            <th>Indexing</th>
+                                            <th>Volume</th>
+                                            <th>Issues</th>
+                                            <th>Subject</th>
+                                            <th>Number of Pages</th>
+                                            <th>Collabration</th>   
                                         </tr>
                                         @foreach($data as $k=>$prg)
                                             <tr>
                                                 <td>{{ $k+1 }}</td> 
                                                 <td>{{ $prg->name }}</td>
-                                                <td>{{ $prg->publication_number }}</td>
-                                                <td>{{ $prg->collabration }}</td>
+                                                <td>{{ $prg->type }}</td>
+                                                <td>{{ $prg->date }}</td>
+                                                <td>{{ $prg->indexing }}</td>
+                                                <td>{{ $prg->volume }}</td>
+                                                <td>{{ $prg->issues }}</td>
+                                                <td>{{ $prg->subject }}</td>
+                                                <td>{{ $prg->NumberOfPages }}</td>
+                                                <td>{{ $prg->collabration }}</td> 
                                             </tr>
                                         @endforeach
                                     </table>

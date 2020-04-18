@@ -1,7 +1,7 @@
 <div id="wrapper"> 
     <div class="topbar"> 
         <div class="topbar-left">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <span>
                     <span class="text-white" style="font-weight:100;text-transform: capitalize;font-size:14px;">
                     Admin Dashboard</span>

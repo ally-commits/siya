@@ -45,11 +45,25 @@ class PublicationController extends Controller
         $data = $request->all();  
         $request->validate([
             'name' => ['required', 'string'], 
-            'collab' => ['required', 'string'],   
+            'collab' => ['required', 'string'],  
+            'date' => ['required',"date"],
+            'index' => ['required',"string"],
+            'subject' => ['required',"string"],
+            'pages' => ['required',"integer"],
+            'type' => ['required',"string"],
+            'issues' => ['required',"string"],
+            'volume' => ['required',"string"]
         ]);   
+
         Publications::create([
-            'name' => $data['name'], 
-            'publication_number' => $data['num'], 
+            'name' => $data['name'],   
+            'date' => $data['date'], 
+            'indexing' => $data['index'], 
+            'type' => $data['type'], 
+            'subject' => $data['subject'], 
+            'NumberOfPages' => $data['pages'], 
+            'issues' => $data['issues'], 
+            'volume' => $data['volume'], 
             'collabration' => $data['collab'],   
             'userId' => Auth::user()->id
         ]); 
@@ -91,15 +105,27 @@ class PublicationController extends Controller
         $data = $request->all();
  
         $request->validate([
-            'name' => ['required', 'string'],
-            'num' => ['required', 'string'],
-            'collab' => ['required', 'string'],   
+            'name' => ['required', 'string'], 
+            'collab' => ['required', 'string'],  
+            'date' => ['required',"date"],
+            'index' => ['required',"string"],
+            'subject' => ['required',"string"],
+            'pages' => ['required',"integer"],
+            'type' => ['required',"string"],
+            'issues' => ['required',"string"],
+            'volume' => ['required',"string"]  
         ]);  
         DB::table("publications")
                 ->where("id","=",$id)
-                ->update(['name' => $data['name'], 
-                'publication_number' => $data['num'], 
-                'collabration' => $data['collab'], ]);
+                ->update(['name' => $data['name'],   
+                'date' => $data['date'], 
+                'indexing' => $data['index'], 
+                'type' => $data['type'], 
+                'subject' => $data['subject'], 
+                'NumberOfPages' => $data['pages'], 
+                'issues' => $data['issues'], 
+                'volume' => $data['volume'], 
+                'collabration' => $data['collab'],  ]);
 
         return Redirect::action('PublicationController@index')->with('message', 'Publication Updated Succesfully');   
     }
