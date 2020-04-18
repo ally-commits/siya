@@ -62,6 +62,7 @@
                             <a href="/admin/staffActivity/{{ $staffId ?? '' }}/achivements/delete/{{ $a->id}}" data-toggle="tooltip" data-original-title="Delete Achivements" >
                                 <span class="btn-inner--icon"><i class="ti-close"></i></span> 
                             </a>
+                            
                         </td>
                     </tr>
                 @endforeach

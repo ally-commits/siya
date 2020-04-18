@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h6>Add Achivements</h6>
+            <h6>Add Achievements</h6>
         </div>
         <div class="card-body">
             <form action="/staff/achivements" method="POST">

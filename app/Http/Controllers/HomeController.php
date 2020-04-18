@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programs",
+        $value_arr = ['achivements' => "Achivements",'association_programs' => "Association Programmes",
                     'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
                     'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'

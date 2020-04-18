@@ -12,9 +12,9 @@
                 <div class="row">
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Name of the Meeting</label>
+                            <label for="">Enter the Name of the Guest</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="Enter the Name of Meeting" name="name" value="{{ old('name') }}">    
+                                placeholder="Enter the Name of guest" name="name" value="{{ old('name') }}">    
                             @error('name')
                                 <span class="invalid-text text-danger" role="alert">
                                     {{ $message }}

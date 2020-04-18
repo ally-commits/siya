@@ -18,13 +18,14 @@
                                             <th>Sl No</th>
                                             <th>Name</th>
                                             <th>Department</th>
-                                            <th>Nature</th>
                                             <th>Achievement</th>
                                             <th>Place</th>
                                             <th>Organisation</th>
+                                            <th>Nature</th>
                                             <th>Date</th>
                                             <th>Level</th>
                                             <th>Guided By</th>
+                                           
                                         </tr>
                                         @foreach($data as $k=>$a)
                                             <tr>
@@ -38,6 +39,7 @@
                                                 <td>{{ $a->date }}</td>
                                                 <td>{{ $a->level }}</td> 
                                                 <td>{{ $a->guidedBy }}</td> 
+                                                
                                             </tr>
                                         @endforeach
                                     </table>
@@ -76,6 +78,7 @@
                                     </table>
                                     <hr>
                                 @endif
+                               
                             </div>  
                             <div class="col-md-12"> 
                                 @if($key == 'fdp_meetings' and count($data) == 0)

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>All Staff Guest Vsist</h4>
+        <h4>All Staff Guest Visits</h4>
         <div>
             <a href="/admin/staffActivity/000/guestVisited/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
