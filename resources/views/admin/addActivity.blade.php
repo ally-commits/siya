@@ -10,6 +10,7 @@
                     <div class="d-flex" style="justify-content: space-around">
                         <a href="/admin/activity/{{$key}}" class="btn btn-primary" style="width: 100px;">Add</a>
                         <a href="/admin/report/{{$key}}" class="btn btn-danger" style="width: 100px;">Report</a>
+                        <a href="/admin/activity/{{$key}}" class="btn btn-primary" style="width: 100px;">Delete</a>
                     </div>
                 </div>
             @endforeach
