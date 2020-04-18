@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>Staff Association Program 
+        <h4>Staff Association Programme
             @if($staffId == 000)
                 Admin
             @else
@@ -21,7 +21,7 @@
     </div>
     @if(count($programs) == 0)
         <div class="text-center" style="align-items: center;">
-            <h5>No Association Program Found</h5>
+            <h5>No Association Programme Found</h5>
             <a class="btn btn-danger text-white" href="/admin/staffActivity/{{ $staffId }}/association/create">Add Association Program</a>
         </div> 
     @else 

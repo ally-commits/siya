@@ -50,7 +50,7 @@
                                             <i class="ti-settings"></i> 
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/achivements">Achivements</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/achivements">Achievements</a> 
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/association">Association</a> 
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/fdpMeeting">FDP Meeting</a> 
                                             <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/papers">Papers Presented</a> 

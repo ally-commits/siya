@@ -72,7 +72,7 @@
                                     No data Found..
                                 @endif
                                 @if($key == 'association_programs' and count($data) > 0)
-                                    <h6 class="text-capitalize"><strong>{{ $value_arr[$key] }}<strong></h6>
+                                    <h6 class="text-capitalize"><strong>Association programmes<strong></h6>
                                     <table class="table w-100" style="font-size: 14px;">
                                         <tr>
                                             <th>Sl No</th>

@@ -29,7 +29,7 @@
                             <th>Dob</th> 
                             <th>Phone Number</th> 
                             <th>Gender</th> 
-                            <th>Expirence</th> 
+                            <th>Experience</th> 
                             <th>Department</th> 
                             <th>Action</th>
                         </tr>

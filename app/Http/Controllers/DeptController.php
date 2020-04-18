@@ -19,10 +19,10 @@ class DeptController extends Controller
      */
     public function index()
     {
-        $value_arr = ['fdp_meetings' => "FDP Meetings", 'seminar_attendeds' => 'Seminar Attended',
+        $value_arr = ['fdp_meetings' => "FDP Meetings", 'seminar_organiseds' => 'Seminar Organised',
                         'major_programmes' => 'Major Programmes'];
                     
-        $icons = ['fdp_meetings' => "ti-link", 'seminar_attendeds' => 'ti-reload',
+        $icons = ['fdp_meetings' => "ti-link", 'seminar_organiseds' => 'ti-reload',
                     'major_programmes' => 'ti-vector'];
         $value_count = [];
         $colors = ['text-danger','text-dark','text-info','text-warning','text-success','text-primary','text-secondary'];

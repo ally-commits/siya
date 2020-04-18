@@ -13,11 +13,11 @@
                     <div class="row">
                         <div class="col-md-2 custom-control custom-checkbox mb-2">
                             <input type="checkbox" class="custom-control-input" id="customCheck1" name="achivements" value="achivements">
-                            <label class="custom-control-label" for="customCheck1" >Staff Achivements</label>
+                            <label class="custom-control-label" for="customCheck1" >Staff Achievements</label>
                         </div>
                         <div class="col-md-2 custom-control custom-checkbox mb-2">
                             <input type="checkbox" class="custom-control-input" id="customCheck2" name="association_programs" value="association_programs">
-                            <label class="custom-control-label" for="customCheck2">Association Program</label>
+                            <label class="custom-control-label" for="customCheck2">Association Programmes</label>
                         </div>
                         <div class="col-md-2 custom-control custom-checkbox mb-2">
                             <input type="checkbox" class="custom-control-input" id="customCheck3" name="fdp_meetings" value="fdp_meetings">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-md-2 custom-control custom-checkbox mb-2">
                             <input type="checkbox" class="custom-control-input" id="customCheck8" name="major_programmes" value="major_programmes">
-                            <label class="custom-control-label" for="customCheck8">Major Programme</label>
+                            <label class="custom-control-label" for="customCheck8">Major Programmes </label>
                         </div>
                         <div class="col-md-2 custom-control custom-checkbox mb-2">
                             <input type="checkbox" class="custom-control-input" id="customCheck9" name="guest_lecture_m_d_p_s" value="guest_lecture_m_d_p_s">

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-        <h6>Add Major Prgramme</h6>
+        <h6>Add Major Programme</h6>
         </div>
         <div class="card-body">
             <form action="/dept/deptMajorProgram" method="POST">
@@ -61,7 +61,7 @@
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the No Of Beneficiaries</label>
-                            <input type="number" class="form-control @error('noOfBeneficiaries') is-invalid @enderror"
+                            <input type="text" class="form-control @error('noOfBeneficiaries') is-invalid @enderror"
                                 placeholder="Enter the No of Beneficiaries" name="noOfBeneficiaries" value="{{ old('noOfBeneficiaries') }}">    
                             @error('noOfBeneficiaries')
                                 <span class="text-danger" role="alert">

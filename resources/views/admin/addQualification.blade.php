@@ -48,9 +48,9 @@
                 </div>
                 <div class="col-md-6">                          
                     <div class="form-group">
-                        <label for="">Enter your Place</label>
+                        <label for="">Enter the board/Univeristy</label>
                         <input type="text" class="form-control @error('place') invalid-form @enderror"
-                            placeholder="Enter your Place" name="place" value="{{ old('place') }}">    
+                            placeholder="Enter the Board/university" name="place" value="{{ old('place') }}">    
                         @error('place')
                             <span class="invalid-text" role="alert">
                                 {{ $message }}
