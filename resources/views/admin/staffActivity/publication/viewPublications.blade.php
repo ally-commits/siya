@@ -38,7 +38,7 @@
                     <th>Issues</th>
                     <th>Subject</th>
                     <th>Number of Pages</th>
-                    <th>Collabration</th> 
+                    <th>Collaboration</th> 
                     <th>Action</th> 
                 </tr>
             </thead>

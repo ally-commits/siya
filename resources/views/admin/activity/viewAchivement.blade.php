@@ -22,7 +22,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Department</th>
-                    <th>Achive</th>
+                    <th>Achievement</th>
                     <th>PLace</th>
                     <th>Organisation</th>
                     <th>Nature</th> 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container"> 
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>All Staff Majar Program</h4>
+        <h4>Major Programmes</h4>
         <div>
             <a href="/admin/staffActivity/000/majorProgram/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
@@ -13,7 +13,7 @@
     </div>
     @if(count($programs) == 0)
         <h3 class="text-center">
-            No Major Programs Found
+            No Major Programmes Found
         </h3> 
     @else 
         <table class="table table-bordered mb-0" style="font-size: 14px;">

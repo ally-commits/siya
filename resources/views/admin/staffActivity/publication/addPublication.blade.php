@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="">Enter the Collaboration</label>
                             <input type="text" class="form-control @error('collab') is-invalid @enderror"
-                                placeholder="Enter the Collabration" name="collab" value="{{ old('collab') }}">    
+                                placeholder="Enter the Collaboration" name="collaboration" value="{{ old('collab') }}">    
                             @error('collab')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}

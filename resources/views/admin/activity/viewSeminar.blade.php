@@ -22,7 +22,7 @@
                     <th>#</th>
                     <th>Title</th> 
                     <th>Date</th>
-                    <th>Collab Agency</th>
+                    <th>Collaboration Agency</th>
                     <th>Speaker</th>
                     <th>Topic</th>
                     <th>Department</th>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container"> 
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>Staff Majar Program
+        <h4>Major Programmes
             @if(substr($staffId,0 ,1) == "d") 
                 {{$user['0']->name}}
             @elseif($staffId == 000)
@@ -14,7 +14,7 @@
         </h4>
         <div>
             <a href="/admin/activity/major_programmes" class="btn btn-primary" data-toggle="tooltip" >
-                <span class="btn-inner--icon"><i class="ti-control-record"></i>View Major Programs</span> 
+                <span class="btn-inner--icon"><i class="ti-control-record"></i>View Major Programmes</span> 
             </a>
             <a href="/admin/staffActivity/{{ $staffId }}/majorProgram/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
@@ -24,7 +24,7 @@
     </div>
     @if(count($programs) == 0)
         <h3 class="text-center">
-            No Major Programs Found
+            No Major Programmes Found
         </h3> 
     @else 
         <table class="table table-bordered mb-0" style="font-size: 14px;">

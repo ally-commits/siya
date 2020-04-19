@@ -173,7 +173,7 @@
                                             <th>Issues</th>
                                             <th>Subject</th>
                                             <th>Number of Pages</th>
-                                            <th>Collabration</th>  
+                                            <th>Collaboration</th>  
                                         </tr>
                                         @foreach($data as $k=>$prg)
                                             <tr>
@@ -204,7 +204,7 @@
                                             <th>Sl No</th>
                                             <th>Title</th> 
                                             <th>Date</th>
-                                            <th>Collab Agency</th>
+                                            <th>Collaboration Agency</th>
                                             <th>Speaker</th>
                                             <th>Topic</th>
                                             <th>Department</th>
@@ -276,7 +276,7 @@
                                             <th>Sl no</th> 
                                             <th>From</th> 
                                             <th>To</th> 
-                                            <th>Programme</th>
+                                            <th>Programme name</th>
                                             <th>Faculty Association</th>
                                             <th>Number Of Beneficiaries</th>
                                             <th>Level</th>
