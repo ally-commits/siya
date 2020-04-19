@@ -49,9 +49,9 @@
                     </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Achive</label>
+                            <label for="">Enter the Achievement</label>
                             <input type="text" class="form-control @error('achive') is-invalid @enderror"
-                                placeholder="Enter the Achive" name="achive" value="{{ old('achive') }}">    
+                                placeholder="Enter the Achievement" name="achive" value="{{ old('achive') }}">    
                             @error('achive')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}

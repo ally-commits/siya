@@ -18,6 +18,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th> 
+                            <th>Staff Name</th>
                             <th>ISSN / ISBN</th> 
                             <th>Date</th>
                             <th>Indexing</th>
@@ -34,6 +35,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $prg->name }}</td>
+                                <td>{{ $prg->staffname }}</td>
                                 <td>{{ $prg->type }}</td>
                                 <td>{{ $prg->date }}</td>
                                 <td>{{ $prg->indexing }}</td>

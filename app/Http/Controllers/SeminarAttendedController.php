@@ -51,7 +51,7 @@ class SeminarAttendedController extends Controller
             'dept' => ['required', 'string'],
             'type' => ['required', 'string'],
             'title' => ['required', 'string'],    
-            'prize' => ['required', 'string'],    
+              
         ]);   
         SeminarAttended::create([
             'name' => $data['name'], 
@@ -108,7 +108,7 @@ class SeminarAttendedController extends Controller
             'dept' => ['required', 'string'],
             'type' => ['required', 'string'],
             'title' => ['required', 'string'],    
-            'prize' => ['required', 'string'],    
+           
         ]); 
         DB::table("seminar_attendeds")
                 ->where("id","=",$id)

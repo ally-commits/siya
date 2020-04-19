@@ -29,7 +29,7 @@
         <table class="table table-bordered mb-0" style="font-size: 14px;">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
+                    <th>Sl no</th>
                     <th>Conference Name</th> 
                     <th>Staff Name</th>
                     <th>Title</th>
@@ -48,11 +48,7 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $p->name }}</td>
-                        @if($staffId == 000)
-                            <td>Admin</td>
-                        @else
-                            <td>{{$user['0']->name}}</td> 
-                        @endif
+                        <td>{{ $p->staffname }}</td>
                         <td>{{ $p->title }}</td>
                         <td>{{ $p->date }}</td>
                         <td>{{ $p->type }}</td>

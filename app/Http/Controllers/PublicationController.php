@@ -45,6 +45,7 @@ class PublicationController extends Controller
         $data = $request->all();  
         $request->validate([
             'name' => ['required', 'string'], 
+            'staffname' => ['required', 'string'], 
             'collab' => ['required', 'string'],  
             'date' => ['required',"date"],
             'index' => ['required',"string"],
@@ -56,7 +57,8 @@ class PublicationController extends Controller
         ]);   
 
         Publications::create([
-            'name' => $data['name'],   
+            'name' => $data['name'],
+            'staffname' => $data['staffname'],   
             'date' => $data['date'], 
             'indexing' => $data['index'], 
             'type' => $data['type'], 
@@ -106,6 +108,7 @@ class PublicationController extends Controller
  
         $request->validate([
             'name' => ['required', 'string'], 
+            'staffname' => ['required', 'string'],
             'collab' => ['required', 'string'],  
             'date' => ['required',"date"],
             'index' => ['required',"string"],
@@ -117,7 +120,8 @@ class PublicationController extends Controller
         ]);  
         DB::table("publications")
                 ->where("id","=",$id)
-                ->update(['name' => $data['name'],   
+                ->update(['name' => $data['name'],  
+                'staffname' => $data['staffname'], 
                 'date' => $data['date'], 
                 'indexing' => $data['index'], 
                 'type' => $data['type'], 

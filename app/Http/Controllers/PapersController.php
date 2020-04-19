@@ -45,17 +45,18 @@ class PapersController extends Controller
         $data = $request->all();
         $request->validate([
             'name' => ['required', 'string'],
+            'staffname' => ['required', 'string'],
             'theme' => ['required', 'string'],
             'date' => ['required', 'date'],
             'type' => ['required', 'string'],
             'dept' => ['required', 'string'],
             'venue' => ['required', 'string'],
             'title' => ['required', 'string'],  
-            'prize' => ['required', 'string'],  
             'nature' => ['required', 'string'],    
         ]);   
         Papers::create([
             'name' => $data['name'], 
+            'staffname' => $data['name'],
             'theme' => $data['theme'], 
             'venue' => $data['venue'], 
             'date' => $data['date'], 
@@ -105,19 +106,20 @@ class PapersController extends Controller
  
         $request->validate([
             'name' => ['required', 'string'],
+            'staffname' => ['required', 'string'],
             'theme' => ['required', 'string'],
             'venue' => ['required', 'string'],
             'title' => ['required', 'string'],  
             'date' => ['required', 'date'],
             'type' => ['required', 'string'],
-            'dept' => ['required', 'string'],
-            'prize' => ['required', 'string'],  
+            'dept' => ['required', 'string'], 
             'nature' => ['required', 'string'],    
         ]);  
         DB::table("papers")
                 ->where("id","=",$id)
                 ->update([
-            'name' => $data['name'], 
+            'name' => $data['name'],
+            'staffname' => $data['name'], 
             'theme' => $data['theme'], 
             'venue' => $data['venue'], 
             'title' => $data['title'], 

@@ -89,7 +89,7 @@
                 <div class="col-md-4 mb-3">
                     <div class="form-group mb-1 @error('expirence') has-danger @enderror">
                         <label class="form-control-label">Years Of Experience</label>
-                        <input type="number" value="{{ old('expirence') }}" class="form-control @error('experience') is-invalid @enderror" name="expirence" placeholder="expirence" required="">
+                        <input type="number" value="{{ old('expirence') }}" class="form-control @error('experience') is-invalid @enderror" name="expirence" placeholder="Experience" required="">
                     </div>
                     @error('expirence')
                         <div class="invalid-text">

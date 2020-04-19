@@ -16,7 +16,7 @@
                 <table class="table table-bordered mb-0" style="font-size: 14px;">
                     <thead class="thead-light">
                         <tr>
-                            <th>#</th>
+                            <th>SL no</th>
                             <th>Conference Name</th>
                             <th>Staff Name</th>
                             <th>Title</th>

@@ -9,9 +9,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="invoice-title">
-                                <span class="mt-0 float-right font-14">Date: 12-Sept-2020</span>
+                                <span class="mt-0 float-right font-14"></span>
                                 <div class="mb-4">
-                                    Staff Report
+                                    <h4>Staff Report</h4>
                                 </div>
                             </div>
                             <hr>
@@ -19,9 +19,9 @@
                                 <div class="col-6">
                                     <span class="font-14"> 
                                         <strong>{{ $profile[0]->name }}</strong> <br>
-                                        {{ $profile[0]->dob }} <br>
-                                        {{ $profile[0]->phoneNumber }} <br>
+                                       
                                         {{ $profile[0]->department }} <br>
+                                        {{ $profile[0]->phoneNumber }} <br>
                                     </span>
                                 </div> 
                             </div> 
@@ -32,7 +32,7 @@
                         @foreach($staffData as $key=>$data)  
                             <div class="col-md-12"> 
                                 @if($key == 'achivements' and count($data) == 0)
-                                    No data Found..
+                                    DATA NOT FOUND !!
                                 @endif
                                 @if($key == 'achivements' and count($data) > 0)
                                     <h6 class="text-capitalize"><strong>Achievements<strong></h6>

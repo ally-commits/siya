@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="invoice-title">
-                                <span class="mt-0 float-right font-14">Date: 12-Sept-2020</span>
+                                <span class="mt-0 float-right font-14"></span>
                                 <div class="mb-4">
                                     Staff Report
                                 </div>
