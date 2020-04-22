@@ -17,16 +17,17 @@
     </head>
     <body>
         <div class="wrapper">
-            @if(Session::has('message'))  
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <strong>{{ Session::get('message') }}</strong>
-                </div>
-            @endif
+            
             @include("includes.admin-nav")
             <div class="content-page" style="padding-top: 70px;">
+                @if(Session::has('message'))  
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>{{ Session::get('message') }}</strong>
+                    </div>
+                @endif
                 @yield("content")
             </div>
         </div>
@@ -40,7 +41,11 @@
         <script src="{{ asset('plugins/peity-chart/jquery.peity.min.js') }}"></script>
         <script src="{{ asset('assets/pages/dashboard.js') }}"></script>
         <script src="{{ asset('assets/js/app.js') }}"></script>
-
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
         @yield("js")
     </body>
 </html>

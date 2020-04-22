@@ -111,11 +111,12 @@ Route::prefix('admin')->group(function() {
 
     Route::get("/activity",'AdminActivity@index');
     Route::get("/activity/{table}",'AdminActivity@getData');
+    Route::get("/activity/report/allReport",'AdminActivity@allReport');
     Route::get("/report/{table}",'AdminActivity@getReport');
 
 });
 //ADMIN STAFF ACTIVITY
-Route::prefix('admin/staffActivity/{staffId}')->group(function() {
+Route::prefix('admin/staffActivity/{type}/{staffId}')->group(function() {
     Route::get('/', 'AdminStaffActivityController@index')->name('admin.staffData');
 
     Route::resource('/achivements','AdminAchivementsController'); 

@@ -3,12 +3,18 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>All Staff Papers Presented</h4>
-        <div>
-            <a href="/admin/staffActivity/000/papers/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Papers" >
-                <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
+        <h4>All Papers Presented</h4>
+        <div>  
+            <a href="/admin/staffActivity/admin/{{ Auth::user()->id }}/papers" class="btn btn-primary" data-toggle="tooltip" data-original-title="View Admin Papers" >
+                <span class="btn-inner--icon">View Admin  Papers Presented<i class="ti-eye"></i></span> 
             </a>
-            <a href="/admin/activity" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <a href="/admin/staffActivity/admin/{{ Auth::user()->id }}/papers/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Admin Papers" >
+                <span class="btn-inner--icon">Admin <i class="ti-plus"></i></span> 
+            </a>
+            <a href="/admin/staffActivity/staff/1" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Staff Papers" >
+                <span class="btn-inner--icon">Staff <i class="ti-plus"></i></span> 
+            </a>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
     </div>
     @if(count($papers) == 0)
@@ -20,8 +26,8 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Conference Name</th>
-                    <th>Staff Name</th> 
+                    <th>User</th>
+                    <th>Conference Name</th> 
                     <th>Title</th>
                     <th>Date</th>
                     <th>Type</th>
@@ -37,8 +43,8 @@
                 @foreach($papers as $key=>$p)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $p->name }}</td> 
-                        <td>{{ $p->staffName }}</td>
+                        <td>{{ $p->userType }} ( {{ $p->userName }} )</td>
+                        <td>{{ $p->name }}</td>  
                         <td>{{ $p->title }}</td>
                         <td>{{ $p->date }}</td>
                         <td>{{ $p->type }}</td>
@@ -46,15 +52,26 @@
                         <td>{{ $p->venue }}</td>
                         <td>{{ $p->prizes }}</td>
                         <td>{{ $p->dept }}</td>
-                        <td>{{ $p->theme }}</td>  
+                        <td>{{ $p->theme }}</td>
+                        @if($p->userId != null)  
                         <td class="d-flex jes-sp" >
-                            <a href="/admin/staffActivity/{{$p->userId}}/papers/{{ $p->id}}" data-toggle="tooltip" data-original-title="Edit Paper" >
+                            <a href="/admin/staffActivity/staff/{{$p->userId}}/papers/{{ $p->id}}" data-toggle="tooltip" data-original-title="Edit Paper" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
                             </a>
-                            <a href="/admin/staffActivity/{{$p->userId}}/papers/delete/{{ $p->id}}" data-toggle="tooltip" data-original-title="Delete Paper" >
+                            <a href="/admin/staffActivity/staff/{{$p->userId}}/papers/delete/{{ $p->id}}" data-toggle="tooltip" data-original-title="Delete Paper" >
                                 <span class="btn-inner--icon"><i class="ti-close"></i></span> 
                             </a>
                         </td>
+                        @else
+                        <td class="d-flex jes-sp" >
+                            <a href="/admin/staffActivity/admin/{{$p->adminId}}/papers/{{ $p->id}}" data-toggle="tooltip" data-original-title="Edit Paper" >
+                                <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
+                            </a>
+                            <a href="/admin/staffActivity/admin/{{$p->adminId}}/papers/delete/{{ $p->id}}" data-toggle="tooltip" data-original-title="Delete Paper" >
+                                <span class="btn-inner--icon"><i class="ti-close"></i></span> 
+                            </a>
+                        </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

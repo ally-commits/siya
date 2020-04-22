@@ -3,28 +3,24 @@
 @section('content')
 <div class="container"> 
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>Major Programmes
-            @if(substr($staffId,0 ,1) == "d") 
-                {{$user['0']->name}}
-            @elseif($staffId == 000)
-                Admin 
-            @else
-                {{$user['0']->name}}
-            @endif
+        <h4><span class="text-capitalize">{{ $type}}</span> Major Programmes
+            -{{$user['0']->name}}
         </h4>
         <div>
             <a href="/admin/activity/major_programmes" class="btn btn-primary" data-toggle="tooltip" >
                 <span class="btn-inner--icon"><i class="ti-control-record"></i>View Major Programmes</span> 
             </a>
-            <a href="/admin/staffActivity/{{ $staffId }}/majorProgram/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
+            <a href="/admin/staffActivity/{{$type}}/{{ $staffId }}/majorProgram/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
             </a>
-            <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
     </div>
+    <hr>
     @if(count($programs) == 0)
         <h3 class="text-center">
-            No Major Programmes Found
+            No Major Programmes Found <br>
+            <a class="btn btn-danger text-white mt-4" href="/admin/staffActivity/{{$type}}/{{ $staffId }}/majorProgram/create">Add Major Programmes</a>
         </h3> 
     @else 
         <table class="table table-bordered mb-0" style="font-size: 14px;">
@@ -55,10 +51,10 @@
                         <td>{{ $mtg->department }}</td> 
                         <td>{{ $mtg->desc }}</td> 
                         <td class="d-flex jes-sp" >
-                            <a href="/admin/staffActivity/{{$staffId}}/majorProgram/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Major Programme" >
+                            <a href="/admin/staffActivity/{{$type}}/{{$staffId}}/majorProgram/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Major Programme" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
                             </a>
-                            <a href="/admin/staffActivity/{{$staffId}}/majorProgram/delete/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Delete Major Programme" >
+                            <a href="/admin/staffActivity/{{$type}}/{{$staffId}}/majorProgram/delete/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Delete Major Programme" >
                                 <span class="btn-inner--icon"><i class="ti-close"></i></span> 
                             </a>
                         </td>

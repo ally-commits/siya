@@ -3,26 +3,22 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>Staff Association Programme
-            @if($staffId == 000)
-                Admin
-            @else
-                {{$user['0']->name}}
-            @endif</h4>
+        <h4><span class="text-capitalize">{{ $type}}</span> Association Programme
+            - {{$user['0']->name}}</h4>
         <div>
-            <a href="/admin/activity/association" class="btn btn-primary" data-toggle="tooltip" data-original-title="View All Association" >
+            <a href="/admin/activity/association_programs" class="btn btn-primary" data-toggle="tooltip" data-original-title="View All Association" >
                 <span class="btn-inner--icon"><i class="ti-control-record"></i>View All Association</span> 
             </a>
-            <a href="/admin/staffActivity/{{ $staffId }}/association/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
+            <a href="/admin/staffActivity/{{$type}}/{{ $staffId }}/association/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
             </a>
-            <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
     </div>
     @if(count($programs) == 0)
         <div class="text-center" style="align-items: center;">
             <h5>No Association Programme Found</h5>
-            <a class="btn btn-danger text-white" href="/admin/staffActivity/{{ $staffId }}/association/create">Add Association Program</a>
+            <a class="btn btn-danger text-white" href="/admin/staffActivity/{{$type}}/{{ $staffId }}/association/create">Add Association Program</a>
         </div> 
     @else 
         <table class="table table-bordered mb-0" style="font-size: 14px;">
@@ -51,10 +47,10 @@
                         <td>{{ $prg->nature }}</td>
                         <td>{{ $prg->level }}</td>
                         <td class="d-flex jes-sp" >
-                            <a href="/admin/staffActivity/{{$staffId}}/association/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Edit Program" >
+                            <a href="/admin/staffActivity/{{$type}}/{{$staffId}}/association/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Edit Program" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
                             </a>
-                            <a href="/admin/staffActivity/{{$staffId}}/association/delete/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Delete Program" >
+                            <a href="/admin/staffActivity/{{$type}}/{{$staffId}}/association/delete/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Delete Program" >
                                 <span class="btn-inner--icon"><i class="ti-close"></i></span> 
                             </a>
                         </td>

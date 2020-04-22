@@ -65,7 +65,9 @@ class SeminarOrganisedController extends Controller
             'title' => $data['title'], 
             'speaker' => $data['speaker'], 
             'beneficiaries' => $data['beneficiaries'], 
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null,
+            'deptId' =>null
         ]); 
         return Redirect::action('SeminarOrganisedController@index')->with('message', 'Seminar Added Succesfully');
     }

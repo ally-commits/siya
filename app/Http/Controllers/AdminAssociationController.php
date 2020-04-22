@@ -14,26 +14,27 @@ class AdminAssociationController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type, $staffId)
     {
+        $value = $type == "admin" ? "adminId" : "userId";
         $programs = DB::table("association_programs")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get();
-        if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
         } else {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
         }
 
         return view("admin.staffActivity.association.viewAssociation")->with("user", $user)
-        ->with("programs", $programs)->with("staffId", $staffId);
+        ->with("programs", $programs)->with("staffId", $staffId)->with("type", $type);
     } 
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.association.addAssociation")->with("staffId", $staffId);;
+        return view("admin.staffActivity.association.addAssociation")->with("staffId", $staffId)->with("type", $type);
     } 
-    public function store(Request $request,$staffId)
+    public function store(Request $request,$type, $staffId)
     {
         $data = $request->all();
         $request->validate([
@@ -45,7 +46,11 @@ class AdminAssociationController extends Controller
             'num' => ['required', 'integer'],  
             'nature' => ['required', 'string'],  
         ]);  
-
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } 
         AssociationProgram::create([
             'name' => $data['name'], 
             'level' => $data['level'], 
@@ -54,22 +59,23 @@ class AdminAssociationController extends Controller
             'place' => $data['place'],
             'guest' => $data['guest'],
             'nature' => $data['nature'],
-            'userId' => $staffId
+            $value => $staffId
         ]); 
-        return Redirect::route('association.index',$staffId)->with('message', 'Association Program Added Succesfully');
+        return Redirect::route('association.index',[$type, $staffId])->with('message', 'Association Program Added Succesfully');
     } 
-    public function show($staffId, $id)
+    public function show($type, $staffId, $id)
     {
         $program  = AssociationProgram::find($id);
         return view("admin.staffActivity.association.editAssociation")
             ->with("program", $program)
-            ->with("staffId", $staffId);
+            ->with("staffId", $staffId)
+            ->with("type", $type);
     } 
     public function edit($id)
     {
         
     } 
-    public function update(Request $request, $staffId, $id)
+    public function update(Request $request, $type, $staffId, $id)
     {
         $data = $request->all();
         $request->validate([
@@ -93,12 +99,12 @@ class AdminAssociationController extends Controller
             'guest' => $data['guest'],
             'nature' => $data['nature']]);
 
-        return Redirect::route('association.index',$staffId)->with('message', 'Association Program Updated Succesfully');   
+        return Redirect::route('association.index',[$type ,$staffId])->with('message', 'Association Program Updated Succesfully');   
     } 
-    public function delete($staffId, $id)
+    public function delete($type, $staffId, $id)
     {
         $program  = AssociationProgram::find($id);
         $program->delete();
-        return Redirect::route('association.index',$staffId)->with('message', 'Association Program Deleted Succesfully');
+        return Redirect::route('association.index',[$type, $staffId])->with('message', 'Association Program Deleted Succesfully');
     }
 }

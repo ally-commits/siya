@@ -65,7 +65,9 @@ class FdpMeetingController extends Controller
             'place' => $data['place'],
             'typeOfMeeting' => $data['type'],
             'department' => $data['dept'],
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null,
+            'deptId' => null
         ]); 
         return Redirect::action('FdpMeetingController@index')->with('message', 'Fdp Meeting Added Succesfully');
     }

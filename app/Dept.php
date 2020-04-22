@@ -16,7 +16,7 @@ class Dept extends Authenticatable
       * @var array
       */
     protected $fillable = [
-        'deptId','name','email', 'password',
+        'id','name','email', 'password',
     ];
      /**
       * The attributes that should be hidden for arrays.
@@ -25,6 +25,9 @@ class Dept extends Authenticatable
       */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+    protected $casts = [ 
+        'id' => 'string'
     ];
 }
  

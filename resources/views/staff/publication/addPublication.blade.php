@@ -21,8 +21,7 @@
                                 </span>
                             @enderror 
                         </div>
-                    </div> 
-                    <div class="row">
+                    </div>  
                     <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Enter the Name of the staff</label>

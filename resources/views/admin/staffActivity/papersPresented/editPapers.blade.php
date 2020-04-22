@@ -4,15 +4,15 @@
 <div class="container">
     <div class="card">
         <div class="d-flex" style="justify-content: space-between; align-items: center;">
-            <h4>Edit Staff Papers Presented</h4>
-            <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <h4>Edit <span class="text-capitalize">{{ $type}}</span> Papers Presented</h4>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
         <div class="card-body">
-            <form action="/admin/staffActivity/{{$staffId}}/papers/{{$paper->id}}" method="POST">
+            <form action="/admin/staffActivity/{{$type}}/{{$staffId}}/papers/{{$paper->id}}" method="POST">
                 @method("PUT")
                 @csrf
                 <div class="row">
-                <div class="col-md-6">                          
+                    <div class="col-md-6">                          
                         <div class="form-group">
                             <label for="">Select Conference/Workshop/Symposia/Meeting</label>
                             <select class="form-control @error('type') is-invalid @enderror" name="type"
@@ -28,19 +28,7 @@
                                 </span>
                             @enderror 
                         </div>
-                    </div> 
-                    div class="col-md-6">                          
-                        <div class="form-group">
-                            <label for="">Enter the Name of the staff</label>
-                            <input type="text" class="form-control @error('staffname') is-invalid @enderror"
-                                placeholder="Enter the Name of the staff" name="staffname" value="{{ $paper->staffname }}">    
-                            @error('staffname')
-                                <span class="invalid-text text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror 
-                        </div>
-                    </div> 
+                    </div>  
                     
                     <div class="col-md-6">                          
                         <div class="form-group">

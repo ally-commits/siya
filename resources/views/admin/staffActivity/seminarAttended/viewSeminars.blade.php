@@ -3,26 +3,24 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>Staff Seminar Attended
-            @if($staffId == 000)
-                Admin
-            @else
-                {{$user['0']->name}}
-            @endif
+        <h4><span class="text-capitalize">{{ $type}}</span> Seminar Attended
+            - {{$user['0']->name}} 
         </h4>
         <div>
             <a href="/admin/activity/seminar_attendeds" class="btn btn-primary" data-toggle="tooltip" >
                 <span class="btn-inner--icon"><i class="ti-control-record"></i>View All Seminar Attended</span> 
             </a>
-            <a href="/admin/staffActivity/{{ $staffId }}/seminarAttended/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Seminar Attended" >
+            <a href="/admin/staffActivity/{{$type}}/{{ $staffId }}/seminarAttended/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Seminar Attended" >
                 <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
             </a>
-            <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
     </div>
+    <hr>
     @if(count($seminar) == 0)
         <h3 class="text-center">
-            No Seminar Attended Yet
+            No Seminar Attended Yet <br>
+            <a class="btn btn-danger text-white mt-4" href="/admin/staffActivity/{{$type}}/{{ $staffId }}/seminarAttended/create">Add Seminar Attended</a>
         </h3> 
     @else 
         <table class="table table-bordered mb-0" style="font-size: 14px;">
@@ -53,10 +51,10 @@
                         <td>{{ $prg->level }}</td>
                         <td>{{ $prg->title }}</td>  
                         <td class="d-flex jes-sp" >
-                            <a href="/admin/staffActivity/{{ $staffId }}/seminarAttended/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Edit Program" >
+                            <a href="/admin/staffActivity/{{$type}}/{{ $staffId }}/seminarAttended/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Edit Program" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
                             </a>
-                            <a href="/admin/staffActivity/{{ $staffId }}/seminarAttended/delete/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Delete Program" >
+                            <a href="/admin/staffActivity/{{$type}}/{{ $staffId }}/seminarAttended/delete/{{ $prg->id}}" data-toggle="tooltip" data-original-title="Delete Program" >
                                 <span class="btn-inner--icon"><i class="ti-close"></i></span> 
                             </a>
                         </td>

@@ -66,7 +66,8 @@ class AssociationProgramController extends Controller
             'place' => $data['place'],
             'guest' => $data['guest'],
             'nature' => $data['nature'],
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null
         ]); 
         return Redirect::action('AssociationProgramController@index')->with('message', 'Association Program Added Succesfully');
     }

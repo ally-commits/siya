@@ -17,7 +17,7 @@ class DeptSeminarOrganised extends Controller
     public function index()
     {
         $seminar = DB::table("seminar_organiseds")
-                ->where("userId","=",Auth::user()->deptId)
+                ->where("deptId","=",Auth::user()->id)
                 ->latest()
                 ->get();
 
@@ -65,7 +65,7 @@ class DeptSeminarOrganised extends Controller
             'title' => $data['title'], 
             'speaker' => $data['speaker'], 
             'beneficiaries' => $data['beneficiaries'], 
-            'userId' => Auth::user()->deptId
+            'deptId' => Auth::user()->id
         ]); 
         return Redirect::action('DeptSeminarOrganised@index')->with('message', 'Seminar Added Succesfully');
     }

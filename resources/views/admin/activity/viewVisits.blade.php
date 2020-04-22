@@ -3,12 +3,18 @@
 @section('content')
 <div class="container">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-        <h4>All Staff Guest Visits</h4>
-        <div>
-            <a href="/admin/staffActivity/000/guestVisited/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Association" >
-                <span class="btn-inner--icon"><i class="ti-plus"></i></span> 
+        <h4>All Guest Visits</h4>
+        <div> 
+            <a href="/admin/staffActivity/admin/{{ Auth::user()->id }}/guestVisited" class="btn btn-primary" data-toggle="tooltip" data-original-title="View Admin Guest Visits" >
+                <span class="btn-inner--icon">View Admin  Guest Visits<i class="ti-eye"></i></span> 
             </a>
-            <a href="/admin/activity" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <a href="/admin/staffActivity/admin/{{ Auth::user()->id }}/guestVisited/create" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Admin Guest Visits" >
+                <span class="btn-inner--icon">Admin <i class="ti-plus"></i></span> 
+            </a>
+            <a href="/admin/staffActivity/staff/1" class="btn btn-primary" data-toggle="tooltip" data-original-title="Add Staff Guest Visits" >
+                <span class="btn-inner--icon">Staff <i class="ti-plus"></i></span> 
+            </a>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
     </div>
     @if(count($visits) == 0)
@@ -20,6 +26,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
+                    <th>User</th>
                     <th>Name</th> 
                     <th>Date</th> 
                     <th>Designation</th>
@@ -31,18 +38,30 @@
                 @foreach($visits as $key=>$mtg)
                     <tr>
                         <td>{{ $key+1 }}</td>
+                        <td>{{ $mtg->userType }} ( {{ $mtg->userName }} )</td>
                         <td>{{ $mtg->Name }}</td> 
                         <td>{{ $mtg->date }}</td>
                         <td>{{ $mtg->Designation }}</td>
                         <td>{{ $mtg->activityHeld }}</td> 
+                        @if($mtg->userId != null)
                         <td class="d-flex jes-sp" >
-                            <a href="/admin/staffActivity/{{$mtg->userId}}/guestVisited/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Guest Visit" >
+                            <a href="/admin/staffActivity/staff/{{$mtg->userId}}/guestVisited/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Guest Visit" >
                                 <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
                             </a>
-                            <a href="/admin/staffActivity/{{$mtg->userId}}/guestVisited/delete/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Delete Guest Visit" >
+                            <a href="/admin/staffActivity/staff/{{$mtg->userId}}/guestVisited/delete/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Delete Guest Visit" >
                                 <span class="btn-inner--icon"><i class="ti-close"></i></span> 
                             </a>
                         </td>
+                        @else
+                        <td class="d-flex jes-sp" >
+                            <a href="/admin/staffActivity/admin/{{$mtg->adminId}}/guestVisited/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Edit Guest Visit" >
+                                <span class="btn-inner--icon"><i class="ti-pencil"></i></span> 
+                            </a>
+                            <a href="/admin/staffActivity/admin/{{$mtg->adminId}}/guestVisited/delete/{{ $mtg->id}}" data-toggle="tooltip" data-original-title="Delete Guest Visit" >
+                                <span class="btn-inner--icon"><i class="ti-close"></i></span> 
+                            </a>
+                        </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

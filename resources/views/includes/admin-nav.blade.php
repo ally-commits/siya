@@ -19,26 +19,7 @@
                         <i class="mdi mdi-fullscreen noti-icon"></i>
                     </a>
                 </li>
- 
-                <li class="dropdown notification-list list-inline-item d-md-inline-block">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="mdi mdi-bell-outline noti-icon"></i>
-                        <span class="badge badge-pill badge-danger noti-icon-badge">1</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                        <!-- item-->
-                        <h6 class="dropdown-item-text">
-                                Notifications (1)
-                            </h6>
-                        <div class="slimscroll notification-item-list"> 
-                            <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                                <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                <p class="notify-details">Your order is placed<span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
-                            </a> 
-                        </div> 
-                    </div>
-                </li> 
-                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block" data-toggle="tooltip" data-original-title="Logout">
                     <a class="nav-link waves-effect" href="#" id="btn-fullscreen" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <i class="mdi mdi-power noti-icon"></i>
@@ -77,7 +58,7 @@
 
                     <li class="menu-title">Staff</li>
                     <li>
-                        <a href="/admin/staffActivity/1" class="waves-effect">
+                        <a href="/admin/staffActivity/staff/1" class="waves-effect">
                             <i class="ti-ruler-alt-2"></i><span>Manage Staff Activity</span>
                         </a>
                     </li> 
@@ -122,4 +103,3 @@
         <div class="clearfix"></div>
     </div> 
 </div>
-

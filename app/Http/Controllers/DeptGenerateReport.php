@@ -29,12 +29,23 @@ class DeptGenerateReport extends Controller
         $deptData = [];
         $arr = ['fdp_meetings','seminar_organiseds','major_programmes'];
         foreach($data as $d) {
-            foreach($arr as $a) {
-                if($d == $a) {
-                    $temp = DB::table($d) 
-                        ->where($d.".userId","=", Auth::user()->deptId)
-                        ->get(); 
-                    $deptData[$d] = $temp;
+            if($d == "all") {
+                $deptData = [];
+                foreach($arr as $a) {
+                    $temp = DB::table($a) 
+                            ->where($a.".deptId","=", $data['deptId'])
+                            ->get(); 
+                    $deptData[$a] = $temp;
+                }
+                break;
+            } else {
+                foreach($arr as $a) {
+                    if($d == $a) {
+                        $temp = DB::table($d) 
+                            ->where($d.".deptId","=", Auth::user()->deptId)
+                            ->get(); 
+                        $deptData[$d] = $temp;
+                    }
                 }
             }
         }

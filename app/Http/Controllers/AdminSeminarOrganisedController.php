@@ -14,26 +14,34 @@ class AdminSeminarOrganisedController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type,$staffId)
     {
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } else if($type == "department") {
+            $value = "deptId";
+        }
         $seminar = DB::table("seminar_organiseds")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get(); 
-        if(substr($staffId,0,1) == "d") {
-            $user = DB::table("depts")->where("deptId",$staffId)->limit(1)->get();
-        } else if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
-        } else {
+
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
+        } else if($type == "staff") {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
-        } 
+        } else if($type == "department"){
+            $user = DB::table("depts")->where("id","=",$staffId)->limit(1)->get();
+        }
         return view("admin.staffActivity.seminarOrganised.viewSeminars")->with("seminar", $seminar)
-        ->with("staffId", $staffId)->with("user", $user);
+        ->with("staffId", $staffId)->with("user", $user)->with("type",$type);
     } 
 
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.seminarOrganised.addSeminar")->with("staffId", $staffId);
+        return view("admin.staffActivity.seminarOrganised.addSeminar")->with("staffId", $staffId)->with("type",$type);
     }
 
     /**
@@ -42,7 +50,7 @@ class AdminSeminarOrganisedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $staffId)
+    public function store(Request $request,$type, $staffId)
     {
         $data = $request->all();
         $request->validate([
@@ -56,6 +64,13 @@ class AdminSeminarOrganisedController extends Controller
             'beneficiaries' => ['required', 'string'],    
             'topic' => ['required', 'string'],    
         ]);   
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } else if($type == "department") {
+            $value = "deptId";
+        }
         SeminarOrganised::create([
             'department' => $data['department'], 
             'title' => $data['title'], 
@@ -67,9 +82,9 @@ class AdminSeminarOrganisedController extends Controller
             'title' => $data['title'], 
             'speaker' => $data['speaker'], 
             'beneficiaries' => $data['beneficiaries'], 
-            'userId' => $staffId
+            $value => $staffId
         ]); 
-        return Redirect::route('seminarOrganised.index',$staffId)->with('message', 'Seminar Added Succesfully');
+        return Redirect::route('seminarOrganised.index',[$type, $staffId])->with('message', 'Seminar Added Succesfully');
     }
 
     /**
@@ -78,11 +93,11 @@ class AdminSeminarOrganisedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($staffId, $id)
+    public function show($type, $staffId, $id)
     {
         $seminar  = SeminarOrganised::find($id);
         return view("admin.staffActivity.seminarOrganised.editSeminar")
-            ->with("seminar", $seminar)->with("staffId", $staffId);
+            ->with("seminar", $seminar)->with("staffId", $staffId)->with("type",$type);
     }
 
     /**
@@ -103,7 +118,7 @@ class AdminSeminarOrganisedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$staffId,  $id)
+    public function update(Request $request,$type, $staffId,  $id)
     {
         $data = $request->all();
         $request->validate([
@@ -131,7 +146,7 @@ class AdminSeminarOrganisedController extends Controller
                     'speaker' => $data['speaker'], 
                     'beneficiaries' => $data['beneficiaries'],]);
 
-        return Redirect::route('seminarOrganised.index',$staffId)->with('message', 'Seminars Updated Succesfully');   
+        return Redirect::route('seminarOrganised.index',[$type, $staffId])->with('message', 'Seminars Updated Succesfully');   
     }
 
     /**
@@ -140,10 +155,10 @@ class AdminSeminarOrganisedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($staffId, $id)
+    public function delete($type, $staffId, $id)
     {
         $achive = SeminarOrganised::find($id);
         $achive->delete();
-        return Redirect::route('seminarOrganised.index',$staffId)->with('message', 'Seminar Deleted Succesfully');
+        return Redirect::route('seminarOrganised.index',[$type, $staffId])->with('message', 'Seminar Deleted Succesfully');
     }
 }

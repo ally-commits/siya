@@ -17,7 +17,7 @@ class DeptMajorProgramme extends Controller
     public function index()
     {
         $program = DB::table("major_programmes")
-                ->where("userId","=",Auth::user()->deptId)
+                ->where("deptId","=",Auth::user()->id)
                 ->latest()
                 ->get();
 
@@ -42,6 +42,7 @@ class DeptMajorProgramme extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
         $request->validate([  
             'from' => ['required', 'date'],  
@@ -52,9 +53,9 @@ class DeptMajorProgramme extends Controller
             'noOfBeneficiaries' => ['required', 'string'],  
             'department' => ['required', 'string'],  
             'level' => ['required', 'string'],     
-        ]);  
-
+        ]);   
         MajorProgrammes::create([ 
+            'deptId' => Auth::user()->id,
             'programme' => $data['programme'],  
             'from' => $data['from'],   
             'to' => $data['to'],   
@@ -63,8 +64,9 @@ class DeptMajorProgramme extends Controller
             'facultyAssociation' => $data['facultyAssociation'],
             'level' => $data['level'],
             'noOfBeneficiaries' => $data['noOfBeneficiaries'], 
-            'userId' => Auth::user()->deptId
-        ]); 
+            'deptId' => Auth::user()->id
+        ]);  
+
         return Redirect::action('DeptMajorProgramme@index')->with('message', 'Major Programme Added Succesfully');
     }
 

@@ -35,7 +35,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $prg->name }}</td>
-                                <td>{{ $prg->staffname }}</td>
+                                <td>{{ Auth::user()->name }}</td>
                                 <td>{{ $prg->type }}</td>
                                 <td>{{ $prg->date }}</td>
                                 <td>{{ $prg->indexing }}</td>

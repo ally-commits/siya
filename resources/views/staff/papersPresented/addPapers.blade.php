@@ -26,18 +26,6 @@
                                 </span>
                             @enderror 
                         </div>
-                    </div>
-                    <div class="col-md-6">                          
-                        <div class="form-group">
-                            <label for="">Enter the Name of the staff</label>
-                            <input type="text" class="form-control @error('staffname') is-invalid @enderror"
-                                placeholder="Enter the Name of Conference" name="staffname" value="{{ old('staffname') }}">    
-                            @error('staffname')
-                                <span class="invalid-text text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror 
-                        </div>
                     </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
@@ -127,7 +115,7 @@
                         <div class="form-group">
                             <label for="">Enter the Prizes</label>
                             <input type="text" class="form-control @error('prize') is-invalid @enderror"
-                                placeholder="Enter the Prizes" name="prize" value="-">    
+                                placeholder="Enter the Prizes" name="prize" value="{{ old('prize') }}">    
                             @error('prize')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}

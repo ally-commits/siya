@@ -44,8 +44,7 @@ class PapersController extends Controller
     {
         $data = $request->all();
         $request->validate([
-            'name' => ['required', 'string'],
-            'staffname' => ['required', 'string'],
+            'name' => ['required', 'string'], 
             'theme' => ['required', 'string'],
             'date' => ['required', 'date'],
             'type' => ['required', 'string'],
@@ -55,8 +54,7 @@ class PapersController extends Controller
             'nature' => ['required', 'string'],    
         ]);   
         Papers::create([
-            'name' => $data['name'], 
-            'staffname' => $data['name'],
+            'name' => $data['name'],  
             'theme' => $data['theme'], 
             'venue' => $data['venue'], 
             'date' => $data['date'], 
@@ -65,7 +63,8 @@ class PapersController extends Controller
             'title' => $data['title'],
             'prizes' => $data['prize'], 
             'nature' => $data['nature'], 
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null
         ]); 
         return Redirect::action('PapersController@index')->with('message', 'Papers Added Succesfully');
     }
@@ -105,8 +104,7 @@ class PapersController extends Controller
         $data = $request->all();
  
         $request->validate([
-            'name' => ['required', 'string'],
-            'staffname' => ['required', 'string'],
+            'name' => ['required', 'string'], 
             'theme' => ['required', 'string'],
             'venue' => ['required', 'string'],
             'title' => ['required', 'string'],  
@@ -118,8 +116,7 @@ class PapersController extends Controller
         DB::table("papers")
                 ->where("id","=",$id)
                 ->update([
-            'name' => $data['name'],
-            'staffname' => $data['name'], 
+            'name' => $data['name'], 
             'theme' => $data['theme'], 
             'venue' => $data['venue'], 
             'title' => $data['title'], 

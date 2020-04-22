@@ -41,7 +41,7 @@ class AdminController extends Controller
     public function viewStaff() {
         $data = DB::table('users')
             ->join("staff_profiles","staff_profiles.userId","users.id")
-            ->select("users.*","staff_profiles.dob")
+            ->select("users.*","staff_profiles.*","users.id")
             ->get();  
           
         return view("admin.viewStaff")->with("staffs",$data);
@@ -70,12 +70,14 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'min:4', 'max:255', 'unique:users'],  
             'dob' => ['required','date'],
-            'phoneNumber' => ['required','integer'],
+            'phoneNumber' => ['required','digits:10'],
             'expirence' => ['required','string'], 
         ]);
 
         $data = $request->all(); 
+        $id = uniqid();
         $user = User::create([
+            'id' => $id,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['phoneNumber']), 
@@ -88,11 +90,11 @@ class AdminController extends Controller
             'bloodGroup' => $data['bloodGroup'],
             'department' => $data['department'],
             'expirence' => $data['expirence'],
-            'userId' => $user->id, 
-            'departmentId' => 1 ,
+            'userId' => $id, 
+            'departmentId' => 1,
             'image' => 'images/profiles/default.jpg'
-        ]);  
-        return Redirect::route('admin.viewStaff')->with('message', 'Staff Added Succesfully');
+        ]);    
+        return Redirect::route('admin.getStaffQualification', $id)->with('message', 'Staff Added Succesfully')->with("userId", $id);
     }
     public function addQualification(Request $request) {
         $data = $request->all();

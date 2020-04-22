@@ -34,10 +34,10 @@ class StaffController extends Controller
     }
     public function profile() {
         $data = DB::table('users')
-        ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
-        ->where("users.id",'=',Auth::user()->id)
-        ->select('users.*','staff_profiles.*') 
-        ->get();  
+            ->join('staff_profiles', 'staff_profiles.userId', '=', 'users.id') 
+            ->where("users.id",'=',Auth::user()->id)
+            ->select('users.*','staff_profiles.*') 
+            ->get();   
         return view("staff.profile")->with("staff", $data);
     }
     public function editProfile() { 
@@ -49,11 +49,11 @@ class StaffController extends Controller
         return view("staff.editProfile")->with("staff", $data);
     } 
      
-    public function updateProfile(Request $request) {
+    public function updateProfile(Request $request) { 
         $data = $request->all(); 
         $request->validate([ 
             'dob' => ['required', 'date'],
-            'phoneNumber' => ['required', 'integer'],
+            'phoneNumber' => ['required', 'digits:10'],
             'gender' => ['required', 'string'], 
             'name' => ['required','string'],
             'email' => ['required','string'],
@@ -83,7 +83,7 @@ class StaffController extends Controller
             ->update(['password' => Hash::make($data['password'])]);
         }
         DB::table('staff_profiles')
-            ->where('userId' ,'=', $data['id'])
+            ->where('userId' ,'=', Auth::user()->id)
             ->update(
                     ['phoneNumber' => $data['phoneNumber'],
                     'dob' => $data['dob'],
@@ -94,10 +94,10 @@ class StaffController extends Controller
                     'expirence' => $data['expirence'],  
                 ]); 
         DB::table("users")
-            ->where("id", '=', $data['id'])
+            ->where("id", '=', Auth::user()->id)
             ->update(['name' => $data['name'], 'email' => $data['email']]); 
         
-        return Redirect::route('staffProfile',1)->with('message', 'Profile Updated Succesfully'); 
+        return Redirect::route('staffProfile')->with('message', 'Profile Updated Succesfully'); 
     }
     public function viewQualification() {
         $qlf = DB::table("staff_qualifications")

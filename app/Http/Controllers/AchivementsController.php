@@ -64,7 +64,8 @@ class AchivementsController extends Controller
             'date' => $data['date'],
             'level' => $data['level'],
             'guidedBy' => $data['guide'],
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null
         ]); 
         return Redirect::action('AchivementsController@index')->with('message', 'Achhivements Added Succesfully');
     }

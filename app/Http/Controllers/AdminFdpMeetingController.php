@@ -14,24 +14,31 @@ class AdminFdpMeetingController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type, $staffId)
     {
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } else if($type == "department") {
+            $value = "deptId";
+        }
         $meetings = DB::table("fdp_meetings")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get();
-        if(substr($staffId,0,1) == "d") {
-            $user = DB::table("depts")->where("deptId",$staffId)->limit(1)->get();
-        } else if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
-        } else {
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
+        } else if($type == "staff") {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
+        } else if($type == "department"){
+            $user = DB::table("depts")->where("id","=",$staffId)->limit(1)->get();
         }
-        
         return view("admin.staffActivity.fdpMeeting.viewMeeting")
             ->with("meetings", $meetings)
             ->with("user", $user)
-            ->with("staffId", $staffId);
+            ->with("staffId", $staffId)
+            ->with("type", $type);
     }
 
     /**
@@ -39,9 +46,9 @@ class AdminFdpMeetingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.fdpMeeting.addMeeting")->with("staffId", $staffId);;
+        return view("admin.staffActivity.fdpMeeting.addMeeting")->with("staffId", $staffId)->with("type", $type);;
     }
 
     /**
@@ -50,7 +57,7 @@ class AdminFdpMeetingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $staffId)
+    public function store(Request $request,$type,  $staffId)
     {
         $data = $request->all();
         $request->validate([
@@ -64,7 +71,13 @@ class AdminFdpMeetingController extends Controller
             'type' => ['required', 'string'],  
             'dept' => ['required', 'string'],  
         ]);  
-
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } else if($type == "department") {
+            $value = "deptId";
+        }
         FdpMeeting::create([
             'name' => $data['name'], 
             'level' => $data['level'], 
@@ -75,9 +88,9 @@ class AdminFdpMeetingController extends Controller
             'place' => $data['place'],
             'typeOfMeeting' => $data['type'],
             'department' => $data['dept'],
-            'userId' => $staffId
+            $value => $staffId
         ]); 
-        return Redirect::route('fdpMeeting.index',$staffId)->with('message', 'Fdp Meeting Added Succesfully');
+        return Redirect::route('fdpMeeting.index',[$type, $staffId])->with('message', 'Fdp Meeting Added Succesfully');
     }
 
     /**
@@ -86,10 +99,11 @@ class AdminFdpMeetingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($staffId, $id)
+    public function show($type, $staffId, $id)
     {
         $meeting  = FdpMeeting::find($id);
-        return view("admin.staffActivity.fdpMeeting.editMeeting")->with("meeting", $meeting)->with("staffId", $staffId);
+        return view("admin.staffActivity.fdpMeeting.editMeeting")->with("meeting", $meeting)
+        ->with("staffId", $staffId)->with("type", $type);;
     }
 
     /**
@@ -110,7 +124,7 @@ class AdminFdpMeetingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$staffId,  $id)
+    public function update(Request $request,$type, $staffId,  $id)
     {
         $data = $request->all();
         $request->validate([
@@ -137,7 +151,7 @@ class AdminFdpMeetingController extends Controller
             'organisers' => $data['organiser'],
             'department' => $data['dept']]);
 
-        return Redirect::route('fdpMeeting.index',$staffId)->with('message', 'Meeting Updated Succesfully');   
+        return Redirect::route('fdpMeeting.index',[$type, $staffId])->with('message', 'Meeting Updated Succesfully');   
     }
 
     /**
@@ -146,10 +160,10 @@ class AdminFdpMeetingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($staffId, $id)
+    public function delete($type, $staffId, $id)
     {
         $meeting  = FdpMeeting::find($id);
         $meeting->delete();
-        return Redirect::route('fdpMeeting.index',$staffId)->with('message', 'FDP Meeting Deleted Succesfully');
+        return Redirect::route('fdpMeeting.index',[$type, $staffId])->with('message', 'FDP Meeting Deleted Succesfully');
     }
 }

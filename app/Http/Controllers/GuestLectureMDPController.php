@@ -62,7 +62,8 @@ class GuestLectureMDPController extends Controller
             'topic' => $data['topic'],
             'beneficiaries' => $data['beneficiaries'],
             'place' => $data['place'],
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null
         ]); 
         return Redirect::action('GuestLectureMDPController@index')->with('message', 'Guest Lecture Added Succesfully');
     }

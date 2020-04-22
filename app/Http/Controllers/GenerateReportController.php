@@ -32,15 +32,27 @@ class GenerateReportController extends Controller
         $staffData = [];
         $arr = ['achivements','association_programs','fdp_meetings','papers','seminar_organiseds','seminar_attendeds','publications','guest_visiteds','guest_lecture_m_d_p_s','major_programmes'];
         foreach($data as $d) {
-            foreach($arr as $a) {
-                if($d == $a) {
-                    $temp = DB::table($d) 
-                        ->where($d.".userId","=", $data['staffId'])
-                        ->get(); 
-                    $staffData[$d] = $temp;
+            if($d == "all") {
+                $staffData = [];
+                foreach($arr as $a) {
+                    $temp = DB::table($a) 
+                            ->where($a.".userId","=", $data['staffId'])
+                            ->get(); 
+                    $staffData[$a] = $temp;
+                }
+                break;
+            } else {
+                foreach($arr as $a) {
+                    if($d == $a) {
+                        $temp = DB::table($d) 
+                            ->where($d.".userId","=", $data['staffId'])
+                            ->get(); 
+                        $staffData[$d] = $temp;
+                    }
                 }
             }
-        }
+        } 
+
         $value_arr = ['achivements' => "Achievements",'association_programs' => "Association Programmes",
                     'fdp_meetings' => "FDP Meetings",'papers' => 'Papers Presented',
                     'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',

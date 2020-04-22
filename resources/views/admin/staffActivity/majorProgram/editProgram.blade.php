@@ -3,11 +3,12 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header">
-        <h6>Edit Major Prgramme</h6>
+        <div class="card-header d-flex" style="justify-content: space-between; align-items: center;">
+            <h6>Edit <span class="text-capitalize">{{ $type}}</span> Major Prgramme</h6>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
         <div class="card-body">
-            <form action="/admin/staffActivity/{{$staffId}}/majorProgram/{{$program->id}}" method="POST">
+            <form action="/admin/staffActivity/{{$type}}/{{$staffId}}/majorProgram/{{$program->id}}" method="POST">
                 @method("PUT")
                 @csrf
                 <div class="row">

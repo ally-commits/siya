@@ -14,23 +14,32 @@ class AdminMajorProgrammeController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type, $staffId)
     {
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } else if($type == "department") {
+            $value = "deptId";
+        }
         $program = DB::table("major_programmes")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get();
-        if(substr($staffId,0,1) == "d") {
-            $user = DB::table("depts")->where("deptId",$staffId)->limit(1)->get();
-        } else if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
-        } else {
+
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
+        } else if($type == "staff") {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
+        } else if($type == "department"){
+            $user = DB::table("depts")->where("id","=",$staffId)->limit(1)->get();
         }
         return view("admin.staffActivity.majorProgram.viewPrograms")
             ->with("programs", $program)
             ->with("user", $user)
-            ->with("staffId", $staffId);
+            ->with("staffId", $staffId)
+            ->with("type",$type);
     }
 
     /**
@@ -38,9 +47,9 @@ class AdminMajorProgrammeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.majorProgram.addProgram")->with("staffId", $staffId);;
+        return view("admin.staffActivity.majorProgram.addProgram")->with("staffId", $staffId)->with("type",$type);
     }
 
     /**
@@ -49,7 +58,7 @@ class AdminMajorProgrammeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$staffId)
+    public function store(Request $request,$type, $staffId)
     {
         $data = $request->all();
         $request->validate([  
@@ -62,7 +71,13 @@ class AdminMajorProgrammeController extends Controller
             'department' => ['required', 'string'],  
             'level' => ['required', 'string'],     
         ]);  
-
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } else if($type == "department") {
+            $value = "deptId";
+        }
         MajorProgrammes::create([ 
             'programme' => $data['programme'],   
             'from' => $data['from'],   
@@ -72,9 +87,9 @@ class AdminMajorProgrammeController extends Controller
             'facultyAssociation' => $data['facultyAssociation'],
             'level' => $data['level'],
             'noOfBeneficiaries' => $data['noOfBeneficiaries'], 
-            'userId' => $staffId
+            $value => $staffId
         ]);
-        return Redirect::route('majorProgram.index',$staffId)->with('message', 'Major Programme Added Succesfully');
+        return Redirect::route('majorProgram.index',[$type,$staffId])->with('message', 'Major Programme Added Succesfully');
     }
 
     /**
@@ -83,10 +98,11 @@ class AdminMajorProgrammeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($staffId,$id)
+    public function show($type, $staffId,$id)
     {
         $program  = MajorProgrammes::find($id);
-        return view("admin.staffActivity.majorProgram.editProgram")->with("program", $program)->with('staffId',$staffId);
+        return view("admin.staffActivity.majorProgram.editProgram")->with("program", $program)->with('staffId',$staffId)
+        ->with("type",$type);
     }
 
     /**
@@ -107,7 +123,7 @@ class AdminMajorProgrammeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$staffId, $id)
+    public function update(Request $request,$type, $staffId, $id)
     {
         $data = $request->all();
  
@@ -134,7 +150,7 @@ class AdminMajorProgrammeController extends Controller
                     'level' => $data['level'],
                     'noOfBeneficiaries' => $data['noOfBeneficiaries'], ]);
 
-        return Redirect::route('majorProgram.index',$staffId)->with('message', 'Major Program Updated Succesfully');   
+        return Redirect::route('majorProgram.index',[$type, $staffId])->with('message', 'Major Program Updated Succesfully');   
     }
 
     /**
@@ -143,10 +159,10 @@ class AdminMajorProgrammeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($staffId,$id)
+    public function delete($type, $staffId,$id)
     {
         $program  = MajorProgrammes::find($id);
         $program->delete();
-        return Redirect::route('majorProgram.index',$staffId)->with('message', 'Major Program Deleted Succesfully');
+        return Redirect::route('majorProgram.index',[$type, $staffId])->with('message', 'Major Program Deleted Succesfully');
     }
 }

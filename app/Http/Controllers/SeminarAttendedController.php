@@ -62,7 +62,8 @@ class SeminarAttendedController extends Controller
             'place' => $data['place'], 
             'date' => $data['date'],
             'level' => $data['level'], 
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null
         ]); 
         return Redirect::action('SeminarAttendedController@index')->with('message', 'Seminar Added Succesfully');
     }

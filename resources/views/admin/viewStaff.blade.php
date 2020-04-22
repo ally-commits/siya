@@ -29,6 +29,7 @@
                             <th>Sl No</th>
                             <th>Name</th>
                             <th>Username</th>
+                            <th>Department</th>
                             <th>Dob</th> 
                             <th>Action</th>
                         </tr>
@@ -39,6 +40,7 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$staff->name}}</td>
                                     <td>{{$staff->email}}</td>
+                                    <td>{{ $staff->department }}</td>
                                     <td>{{$staff->dob }}</td>
                                     <td class="d-flex" style="justify-content: space-around;"> 
                                         <a class="table-action"  data-toggle="tooltip" data-original-title="Add & View Qualification" href="/admin/get-qualification/{{$staff->id}}">

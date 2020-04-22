@@ -4,11 +4,11 @@
 <div class="container">
     <div class="card">
     <div class="d-flex" style="justify-content: space-between; align-items: center;">
-            <h4>Edit Staff Guest Visit</h4>
-            <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <h4>Edit <span class="text-capitalize">{{ $type}}</span> Guest Visit</h4>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
         <div class="card-body">
-            <form action="/admin/staffActivity/{{$staffId}}/guestVisited/{{$visit->id}}" method="POST">
+            <form action="/admin/staffActivity/{{$type}}/{{$staffId}}/guestVisited/{{$visit->id}}" method="POST">
                 @method("PUT")
                 @csrf
                 <div class="row">

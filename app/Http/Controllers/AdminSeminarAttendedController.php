@@ -14,19 +14,20 @@ class AdminSeminarAttendedController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type, $staffId)
     {
+        $value = $type == "admin" ? "adminId" : "userId";
         $seminar = DB::table("seminar_attendeds")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get();
-        if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
         } else {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
-        }
+        } 
         return view("admin.staffActivity.seminarAttended.viewSeminars")->with("user", $user)
-        ->with("seminar", $seminar)->with("staffId", $staffId);
+        ->with("seminar", $seminar)->with("staffId", $staffId)->with("type",$type);
     }
 
     /**
@@ -34,9 +35,10 @@ class AdminSeminarAttendedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.seminarAttended.addSeminar")->with("staffId", $staffId);
+        return view("admin.staffActivity.seminarAttended.addSeminar")->with("staffId", $staffId)
+        ->with("type",$type);;
     }
 
     /**
@@ -45,7 +47,7 @@ class AdminSeminarAttendedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$staffId)
+    public function store(Request $request,$type, $staffId)
     {
         $data = $request->all();
         $request->validate([
@@ -57,7 +59,12 @@ class AdminSeminarAttendedController extends Controller
             'type' => ['required', 'string'],
             'title' => ['required', 'string'],    
                
-        ]);   
+        ]); 
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        }    
         SeminarAttended::create([
             'name' => $data['name'], 
             'title' => $data['title'], 
@@ -67,9 +74,9 @@ class AdminSeminarAttendedController extends Controller
             'place' => $data['place'], 
             'date' => $data['date'],
             'level' => $data['level'], 
-            'userId' => $staffId
+            $value => $staffId
         ]); 
-        return Redirect::route('seminarAttended.index',$staffId)->with('message', 'Seminar Added Succesfully');
+        return Redirect::route('seminarAttended.index',[$type, $staffId])->with('message', 'Seminar Added Succesfully');
     }
 
     /**
@@ -78,10 +85,11 @@ class AdminSeminarAttendedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($staffId,$id)
+    public function show($type, $staffId,$id)
     {
         $seminar  = SeminarAttended::find($id);
-        return view("admin.staffActivity.seminarAttended.editSeminar")->with("seminar", $seminar)->with("staffId", $staffId);;
+        return view("admin.staffActivity.seminarAttended.editSeminar")->with("seminar", $seminar)->with("staffId", $staffId)
+        ->with("type",$type);
     }
 
     /**
@@ -102,7 +110,7 @@ class AdminSeminarAttendedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$staffId, $id)
+    public function update(Request $request,$type, $staffId, $id)
     {
         $data = $request->all();
         $request->validate([
@@ -127,7 +135,7 @@ class AdminSeminarAttendedController extends Controller
             'date' => $data['date'],
             'level' => $data['level'], ]);
 
-        return Redirect::route('seminarAttended.index',$staffId)->with('message', 'SeminarAttended Updated Succesfully');   
+        return Redirect::route('seminarAttended.index',[$type, $staffId])->with('message', 'SeminarAttended Updated Succesfully');   
     }
 
     /**
@@ -136,10 +144,10 @@ class AdminSeminarAttendedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($staffId, $id)
+    public function delete($type, $staffId, $id)
     {
         $achive  = SeminarAttended::find($id);
         $achive->delete();
-        return Redirect::route('seminarAttended.index',$staffId)->with('message', 'Seminar Deleted Succesfully');
+        return Redirect::route('seminarAttended.index',[$type, $staffId])->with('message', 'Seminar Deleted Succesfully');
     }
 }

@@ -55,7 +55,8 @@ class GuestVisitedController extends Controller
             'date' => $data['date'],   
             'designation' => $data['designation'],
             'activityHeld' => $data['activityHeld'],
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminId' => null
         ]); 
         return Redirect::action('GuestVisitedController@index')->with('message', 'Guest Visit Added Succesfully');
     }

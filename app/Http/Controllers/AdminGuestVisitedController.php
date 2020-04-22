@@ -14,19 +14,20 @@ class AdminGuestVisitedController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type, $staffId)
     {
+        $value = $type == "admin" ? "adminId" : "userId";
         $visits = DB::table("guest_visiteds")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get();
-        if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
         } else {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
         }
         return view("admin.staffActivity.guestVisited.viewVisits")->with("user", $user)
-        ->with("visits", $visits)->with("staffId", $staffId);
+        ->with("visits", $visits)->with("staffId", $staffId)->with("type", $type);
     }
 
     /**
@@ -34,9 +35,9 @@ class AdminGuestVisitedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.guestVisited.addVisit")->with("staffId", $staffId);
+        return view("admin.staffActivity.guestVisited.addVisit")->with("staffId", $staffId)->with("type", $type);
     }
 
     /**
@@ -45,7 +46,7 @@ class AdminGuestVisitedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$staffId)
+    public function store(Request $request,$type, $staffId)
     {
         $data = $request->all();
         $request->validate([
@@ -54,15 +55,19 @@ class AdminGuestVisitedController extends Controller
             'designation' => ['required', 'string'],  
             'activityHeld' => ['required', 'string'],  
         ]);  
-
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        }
         GuestVisited::create([
             'name' => $data['name'],  
             'date' => $data['date'],   
             'designation' => $data['designation'],
             'activityHeld' => $data['activityHeld'],
-            'userId' => $staffId
+            $value => $staffId
         ]); 
-        return Redirect::route('guestVisited.index',$staffId)->with('message', 'Guest Visit Added Succesfully');
+        return Redirect::route('guestVisited.index',[$type, $staffId])->with('message', 'Guest Visit Added Succesfully');
     }
 
     /**
@@ -71,10 +76,11 @@ class AdminGuestVisitedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($staffId,$id)
+    public function show($type, $staffId,$id)
     {
         $visit  = GuestVisited::find($id);
-        return view("admin.staffActivity.guestVisited.editVisit")->with("visit", $visit)->with("staffId",$staffId);
+        return view("admin.staffActivity.guestVisited.editVisit")->with("visit", $visit)
+        ->with("staffId",$staffId)->with("type", $type);
     }
 
     /**
@@ -95,7 +101,7 @@ class AdminGuestVisitedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$staffId, $id)
+    public function update(Request $request,$type, $staffId, $id)
     {
         $data = $request->all();
  
@@ -113,7 +119,7 @@ class AdminGuestVisitedController extends Controller
                     'designation' => $data['designation'],
                     'activityHeld' => $data['activityHeld'],]);
 
-        return Redirect::route('guestVisited.index',$staffId)->with('message', 'Visits Updated Succesfully');   
+        return Redirect::route('guestVisited.index',[$type, $staffId])->with('message', 'Visits Updated Succesfully');   
     }
 
     /**
@@ -122,10 +128,10 @@ class AdminGuestVisitedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($staffId, $id)
+    public function delete($type, $staffId, $id)
     {
         $visit  = GuestVisited::find($id);
         $visit->delete();
-        return Redirect::route('guestVisited.index',$staffId)->with('message', 'Visit Deleted Succesfully');
+        return Redirect::route('guestVisited.index',[$type, $staffId])->with('message', 'Visit Deleted Succesfully');
     }
 }

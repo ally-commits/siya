@@ -12,6 +12,10 @@
                     <input type="hidden" name="staffId" value="{{ $staff[0]->userId }}" />
                     <div class="row">
                         <div class="col-md-2 custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" id="customCheck0" name="all" value="all">
+                            <label class="custom-control-label" for="customCheck0" >All</label>
+                        </div>
+                        <div class="col-md-2 custom-control custom-checkbox mb-2">
                             <input type="checkbox" class="custom-control-input" id="customCheck1" name="achivements" value="achivements">
                             <label class="custom-control-label" for="customCheck1" >Staff Achievements</label>
                         </div>

@@ -38,12 +38,21 @@ class AdminGenerateReportController extends Controller
         $staffData = [];
         $arr = ['achivements','association_programs','fdp_meetings','papers','seminar_organiseds','seminar_attendeds','publications','guest_visiteds','guest_lecture_m_d_p_s','major_programmes'];
         foreach($data as $d) {
-            foreach($arr as $a) {
-                if($d == $a) {
-                    $temp = DB::table($d) 
-                        ->where($d.".userId","=", $data['staffId'])
+            if($d == "all") {
+                foreach($arr as $a) { 
+                    $temp = DB::table($a) 
+                        ->where($a.".userId","=", $data['staffId'])
                         ->get(); 
-                    $staffData[$d] = $temp;
+                    $staffData[$a] = $temp; 
+                }
+            } else {
+                foreach($arr as $a) {
+                    if($d == $a) {
+                        $temp = DB::table($d) 
+                            ->where($d.".userId","=", $data['staffId'])
+                            ->get(); 
+                        $staffData[$d] = $temp;
+                    }
                 }
             }
         }

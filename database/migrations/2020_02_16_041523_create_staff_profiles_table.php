@@ -16,7 +16,7 @@ class CreateStaffProfilesTable extends Migration
         Schema::create('staff_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('dob');
-            $table->integer("userId");
+            $table->string("userId");
             $table->string('address');
             $table->string('image');
             $table->bigInteger('phoneNumber');
@@ -26,6 +26,10 @@ class CreateStaffProfilesTable extends Migration
             $table->integer("departmentId");
             $table->string("bloodGroup");
             $table->timestamps(); 
+
+            $table->foreign('userId')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

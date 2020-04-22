@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DumpSeeder extends Seeder
+class Admin extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,8 @@ class DumpSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->insert([ 
+            'id' => uniqid(),
+            'name' => 'Suppiiiiiiiiiiiii',
             'email' => 'admin',
             'password' => Hash::make('password'),
         ]); 

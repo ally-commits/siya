@@ -63,7 +63,9 @@ class MajorProgrammesController extends Controller
             'facultyAssociation' => $data['facultyAssociation'],
             'level' => $data['level'],
             'noOfBeneficiaries' => $data['noOfBeneficiaries'], 
-            'userId' => Auth::user()->id
+            'userId' => Auth::user()->id,
+            'adminid' => null,
+            'deptId' => null
         ]); 
         return Redirect::action('MajorProgrammesController@index')->with('message', 'Major Programme Added Succesfully');
     }

@@ -49,7 +49,7 @@
                     </div> 
                     <div class="col-md-6">                          
                         <div class="form-group">
-                            <label for="">Enter the Achive</label>
+                            <label for="">Enter the Achivement</label>
                             <input type="text" class="form-control @error('achive') is-invalid @enderror"
                                 placeholder="Enter the Achive" name="achive" value="{{ $achive->achive }}">    
                             @error('achive')

@@ -7,6 +7,7 @@
                 <h5>Your Profile</h5>
                 <a class="btn btn-primary text-white" href="/staff/edit-profile" type="button">Edit Profile</a>
             </div>  
+            <hr>
             <div class="container emp-profile py-1"> 
                 <div class="row">
                     <div class="col-md-4">
@@ -25,6 +26,7 @@
                         </div> 
                     </div>  
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col-md-4">
                         

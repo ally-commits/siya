@@ -17,7 +17,7 @@ class DeptFDPMeeting extends Controller
     public function index()
     { 
         $meetings = DB::table("fdp_meetings")
-                ->where("userId","=",Auth::user()->deptId)
+                ->where("deptId","=",Auth::user()->id)
                 ->latest()
                 ->get();
         return view("dept.fdpMeeting.viewMeeting")->with("meetings", $meetings);
@@ -64,7 +64,7 @@ class DeptFDPMeeting extends Controller
             'place' => $data['place'],
             'typeOfMeeting' => $data['type'],
             'department' => $data['dept'],
-            'userId' => Auth::user()->deptId
+            'deptId' => Auth::user()->id
         ]); 
         return Redirect::action('DeptFDPMeeting@index')->with('message', 'Fdp Meeting Added Succesfully');
     }

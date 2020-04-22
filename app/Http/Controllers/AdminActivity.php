@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use App\Admin;
+use App\Dept;
 
 class AdminActivity extends Controller
 {
@@ -22,19 +24,25 @@ class AdminActivity extends Controller
                 'ti-control-backward','ti-control-eject','ti-control-stop'];
         $color = ['text-danger','text-info','text-success','text-primary','text-secondary','text-warning',
                     'text-danger','text-info','text-primary','text-warning'];
+
         return view("admin.addActivity")->with("values", $value_arr)->with("color",$color)->with("icon",$icon);
     }
     public function getData($t) {  
         $table = DB::table($t)->get(); 
-        if($t == "papers") {
-            foreach($table as $tab) {
-                if($tab->userId == 000) {
-                    $tab->staffName = "Admin";
-                } else {
-                    $user = User::find($tab->userId);
-                    $tab->staffName = $user['name'];
-                }
-            }
+        foreach($table as $tab) {
+            if($tab->userId != null) {
+                $user = User::find($tab->userId);
+                $tab->userName = $user->name;
+                $tab->userType = "Staff";
+            } else if($tab->adminId != null) {
+                $user = Admin::find($tab->adminId);
+                $tab->userName = $user->name;
+                $tab->userType = "Admin";
+            } else if($tab->deptId != null) {
+                $user = Dept::find($tab->deptId);
+                $tab->userName = $user->name;
+                $tab->userType = "Department";
+            }  
         } 
         switch($t) {
             case 'achivements': 
@@ -75,12 +83,15 @@ class AdminActivity extends Controller
         $table = DB::table($t)->get();
         if($t == "papers") {
             foreach($table as $tab) {
-                if($tab->userId == 000) {
-                    $tab->staffName = "Admin";
-                } else {
+                if($tab->userId != null) {
                     $user = User::find($tab->userId);
-                    $tab->staffName = $user['name'];
-                }
+                    $tab->userName = $user->name;
+                    $tab->userType = "Staff";
+                } else if($tab->adminId != null) {
+                    $user = Admin::find($tab->adminId);
+                    $tab->userName = $user->name;
+                    $tab->userType = "Admin";
+                } 
             }
         } 
         $value_arr = ['achivements' => "Achievements",'association_programs' => "Association Programmes",
@@ -89,6 +100,37 @@ class AdminActivity extends Controller
                     'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
                     => "Guest Lecture MDP", 'major_programmes' => 'Major Programmes'];
 
-        return view("admin.report.viewAllReport")->with("value_arr", $value_arr)->with("data",$table)->with("key",$t);
+        return view("admin.report.viewReport")->with("value_arr", $value_arr)->with("data",$table)->with("key",$t);
+    } 
+
+    public function allReport() {
+        $value_arr = ['achivements' => "Achievements",'association_programs' => "Association Programmes",
+                    'fdp_meetings' => "FDP/Meetings",'papers' => 'Papers Presented',
+                    'seminar_organiseds' => 'Seminar Organised','seminar_attendeds' => 'Seminar Attended',
+                    'publications' => 'Publication','guest_visiteds' => 'Guest Visited', 'guest_lecture_m_d_p_s'
+                    => "Guest Lecture MDP", 'major_programmes' => 'Major Programmes'];
+        $datas = [];
+
+        foreach($value_arr as $key=>$val) {
+            if($key == "papers") {
+                $table =  DB::table($key)->get(); 
+                foreach($table as $tab) {
+                    if($tab->userId != null) {
+                        $user = User::find($tab->userId);
+                        $tab->userName = $user->name;
+                        $tab->userType = "Staff";
+                    } else if($tab->adminId != null) {
+                        $user = Admin::find($tab->adminId);
+                        $tab->userName = $user->name;
+                        $tab->userType = "Admin";
+                    } 
+                }
+                $datas[$key] = $table;
+            } else {
+                $datas[$key] = DB::table($key)->get();
+            }
+        }
+
+        return view("admin.report.viewAllReport")->with("datas",$datas)->with("value_arr", $value_arr);
     }
 }

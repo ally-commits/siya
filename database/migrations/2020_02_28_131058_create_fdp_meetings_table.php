@@ -24,8 +24,22 @@ class CreateFdpMeetingsTable extends Migration
             $table->string('organisers');
             $table->string('typeOfMeeting');
             $table->string('level');
-            $table->string('userId');
+            $table->string('userId')->nullable(true);
+            $table->string('adminId')->nullable(true);
+            $table->string('deptId')->nullable(true);
             $table->timestamps();
+
+            $table->foreign('userId')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('adminId')
+                ->references('id')->on('admins')
+                ->onDelete('cascade');
+
+            $table->foreign('deptId')
+                ->references('id')->on('depts')
+                ->onDelete('cascade');
         });
     }
 

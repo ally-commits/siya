@@ -4,14 +4,14 @@
 <div class="container">
     <div class="card">
         <div class="d-flex" style="justify-content: space-between; align-items: center;">
-            <h4>Add Staff Papers Presented</h4>
-            <a href="/admin/staffActivity/1" class="btn btn-info"><i class="ti-angle-double-left text-white"></i></a>
+            <h4>Add <span class="text-capitalize">{{ $type}}</span> Papers Presented</h4>
+            <a onclick="goBack()" class="btn btn-primary"><i class="ti-angle-double-left text-white"></i></a>
         </div>
         <div class="card-body">
-            <form action="/admin/staffActivity/{{ $staffId }}/papers" method="POST">
+            <form action="/admin/staffActivity/{{$type}}/{{ $staffId }}/papers" method="POST">
                 @csrf
                 <div class="row">
-                <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Select Conference/Workshop/Symposia/Meeting </label>
                             <select class="form-control @error('type') is-invalid @enderror" name="type"
@@ -23,18 +23,6 @@
                             </select>   
                             @error('type')
                                 <span class="text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror 
-                        </div>
-                    </div>
-                    <div class="col-md-6">                          
-                        <div class="form-group">
-                            <label for="">Enter the Name of the staff</label>
-                            <input type="text" class="form-control @error('staffname') is-invalid @enderror"
-                                placeholder="Enter the Name " name="staffname" value="{{ old('staffname') }}">    
-                            @error('staffname')
-                                <span class="invalid-text text-danger" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror 
@@ -128,7 +116,7 @@
                         <div class="form-group">
                             <label for="">Enter the Prizes</label>
                             <input type="text" class="form-control @error('prize') is-invalid @enderror"
-                                placeholder="Enter the Prizes" name="prize" value="-">    
+                                placeholder="Enter the Prizes" name="prize" value="{{ old('prize') }}">    
                             @error('prize')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}

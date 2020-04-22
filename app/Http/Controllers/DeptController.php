@@ -28,7 +28,7 @@ class DeptController extends Controller
         $colors = ['text-danger','text-dark','text-info','text-warning','text-success','text-primary','text-secondary'];
 
         foreach($value_arr as $key=>$arr) {
-            $value_count[$key] = DB::table($key)->where("userId",Auth::user()->deptId)->count();
+            $value_count[$key] = DB::table($key)->where("deptId",Auth::user()->id)->count();
         }  
         return view('dept.home')->with("value_names",$value_arr)->with("value_count", $value_count)
                     ->with("icons",$icons)->with("colors", $colors);

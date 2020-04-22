@@ -25,7 +25,7 @@ class AdminDeptController extends Controller
         $data = $request->all();
 
         Dept::create([
-            'deptId' => 'd'.uniqid(),
+            'id' => uniqid(),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']), 

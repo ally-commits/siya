@@ -7,7 +7,6 @@
             <div class="card">
                 <div class="card-body"> 
                     <div class="row"> 
-                        @foreach($datas as $key=>$data)
                             <div class="col-md-12"> 
                                 @if($key == 'achivements' and count($data) == 0)
                                     No data Found..
@@ -361,7 +360,6 @@
                                     <hr>
                                 @endif
                             </div>   
-                        @endforeach
                     </div>
                 </div>
             </div>

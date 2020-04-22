@@ -14,21 +14,24 @@ class AdminAchivementsController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index($staffId)
+    public function index($type, $staffId)
     {
+        $value = $type == "admin" ? "adminId" : "userId";
         $achive = DB::table("achivements")
-                ->where("userId","=",$staffId)
+                ->where($value,"=",$staffId)
                 ->latest()
                 ->get();
-        if($staffId == 000) {
-            $user['0'] = ['name' => "Admin"]; 
+
+        if($type == "admin") {
+            $user = DB::table("admins")->where("id","=",$staffId)->limit(1)->get();
         } else {
             $user = DB::table("users")->where("id","=",$staffId)->limit(1)->get();
         }
         return view("admin.staffActivity.achivements.viewAchivements")
             ->with("achive", $achive)
             ->with("user", $user)
-            ->with("staffId", $staffId);
+            ->with("staffId", $staffId)
+            ->with("type", $type);
     }
 
     /**
@@ -36,9 +39,9 @@ class AdminAchivementsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($staffId)
+    public function create($type, $staffId)
     {
-        return view("admin.staffActivity.achivements.addAchivement")->with("staffId", $staffId);
+        return view("admin.staffActivity.achivements.addAchivement")->with("staffId", $staffId)->with("type", $type);
     }
 
     /**
@@ -47,7 +50,7 @@ class AdminAchivementsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $staffId)
+    public function store(Request $request, $type, $staffId)
     {
         $data = $request->all();
         $request->validate([
@@ -61,6 +64,11 @@ class AdminAchivementsController extends Controller
             'level' => ['required', 'string'],
             'guide' => ['required', 'string'],    
         ]);   
+        if($type == "staff") {
+            $value = "userId";
+        } else if($type == "admin") {
+            $value = "adminId";
+        } 
         Achivements::create([
             'name' => $data['name'],
             'dept' => $data['department'],
@@ -71,9 +79,9 @@ class AdminAchivementsController extends Controller
             'date' => $data['date'],
             'level' => $data['level'],
             'guidedBy' => $data['guide'],
-            'userId' => $staffId
+            $value => $staffId
         ]); 
-        return Redirect::route('achivements.index', $staffId)->with('message', 'Achhivements Added Succesfully');
+        return Redirect::route('achivements.index',[$type ,$staffId])->with('message', 'Achhivements Added Succesfully');
     }
 
     /**
@@ -82,12 +90,13 @@ class AdminAchivementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($staffId, $id)
+    public function show($type, $staffId, $id)
     {
         $achive  = Achivements::find($id);
         return view("admin.staffActivity.achivements.editAchivement")
             ->with("achive", $achive)
-            ->with("staffId", $staffId);
+            ->with("staffId", $staffId)
+            ->with("type",$type);
     }
 
     /**
@@ -108,7 +117,7 @@ class AdminAchivementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $staffId, $id)
+    public function update(Request $request, $type, $staffId, $id)
     { 
         $data = $request->all();
  
@@ -136,7 +145,7 @@ class AdminAchivementsController extends Controller
                     'level' => $data['level'],
                     'guidedBy' => $data['guide'],]);
 
-        return Redirect::route('achivements.index',$staffId)->with('message', 'Achivements Updated Succesfully');   
+        return Redirect::route('achivements.index',[$type ,$staffId])->with('message', 'Achivements Updated Succesfully');   
     }
 
     /**
@@ -145,10 +154,10 @@ class AdminAchivementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($staffId, $id)
+    public function delete($type, $staffId, $id)
     {
         $achive  = Achivements::find($id);
         $achive->delete();
-        return Redirect::route('achivements.index', $staffId)->with('message', 'Achivement Deleted Succesfully');
+        return Redirect::route('achivements.index',[$type, $staffId])->with('message', 'Achivement Deleted Succesfully');
     }
 }

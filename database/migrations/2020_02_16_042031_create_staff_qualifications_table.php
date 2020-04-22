@@ -21,6 +21,10 @@ class CreateStaffQualificationsTable extends Migration
             $table->string("place");
             $table->string("userId");
             $table->timestamps();
+
+            $table->foreign('userId')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

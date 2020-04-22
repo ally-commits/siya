@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label for="">Enter the Prize</label>
                             <input type="text" class="form-control @error('prize') is-invalid @enderror"
-                                placeholder="Enter the Prize" name="prize" value="-">    
+                                placeholder="Enter the Prize" name="prize" value="{{ old('price') }}">    
                             @error('prize')
                                 <span class="invalid-text text-danger" role="alert">
                                     {{ $message }}

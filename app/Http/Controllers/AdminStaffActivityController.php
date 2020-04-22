@@ -17,5 +17,6 @@ class AdminStaffActivityController extends Controller
             ->select('users.*','staff_profiles.*') 
             ->get();  
         return view("admin.staffActivity.manageStaffActivity")->with("staffs", $data);
+        
     }
 }

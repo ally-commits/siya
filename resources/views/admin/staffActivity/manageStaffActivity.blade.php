@@ -50,11 +50,11 @@
                                             <i class="ti-settings"></i> 
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/achivements">Achievements</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/association">Association</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/fdpMeeting">FDP Meeting</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/papers">Papers Presented</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/publication">Publication</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/achivements">Achievements</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/association">Association</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/fdpMeeting">FDP Meeting</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/papers">Papers Presented</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/publication">Publication</a> 
                                         </div> 
                                     </td>
                                     <td>
@@ -62,11 +62,11 @@
                                             <i class="ti-settings"></i> 
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/seminarOrganised">Seminar Orgainsed</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/seminarAttended">Seminar Attended</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/guestVisited">Guest Visited</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/guestLecture">Guest Lecture</a> 
-                                            <a class="dropdown-item" href="/admin/staffActivity/{{ $staff->userId}}/majorProgram">Major Programme</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/seminarOrganised">Seminar Orgainsed</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/seminarAttended">Seminar Attended</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/guestVisited">Guest Visited</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/guestLecture">Guest Lecture</a> 
+                                            <a class="dropdown-item" href="/admin/staffActivity/staff/{{ $staff->userId}}/majorProgram">Major Programme</a> 
                                         </div>
                                     </td> 
                                 </tr>

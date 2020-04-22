@@ -10,7 +10,7 @@
     <hr>
         <form method="POST" action="{{ route('admin.addStaff') }}">
         @csrf
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-4">
                     <div class="form-group mb-1 @error('name') has-danger @enderror" >
                         <label class="form-control-label" for="">Staff name</label>
@@ -51,7 +51,7 @@
                 </div> 
             </div>
             
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-4">                          
                     <div class="form-group">
                         <label for="">Select your Gender</label>
@@ -98,7 +98,7 @@
                     @enderror
                 </div>
             </div> 
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-8">
                     <div class="form-group mb-1 @error('address') has-danger @enderror" >
                         <label class="form-control-label" for="">Address</label>
@@ -143,7 +143,8 @@
                         @enderror
                     </div> 
                 </div>
-            </div>   
+            </div>
+            <hr>
             <div>
                 <button class="btn btn-primary btn-small" type="submit">Add Staff</button>
             </div>
