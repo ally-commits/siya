@@ -38,7 +38,10 @@ class StaffController extends Controller
             ->where("users.id",'=',Auth::user()->id)
             ->select('users.*','staff_profiles.*') 
             ->get();   
-        return view("staff.profile")->with("staff", $data);
+        $qlf = DB::table("staff_qualifications")
+            ->where("userId","=",Auth::user()->id)
+            ->get();
+        return view("staff.profile")->with("staff", $data)->with('qualification', $qlf);;
     }
     public function editProfile() { 
         $data = DB::table('users')

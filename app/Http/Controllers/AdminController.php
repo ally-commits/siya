@@ -52,8 +52,10 @@ class AdminController extends Controller
             ->where("users.id",'=',$userId)
             ->select('users.*','staff_profiles.*') 
             ->get();  
- 
-        return view('admin.viewStaffDetails')->with("staff", $data)->with("userId",$userId);
+        $qlf = DB::table("staff_qualifications")
+            ->where("userId","=",$userId)
+            ->get();
+        return view('admin.viewStaffDetails')->with("staff", $data)->with("userId",$userId)->with('qualification', $qlf);
     }
     public function getStaffDetails($userId) {
         $data = DB::table('users')
