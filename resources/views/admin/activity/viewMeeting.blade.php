@@ -43,7 +43,21 @@
                 @foreach($meetings as $key=>$mtg)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $mtg->userType }} ( {{ $mtg->userName }} )</td>
+                        <td>
+                            @if($mtg->userId != null)
+                            <a href="/admin/staffActivity/{{$mtg->userType}}/{{$mtg->userId}}/fdpMeeting" class="text-primary">
+                                {{ $mtg->userType }} ( {{ $mtg->userName }} )
+                            </a>
+                            @elseif($mtg->adminId != null)
+                            <a href="/admin/staffActivity/{{$mtg->userType}}/{{$mtg->adminId}}/fdpMeeting" class="text-primary">
+                                {{ $mtg->userType }} ( {{ $mtg->userName }} )
+                            </a> 
+                            @else
+                            <a href="/admin/staffActivity/{{$mtg->userType}}/{{$mtg->deptId}}/fdpMeeting" class="text-primary">
+                                {{ $mtg->userType }} ( {{ $mtg->userName }} )
+                            </a> 
+                            @endif
+                        </td>
                         <td>{{ $mtg->name }}</td>
                         <td>{{ $mtg->typeOfMeeting }}</td>
                         <td>{{ $mtg->from }}</td>

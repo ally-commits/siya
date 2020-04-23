@@ -43,7 +43,17 @@
                 @foreach($achive as $key=>$a)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $a->userType }} ( {{ $a->userName }} )</td>
+                        <td>
+                            @if($a->userId != null)
+                            <a href="/admin/staffActivity/{{$a->userType}}/{{$a->userId}}/achivements" class="text-primary">
+                                {{ $a->userType }} ( {{ $a->userName }} )
+                            </a>
+                            @elseif($a->adminId != null)
+                            <a href="/admin/staffActivity/{{$a->userType}}/{{$a->adminId}}/achivements" class="text-primary">
+                                {{ $a->userType }} ( {{ $a->userName }} )
+                            </a> 
+                            @endif
+                        </td>
                         <td>{{ $a->name }}</td>
                         <td>{{ $a->dept }}</td>
                         <td>{{ $a->achive }}</td>

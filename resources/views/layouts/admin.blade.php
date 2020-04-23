@@ -43,7 +43,7 @@
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <script>
             function goBack() {
-                window.history.back();
+                window.location = document.referrer;
             }
         </script>
         @yield("js")

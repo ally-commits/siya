@@ -42,7 +42,17 @@
                 @foreach($programs as $key=>$mtg)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $mtg->userType }} ( {{ $mtg->userName }} )</td>
+                        <td>
+                        @if($mtg->userId != null)
+                            <a href="/admin/staffActivity/{{$mtg->userType}}/{{$mtg->userId}}/majorProgram" class="text-primary">
+                                {{ $mtg->userType }} ( {{ $mtg->userName }} )
+                            </a>
+                            @elseif($mtg->adminId != null)
+                            <a href="/admin/staffActivity/{{$mtg->userType}}/{{$mtg->adminId}}/majorProgram" class="text-primary">
+                                {{ $mtg->userType }} ( {{ $mtg->userName }} )
+                            </a>  
+                        @endif
+                        </td>
                         <td>{{ $mtg->from }}</td> 
                         <td>{{ $mtg->to }}</td> 
                         <td>{{ $mtg->programme }}</td>

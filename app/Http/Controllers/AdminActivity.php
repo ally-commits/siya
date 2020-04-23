@@ -33,15 +33,15 @@ class AdminActivity extends Controller
             if($tab->userId != null) {
                 $user = User::find($tab->userId);
                 $tab->userName = $user->name;
-                $tab->userType = "Staff";
+                $tab->userType = "staff";
             } else if($tab->adminId != null) {
                 $user = Admin::find($tab->adminId);
                 $tab->userName = $user->name;
-                $tab->userType = "Admin";
+                $tab->userType = "admin";
             } else if($tab->deptId != null) {
                 $user = Dept::find($tab->deptId);
                 $tab->userName = $user->name;
-                $tab->userType = "Department";
+                $tab->userType = "department";
             }  
         } 
         switch($t) {

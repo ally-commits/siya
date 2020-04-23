@@ -41,7 +41,17 @@
                 @foreach($programs as $key=>$prg)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $prg->userType }} ( {{ $prg->userName }} )</td>
+                        <td>
+                            @if($prg->userId != null)
+                            <a href="/admin/staffActivity/{{$prg->userType}}/{{$prg->userId}}/association" class="text-primary">
+                                {{ $prg->userType }} ( {{ $prg->userName }} )
+                            </a>
+                            @elseif($prg->adminId != null)
+                            <a href="/admin/staffActivity/{{$prg->userType}}/{{$prg->adminId}}/association" class="text-primary">
+                                {{ $prg->userType }} ( {{ $prg->userName }} )
+                            </a> 
+                            @endif
+                        </td>
                         <td>{{ $prg->name }}</td>
                         <td>{{ $prg->NumberOfStudents }}</td>
                         <td>{{ $prg->date }}</td>

@@ -43,7 +43,17 @@
                 @foreach($papers as $key=>$p)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $p->userType }} ( {{ $p->userName }} )</td>
+                        <td>
+                            @if($p->userId != null)
+                            <a href="/admin/staffActivity/{{$p->userType}}/{{$p->userId}}/papers" class="text-primary">
+                                {{ $p->userType }} ( {{ $p->userName }} )
+                            </a>
+                            @elseif($p->adminId != null)
+                            <a href="/admin/staffActivity/{{$p->userType}}/{{$p->adminId}}/papers" class="text-primary">
+                                {{ $p->userType }} ( {{ $p->userName }} )
+                            </a> 
+                            @endif
+                        </td>
                         <td>{{ $p->name }}</td>  
                         <td>{{ $p->title }}</td>
                         <td>{{ $p->date }}</td>

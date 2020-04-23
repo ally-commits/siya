@@ -43,7 +43,21 @@
                 @foreach($seminar as $key=>$prg)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $prg->userType }} ( {{ $prg->userName }} )</td>
+                        <td>
+                        @if($prg->userId != null)
+                            <a href="/admin/staffActivity/{{$prg->userType}}/{{$prg->userId}}/seminarOrganised" class="text-primary">
+                                {{ $prg->userType }} ( {{ $prg->userName }} )
+                            </a>
+                            @elseif($prg->adminId != null)
+                            <a href="/admin/staffActivity/{{$prg->userType}}/{{$prg->adminId}}/seminarOrganised" class="text-primary">
+                                {{ $prg->userType }} ( {{ $prg->userName }} )
+                            </a> 
+                            @else
+                            <a href="/admin/staffActivity/{{$prg->userType}}/{{$prg->deptId}}/seminarOrganised" class="text-primary">
+                                {{ $prg->userType }} ( {{ $prg->userName }} )
+                            </a> 
+                        @endif
+                        </td>
                         <td>{{ $prg->title }}</td>
                         <td>{{ $prg->date }}</td>
                         <td>{{ $prg->collabAgency }}</td>
